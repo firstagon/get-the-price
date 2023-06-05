@@ -1,0 +1,135 @@
+.header {
+  display: flex;
+  position: sticky;
+
+  flex-direction: row;
+  flex-flow: column;
+
+  top: 0;
+  left: 0;
+
+  height: 10vh;
+
+  /* background-color: white; */
+  background-color: #f9f9f9;
+  /* border-bottom: 1px solid #19191979; */
+  z-index: 1;
+
+  margin-bottom: 2vh;
+}
+
+.navContainer {
+  display: inline-flex;
+  flex-direction: column;
+  position: relative;
+
+  justify-content: center;
+  align-items: center;
+
+  width: 10vw;
+  /* height: 6vh; */
+
+  background-color: rgb(81, 161, 135);
+}
+
+.navIcon {
+  display: flex;
+
+  align-items: center;
+
+  height: 6vh;
+}
+
+.navMenu {
+  display: none;
+  /* display: flex; */
+  /* position: absolute; */
+
+  flex-direction: column;
+
+  list-style: none;
+
+  margin: 0;
+  padding: 0;
+
+  z-index: 1;
+}
+
+.navContainer:hover .navMenu {
+  display: flex;
+}
+
+.navOption {
+  display: flex;
+
+  min-width: fit-content;
+  max-width: 10vw;
+
+  background-color: cadetblue;
+}
+
+.userContainer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+
+  height: 100%;
+}
+
+.userData {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+
+  height: 100%;
+  padding-right: 1vh;
+}
+
+.userName {
+  display: flex;
+
+  padding-bottom: 2px;
+}
+
+.loginButton {
+  display: flex;
+  justify-content: center;
+
+  /* width: 100%; */
+
+  background-color: transparent;
+  border: none;
+
+  text-decoration: underline;
+
+  cursor: pointer;
+
+  font-size: medium;
+
+  color: #0057ff;
+}
+
+.loginButton:hover {
+  color: blue;
+}
+
+.userImage {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+
+  height: 5vh;
+  width: 5vh;
+
+  margin-right: 2vw;
+
+  border-radius: 50%;
+
+  background-color: #0057ff;
+  color: white;
+
+  font-size: 180%;
+
+  user-select: none;
+}

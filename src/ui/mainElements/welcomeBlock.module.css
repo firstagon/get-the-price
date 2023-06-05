@@ -1,0 +1,11 @@
+.welcomeSection {
+    display: flex;
+    flex-direction: column;
+}
+
+.welcomeInfo {
+
+    background-color: white;
+    border-radius: 25px;
+    border: none;
+}
