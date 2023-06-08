@@ -1,0 +1,33 @@
+.popupLogin {
+  position: static;
+  z-index: 1;
+  display: flex;
+  /* justify-content: center; */
+  align-items: center;
+  flex-direction: column;
+
+  width: 100vw;
+  height: 100vh;
+
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.loginBlock {
+  position: absolute;
+  top: 20%;
+  
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+
+  width: 40%;
+
+  background-color: var(--grey-light);
+
+  border-radius: 4px;
+}
+
+.loginForm {
+  padding: 15px;
+}

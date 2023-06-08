@@ -1,5 +1,6 @@
 .header {
   display: flex;
+  position: -webkit-sticky;
   position: sticky;
 
   flex-direction: row;
@@ -16,17 +17,19 @@
   z-index: 1;
 
   margin-bottom: 2vh;
+
+  border-radius: 0 0 25px 25px;
 }
 
 .navContainer {
-  display: inline-flex;
-  flex-direction: column;
+  display: flex;
+  flex-direction: row;
   position: relative;
 
   justify-content: center;
   align-items: center;
 
-  width: 10vw;
+  max-width: 30%;
   /* height: 6vh; */
 
   background-color: rgb(81, 161, 135);
@@ -62,7 +65,9 @@
 .navOption {
   display: flex;
 
-  min-width: fit-content;
+  /* min-width: -moz-fit-content;
+  min-width: -webkit-fill-available;
+  min-width: fit-content; */
   max-width: 10vw;
 
   background-color: cadetblue;
@@ -131,5 +136,7 @@
 
   font-size: 180%;
 
+  -webkit-user-select: none;
   user-select: none;
 }
+
