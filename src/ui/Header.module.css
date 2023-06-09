@@ -1,10 +1,12 @@
 .header {
   display: flex;
+  flex-direction: row;
+
+  justify-content: space-between;
   position: -webkit-sticky;
   position: sticky;
 
-  flex-direction: row;
-  flex-flow: column;
+
 
   top: 0;
   left: 0;
@@ -18,7 +20,7 @@
 
   margin-bottom: 2vh;
 
-  border-radius: 0 0 25px 25px;
+  /* border-radius: 0 0 25px 25px; */
 }
 
 .navContainer {
@@ -28,11 +30,6 @@
 
   justify-content: center;
   align-items: center;
-
-  max-width: 30%;
-  /* height: 6vh; */
-
-  background-color: rgb(81, 161, 135);
 }
 
 .navIcon {
@@ -40,37 +37,13 @@
 
   align-items: center;
 
-  height: 6vh;
+  height: 4vh;
 }
 
-.navMenu {
-  display: none;
-  /* display: flex; */
-  /* position: absolute; */
-
-  flex-direction: column;
-
-  list-style: none;
-
-  margin: 0;
-  padding: 0;
-
-  z-index: 1;
-}
-
-.navContainer:hover .navMenu {
-  display: flex;
-}
-
-.navOption {
+.navLink {
   display: flex;
 
-  /* min-width: -moz-fit-content;
-  min-width: -webkit-fill-available;
-  min-width: fit-content; */
-  max-width: 10vw;
-
-  background-color: cadetblue;
+  margin-left: 2vw;
 }
 
 .userContainer {
@@ -140,3 +113,22 @@
   user-select: none;
 }
 
+.navIcon {
+  height: 2em;
+}
+
+.iconHome {
+  background-image: url(../icons/home-icon.svg);
+  background-repeat: no-repeat;
+  height: 2em;
+  width: 2em;
+}
+
+.iconRandom {
+  background-image: url(../icons/random-icon.svg);
+  background-repeat: no-repeat;
+  height: 2em;
+  width: 2em;
+
+  margin: 4px 0 0 10px;
+}

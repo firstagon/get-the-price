@@ -1,19 +1,15 @@
 import classes from "./Header.module.css";
 import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
+import homeIcon from "../icons/home-icon.svg";
 
 const Header = () => {
   return (
     <header className={classes.header}>
       <nav className={classes.navContainer}>
-        <div className={classes.navIcon}> menu </div>
-        <NavLink to="/" className={classes.navOption}>
-          home
-        </NavLink>
-        <NavLink to="/login" className={classes.navOption}>
-          login
-        </NavLink>
+        <NavLink to="/" className={classes.navLink + ' ' + classes.iconHome} />
+        <NavLink to="/item/1" className={classes.navLink + ' ' + classes.iconRandom} />
       </nav>
-      <section className={classes.userContainer}>
+      <div className={classes.userContainer}>
         <div className={classes.userData}>
           <div className={classes.userName}> User Name </div>
           <button className={classes.loginButton}> login</button>
@@ -21,7 +17,7 @@ const Header = () => {
         <div className={classes.userImage} alt="profile pic">
           A
         </div>
-      </section>
+      </div>
     </header>
   );
 };
