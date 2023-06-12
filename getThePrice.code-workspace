@@ -2,6 +2,9 @@
 	"folders": [
 		{
 			"path": ".."
+		},
+		{
+			"path": "../../../../downloads/torrent/NodeJS - The Complete Guide (incl. Deno, REST APIs, GraphQL)/25. Working with REST APIs - The Practical Application/07-frontend-updating-a-post"
 		}
 	],
 	"settings": {}

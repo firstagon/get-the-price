@@ -17,7 +17,6 @@ const RequestChoice = () => {
     // console.log(inputUrl.current.value);
     const input = inputUrl.current.value;
     if (input.length >= 2) {
-      console.log("longer!!");
       dispatch({ type: "submit_isActive" });
     } else {
       dispatch({ type: "submit_isDisabled" });

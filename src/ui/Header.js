@@ -1,6 +1,5 @@
-import classes from "./Header.module.css";
 import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
-import homeIcon from "../icons/home-icon.svg";
+import classes from "./Header.module.css";
 
 const Header = () => {
   return (
@@ -8,6 +7,8 @@ const Header = () => {
       <nav className={classes.navContainer}>
         <NavLink to="/" className={classes.navLink + ' ' + classes.iconHome} />
         <NavLink to="/item/1" className={classes.navLink + ' ' + classes.iconRandom} />
+        <NavLink to="/login" className={classes.navLink + ' ' + classes.iconLogin} /> 
+        <NavLink to="/signup" className={classes.navLink + ' ' + classes.iconSignup} /> 
       </nav>
       <div className={classes.userContainer}>
         <div className={classes.userData}>

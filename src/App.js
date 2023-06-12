@@ -7,6 +7,7 @@ import Header from "./ui/Header";
 import HomePage from "./pages/HomePage";
 import ItemPage from "./pages/ItemPage";
 import LoginPage from "./pages/LoginPage";
+import SignupPage from './pages/SignupPage';
 
 const newHistory = createBrowserHistory();
 
@@ -26,7 +27,12 @@ function App() {
             <ItemPage />
           </Route>
           <Route path="/login" exact>
+            <Header />
             <LoginPage />
+          </Route>
+          <Route path="/signup" exact>
+            <Header />
+            <SignupPage />
           </Route>
         </Switch>
       </Router>

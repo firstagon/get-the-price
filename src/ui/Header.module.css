@@ -132,3 +132,21 @@
 
   margin: 4px 0 0 10px;
 }
+
+.iconLogin {
+  background-image: url(../icons/login.svg);
+  background-repeat: no-repeat;
+  height: 2em;
+  width: 2em;
+
+  margin: 4px 0 0 10px;
+}
+
+.iconSignup {
+  background-image: url(../icons/register.svg);
+  background-repeat: no-repeat;
+  height: 2em;
+  width: 2em;
+
+  margin: 4px 0 0 10px;
+}
