@@ -1,10 +1,15 @@
 import { useState, useRef, useEffect } from "react";
 
 import classes from "./LoginPage.module.css";
+import Input from "../ui/InputForms/Input";
 
 const LoginPage = () => {
   const [showPass, setShowPass] = useState(false);
-  const [isDisabled, setIsDisabled] = useState({ password: true, email: true, both: true });
+  const [isDisabled, setIsDisabled] = useState({
+    password: true,
+    email: true,
+    both: true,
+  });
   const inputEmail = useRef();
   const inputPass = useRef();
 
@@ -80,8 +85,26 @@ const LoginPage = () => {
             onChange={passwordValid}
             ref={inputPass}
           />
-          <i className={classes.eye + " " + (showPass ? classes.eyeOpen : "")} onClick={passIconHandler} />
-          <input type="submit" name="submit" placeholder="Submit" onClick={clickHandler} disabled={isDisabled.both} />
+          <i
+            className={classes.eye + " " + (showPass ? classes.eyeOpen : "")}
+            onClick={passIconHandler}
+          />
+          <Input
+            label="Email"
+            type="text"
+            id="email"
+            placeholder="Enter E-mail"
+            onFocus={(e) => (e.target.placeholder = "")}
+            onBlur={(e) => (e.target.placeholder = "Enter E-mail")}
+            eye=''
+          />
+          <input
+            type="submit"
+            name="submit"
+            placeholder="Submit"
+            onClick={clickHandler}
+            disabled={isDisabled.both}
+          />
         </form>
       </div>
     </div>
