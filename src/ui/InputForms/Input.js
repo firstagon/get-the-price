@@ -1,28 +1,42 @@
+import { forwardRef } from "react";
 import classes from "./Input.module.css";
 
-const Input = ({ label, type, id, placeholder, onFocus, onBlur, eye }) => {
+const Input = forwardRef((props, ref) => {
+  const {
+    label,
+    type,
+    id,
+    placeholder,
+    onFocus,
+    onBlur,
+    onClick,
+    onChange,
+    eye,
+    eyeToggle,
+  } = props;
   return (
     <div className={classes.flexInput}>
       <label htmlFor={id} className={classes.inputLabel}>
         {label}
-        <input
-          id={id}
-          type={type}
-          placeholder={placeholder}
-          className={classes.inputInput}
-          onFocus={onFocus}
-          onBlur={onBlur}
-          eye={eye}
-        />
-        {eye && (
-          <i
-            className={classes.eye }
-
-          />
-        )}
       </label>
+      <input
+        ref={ref}
+        id={id}
+        type={eyeToggle ? 'text' : type}
+        placeholder={placeholder}
+        className={classes.inputInput}
+        onFocus={onFocus}
+        onBlur={onBlur}
+        onChange={onChange}
+      />
+      {eye && (
+        <i
+          className={classes.eye + " " + (eyeToggle ? classes.eyeOpen : "")}
+          onClick={onClick}
+        />
+      )}
     </div>
   );
-};
+});
 
 export default Input;

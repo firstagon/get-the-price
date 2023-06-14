@@ -65,38 +65,27 @@ const LoginPage = () => {
       <div style={{ color: "white" }}> Login page </div>
       <div className={classes.loginBlock}>
         <form className={classes.loginForm}>
-          <input
-            type="text"
-            name="email"
-            placeholder="E-mail adress"
-            onFocus={(e) => (e.target.placeholder = "")}
-            onBlur={(e) => (e.target.placeholder = "E-mail adress")}
-            className={classes.onFocus}
-            onChange={emailValid}
-            ref={inputEmail}
-          />
-          <input
-            type={showPass ? "text" : "password"}
-            name="password"
-            placeholder="Password"
-            className={classes.inputPassword}
-            onFocus={(e) => (e.target.placeholder = "")}
-            onBlur={(e) => (e.target.placeholder = "Password")}
-            onChange={passwordValid}
-            ref={inputPass}
-          />
-          <i
-            className={classes.eye + " " + (showPass ? classes.eyeOpen : "")}
-            onClick={passIconHandler}
-          />
           <Input
-            label="Email"
+            ref={inputEmail}
             type="text"
             id="email"
             placeholder="Enter E-mail"
             onFocus={(e) => (e.target.placeholder = "")}
             onBlur={(e) => (e.target.placeholder = "Enter E-mail")}
-            eye=''
+            eye={false}
+            onChange={emailValid}
+          />
+          <Input
+            ref={inputPass}
+            type="password"
+            id="pass"
+            placeholder="Enter password"
+            onFocus={(e) => (e.target.placeholder = "")}
+            onBlur={(e) => (e.target.placeholder = "Enter E-mail")}
+            eye={true}
+            eyeToggle={showPass}
+            onClick={passIconHandler}
+            onChange={passwordValid}
           />
           <input
             type="submit"

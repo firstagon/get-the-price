@@ -1,4 +1,26 @@
 .flexInput {
-    display: flex;
-    
+    display: inline;
+    flex-direction: column;
 }
+
+.eye {
+    content: url(../../icons/hidedEye.svg);
+
+    position: absolute;
+    width: 20px;
+    height: 20px;
+  
+    right: 6%;
+  
+    margin: 0;
+    padding: 11px 0 0 0;
+  
+    cursor: pointer;
+  
+    user-select: none;
+  }
+  
+  .eyeOpen {
+    content: url(../../icons/openEye.svg);
+  
+  }
