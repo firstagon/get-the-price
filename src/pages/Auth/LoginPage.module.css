@@ -44,7 +44,7 @@
 
 
 .eye {
-  content: url(../icons/hidedEye.svg);
+  content: url(../../icons/hidedEye.svg);
   display: inline-block;
   position: absolute;
   width: 20px;
@@ -61,7 +61,7 @@
 }
 
 .eyeOpen {
-  content: url(../icons/openEye.svg);
+  content: url(../../icons/openEye.svg);
 
 }
 

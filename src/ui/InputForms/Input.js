@@ -9,7 +9,7 @@ const Input = forwardRef((props, ref) => {
     placeholder,
     onFocus,
     onBlur,
-    onClick,
+    eyeClick,
     onChange,
     eye,
     eyeToggle,
@@ -32,7 +32,7 @@ const Input = forwardRef((props, ref) => {
       {eye && (
         <i
           className={classes.eye + " " + (eyeToggle ? classes.eyeOpen : "")}
-          onClick={onClick}
+          onClick={eyeClick}
         />
       )}
     </div>

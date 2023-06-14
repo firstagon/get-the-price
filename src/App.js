@@ -1,13 +1,13 @@
 import React, { Fragment } from "react";
 import { createBrowserHistory } from "history";
-import { Router, Switch, Route, useHistory } from "react-router-dom";
+import { Router, Switch, Route } from "react-router-dom";
 import "./App.css";
 import Header from "./ui/Header";
 
 import HomePage from "./pages/HomePage";
 import ItemPage from "./pages/ItemPage";
-import LoginPage from "./pages/LoginPage";
-import SignupPage from './pages/SignupPage';
+import LoginPage from "./pages/Auth/LoginPage";
+import SignupPage from './pages/Auth/SignupPage';
 
 const newHistory = createBrowserHistory();
 

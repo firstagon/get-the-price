@@ -1,7 +1,8 @@
 import { useState, useRef, useEffect } from "react";
 
-import classes from "./LoginPage.module.css";
-import Input from "../ui/InputForms/Input";
+import classes from "./SignupPage.module.css";
+
+import Input from "../../ui/InputForms/Input";
 
 const LoginPage = () => {
   const [showPass, setShowPass] = useState(false);
@@ -12,7 +13,7 @@ const LoginPage = () => {
   });
   const inputEmail = useRef();
   const inputPass = useRef();
-
+  const inputPassSec = useRef();
   const clickHandler = (e) => {
     e.preventDefault();
   };
@@ -81,7 +82,19 @@ const LoginPage = () => {
             id="pass"
             placeholder="Enter password"
             onFocus={(e) => (e.target.placeholder = "")}
-            onBlur={(e) => (e.target.placeholder = "Enter E-mail")}
+            onBlur={(e) => (e.target.placeholder = "Enter password")}
+            eye={true}
+            eyeToggle={showPass}
+            onClick={passIconHandler}
+            onChange={passwordValid}
+          />
+          <Input
+            ref={inputPassSec}
+            type="password"
+            id="passSec"
+            placeholder="Enter password"
+            onFocus={(e) => (e.target.placeholder = "")}
+            onBlur={(e) => (e.target.placeholder = "Enter password")}
             eye={true}
             eyeToggle={showPass}
             onClick={passIconHandler}
