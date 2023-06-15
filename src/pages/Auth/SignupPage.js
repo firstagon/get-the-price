@@ -3,67 +3,113 @@ import { useState, useRef, useEffect } from "react";
 import classes from "./SignupPage.module.css";
 
 import Input from "../../ui/InputForms/Input";
+import { required, length, email, same } from "../../util/validators";
 
 const LoginPage = () => {
-  const [showPass, setShowPass] = useState(false);
-  const [isDisabled, setIsDisabled] = useState({
-    password: true,
-    email: true,
-    both: true,
+  const [state, setState] = useState({
+    loginForm: {
+      email: {
+        value: "",
+        valid: false,
+        touched: false,
+        validators: [required, email],
+      },
+      password: {
+        value: "",
+        valid: false,
+        touched: false,
+        hided: true,
+        validators: [required, length],
+      },
+
+      passwordRepeat: {
+        value: "",
+        valid: false,
+        touched: false,
+        hided: true,
+        validators: [required, length],
+      },
+    },
+    formIsValid: false,
   });
   const inputEmail = useRef();
-  const inputPass = useRef();
-  const inputPassSec = useRef();
-  const clickHandler = (e) => {
-    e.preventDefault();
-  };
 
-  const passIconHandler = () => {
-    setShowPass((prevState) => {
-      return !prevState;
+  const inputChangeHandler = (synteticE) => {
+    const value = synteticE.target.value;
+    const input = synteticE.target.id;
+    setState((prevState) => {
+      let isValid = true;
+      for (const validator of prevState.loginForm[input].validators) {
+        isValid = isValid && validator(value);
+      }
+      const updatedForm = {
+        ...prevState.loginForm,
+        [input]: {
+          ...prevState.loginForm[input],
+          valid: isValid,
+          value: value,
+        },
+      };
+      let formIsValid = true;
+      for (const inputName in updatedForm) {
+        formIsValid =
+          formIsValid &&
+          !!updatedForm[inputName].valid &&
+          updatedForm.password.value === updatedForm.passwordRepeat.value;
+      }
+      return {
+        loginForm: updatedForm,
+        formIsValid: formIsValid,
+      };
     });
   };
 
-  const emailValid = () => {
-    const input = inputEmail.current.value;
-    if (input.length >= 2) {
-      setIsDisabled((prevState) => {
-        return { ...prevState, email: false };
-      });
-    } else {
-      setIsDisabled((prevState) => {
-        return { ...prevState, email: true };
-      });
+  const inputBlurHandler = (synteticE) => {
+    const value = synteticE.target.value;
+    const input = synteticE.target.id;
+
+    console.log(state);
+
+    if (!value) {
+      return (synteticE.target.placeholder = `Enter ${input}`);
     }
-  };
-  const passwordValid = () => {
-    const input = inputPass.current.value;
-    if (input.length >= 2) {
-      setIsDisabled((prevState) => {
-        return { ...prevState, password: false };
-      });
-    } else {
-      setIsDisabled((prevState) => {
-        return { ...prevState, password: true };
-      });
-    }
+
+    setState((prevState) => {
+      return {
+        ...prevState,
+        loginForm: {
+          ...prevState.loginForm,
+          [input]: {
+            ...prevState.loginForm[input],
+            touched: true,
+          },
+        },
+      };
+    });
   };
 
-  useEffect(() => {
-    if (!isDisabled.password && !isDisabled.email) {
-      setIsDisabled((prevState) => {
-        return { ...prevState, both: false };
-      });
-    } else {
-      setIsDisabled((prevState) => {
-        return { ...prevState, both: true };
-      });
-    }
-  }, [isDisabled.password, isDisabled.email]);
+  const eyeHandler = (synteticE) => {
+    const input = synteticE.target.previousSibling.id;
+    setState((prevState) => {
+      return {
+        ...prevState,
+        loginForm: {
+          ...prevState.loginForm,
+          [input]: {
+            ...prevState.loginForm[input],
+            hided: !prevState.loginForm[input].hided,
+          },
+        },
+      };
+    });
+  };
+
+  const submitHandler = (e) => {
+    e.preventDefault();
+  };
 
   return (
     <div className={classes.popupLogin}>
-      <div style={{ color: "white" }}> Login page </div>
       <div className={classes.loginBlock}>
         <form className={classes.loginForm}>
           <Input
@@ -72,40 +118,40 @@ const LoginPage = () => {
             id="email"
             placeholder="Enter E-mail"
             onFocus={(e) => (e.target.placeholder = "")}
-            onBlur={(e) => (e.target.placeholder = "Enter E-mail")}
+            onBlur={inputBlurHandler}
             eye={false}
-            onChange={emailValid}
+            onChange={inputChangeHandler}
           />
           <Input
-            ref={inputPass}
-            type="password"
-            id="pass"
+            ref={inputEmail}
+            type={state.loginForm.password.hided ? "password" : "text"}
+            id="password"
             placeholder="Enter password"
             onFocus={(e) => (e.target.placeholder = "")}
-            onBlur={(e) => (e.target.placeholder = "Enter password")}
+            onBlur={inputBlurHandler}
             eye={true}
-            eyeToggle={showPass}
-            onClick={passIconHandler}
-            onChange={passwordValid}
+            hided={state.loginForm.password.hided}
+            onChange={inputChangeHandler}
+            eyeClick={eyeHandler}
           />
           <Input
-            ref={inputPassSec}
-            type="password"
-            id="passSec"
-            placeholder="Enter password"
+            ref={inputEmail}
+            type={state.loginForm.passwordRepeat.hided ? "password" : "text"}
+            id="passwordRepeat"
+            placeholder="Enter password repeat"
             onFocus={(e) => (e.target.placeholder = "")}
-            onBlur={(e) => (e.target.placeholder = "Enter password")}
+            onBlur={inputBlurHandler}
             eye={true}
-            eyeToggle={showPass}
-            onClick={passIconHandler}
-            onChange={passwordValid}
+            hided={state.loginForm.passwordRepeat.hided}
+            onChange={inputChangeHandler}
+            eyeClick={eyeHandler}
           />
           <input
             type="submit"
             name="submit"
             placeholder="Submit"
-            onClick={clickHandler}
-            disabled={isDisabled.both}
+            onClick={submitHandler}
+            disabled={!state.formIsValid}
           />
         </form>
       </div>

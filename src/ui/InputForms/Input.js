@@ -12,6 +12,7 @@ const Input = forwardRef((props, ref) => {
     eyeClick,
     onChange,
     eye,
+    hided,
     eyeToggle,
   } = props;
   return (
@@ -22,19 +23,17 @@ const Input = forwardRef((props, ref) => {
       <input
         ref={ref}
         id={id}
-        type={eyeToggle ? 'text' : type}
+        type={eyeToggle ? "text" : type}
         placeholder={placeholder}
         className={classes.inputInput}
         onFocus={onFocus}
         onBlur={onBlur}
         onChange={onChange}
       />
-      {eye && (
-        <i
-          className={classes.eye + " " + (eyeToggle ? classes.eyeOpen : "")}
-          onClick={eyeClick}
-        />
-      )}
+      {eye && <i
+        className={classes.eye + " " + (hided ? "" : classes.eyeOpen)}
+        onClick={eyeClick}
+      />}
     </div>
   );
 });
