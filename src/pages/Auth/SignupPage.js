@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useState } from "react";
 
 import classes from "./SignupPage.module.css";
 
@@ -32,7 +32,6 @@ const LoginPage = () => {
     },
     formIsValid: false,
   });
-  const inputEmail = useRef();
 
   const inputChangeHandler = (synteticE) => {
     const value = synteticE.target.value;
@@ -68,7 +67,7 @@ const LoginPage = () => {
     const value = synteticE.target.value;
     const input = synteticE.target.id;
 
-    console.log(state);
+    // console.log(state);
 
     if (!value) {
       return (synteticE.target.placeholder = `Enter ${input}`);
@@ -113,7 +112,6 @@ const LoginPage = () => {
       <div className={classes.loginBlock}>
         <form className={classes.loginForm}>
           <Input
-            ref={inputEmail}
             type="text"
             id="email"
             placeholder="Enter E-mail"
@@ -123,7 +121,6 @@ const LoginPage = () => {
             onChange={inputChangeHandler}
           />
           <Input
-            ref={inputEmail}
             type={state.loginForm.password.hided ? "password" : "text"}
             id="password"
             placeholder="Enter password"
@@ -135,7 +132,6 @@ const LoginPage = () => {
             eyeClick={eyeHandler}
           />
           <Input
-            ref={inputEmail}
             type={state.loginForm.passwordRepeat.hided ? "password" : "text"}
             id="passwordRepeat"
             placeholder="Enter password repeat"

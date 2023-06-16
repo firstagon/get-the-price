@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState } from "react";
 
 import classes from "./LoginPage.module.css";
 import Input from "../../ui/InputForms/Input";
@@ -23,7 +23,6 @@ const LoginPage = () => {
     },
     formIsValid: false,
   });
-  const inputEmail = useRef();
 
   const inputChangeHandler = (synteticE) => {
     const value = synteticE.target.value;
@@ -100,7 +99,6 @@ const LoginPage = () => {
       <div className={classes.loginBlock}>
         <form className={classes.loginForm}>
           <Input
-            ref={inputEmail}
             type="text"
             id="email"
             placeholder="Enter E-mail"
@@ -110,7 +108,6 @@ const LoginPage = () => {
             onChange={inputChangeHandler}
           />
           <Input
-            ref={inputEmail}
             type={state.loginForm.password.hided ? "password" : "text"}
             id="password"
             placeholder="Enter password"

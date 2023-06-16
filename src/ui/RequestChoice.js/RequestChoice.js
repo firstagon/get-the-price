@@ -1,26 +1,72 @@
-import { useRef, useReducer } from "react";
+import { useState } from "react";
 import classes from "./RequestChioce.module.css";
-
-const reducer = (state, action) => {
-  if (action.type === "submit_isActive") {
-    return { ...state, isDisabled: false };
-  } else if (action.type === "submit_isDisabled") {
-    return { ...state, isDisabled: true };
-  }
-};
+import Input from "../InputForms/Input";
+import { urlOzon } from "../../util/validators";
 
 const RequestChoice = () => {
-  const inputUrl = useRef();
-  const [state, dispatch] = useReducer(reducer, { isDisabled: true });
+  const [state, setState] = useState({
+    urlForm: {
+      url: {
+        value: "",
+        valid: false,
+        touched: false,
+        validators: [urlOzon],
+      },
+    },
+    formIsValid: false,
+  });
 
-  const urlValidation = () => {
-    // console.log(inputUrl.current.value);
-    const input = inputUrl.current.value;
-    if (input.length >= 2) {
-      dispatch({ type: "submit_isActive" });
-    } else {
-      dispatch({ type: "submit_isDisabled" });
+  const inputChangeHandler = (synteticE) => {
+    const value = synteticE.target.value;
+    const input = synteticE.target.id;
+
+    setState((prevState) => {
+      let isValid = true;
+      for (const validator of prevState.urlForm[input].validators) {
+        isValid = isValid && validator(value);
+      }
+      const updatedForm = {
+        ...prevState.urlForm,
+        [input]: {
+          ...prevState.urlForm[input],
+          valid: isValid,
+          value: value,
+        },
+      };
+      let formIsValid = true;
+      for (const inputName in updatedForm) {
+        formIsValid = formIsValid && updatedForm[inputName].valid;
+      }
+
+      return {
+        urlForm: updatedForm,
+        formIsValid: formIsValid,
+      };
+    });
+  };
+
+  const inputBlurHandler = (synteticE) => {
+    const value = synteticE.target.value;
+    const input = synteticE.target.id;
+
+    console.log(state);
+
+    if (!value) {
+      return (synteticE.target.placeholder = `Enter ${input}`);
     }
+
+    setState((prevState) => {
+      return {
+        ...prevState,
+        urlForm: {
+          ...prevState.urlForm,
+          [input]: {
+            ...prevState.urlForm[input],
+            touched: true,
+          },
+        },
+      };
+    });
   };
 
   const submitHandler = (e) => {
@@ -32,18 +78,26 @@ const RequestChoice = () => {
       <div className={classes.requestBlock}>
         <div className={classes.requestInfo}>
           <form className={classes.formReq}>
-            {/* <label for="url"> Url: </label> */}
-            <input
+            {/* <input
               ref={inputUrl}
               onChange={urlValidation}
               id="url"
               type="text"
               name="Enter url"
               placeholder="Enter url to item"
+            /> */}
+            <Input
+              type="text"
+              id="url"
+              placeholder="Enter url"
+              onFocus={(e) => (e.target.placeholder = "")}
+              onBlur={inputBlurHandler}
+              eye={false}
+              onChange={inputChangeHandler}
             />
             <input
               onClick={submitHandler}
-              disabled={state.isDisabled}
+              disabled={!state.formIsValid}
               className=""
               type="submit"
               value="Submit"

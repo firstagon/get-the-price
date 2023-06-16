@@ -1,7 +1,6 @@
-import { forwardRef } from "react";
 import classes from "./Input.module.css";
 
-const Input = forwardRef((props, ref) => {
+const Input = (props) => {
   const {
     label,
     type,
@@ -21,7 +20,7 @@ const Input = forwardRef((props, ref) => {
         {label}
       </label>
       <input
-        ref={ref}
+
         id={id}
         type={eyeToggle ? "text" : type}
         placeholder={placeholder}
@@ -36,6 +35,6 @@ const Input = forwardRef((props, ref) => {
       />}
     </div>
   );
-});
+};
 
 export default Input;

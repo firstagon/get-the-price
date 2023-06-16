@@ -16,3 +16,9 @@ export const email = (value) =>
   /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/.test(
     value
   );
+
+export const urlOzon = (url) => {
+  const value = url.toString().trim();
+  // value.split(".").some((elem) => elem === "ozon");
+  return value.split(".").some((elem) => elem === "ozon");
+};

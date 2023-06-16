@@ -8,6 +8,7 @@ import HomePage from "./pages/HomePage";
 import ItemPage from "./pages/ItemPage";
 import LoginPage from "./pages/Auth/LoginPage";
 import SignupPage from './pages/Auth/SignupPage';
+import Footer from "./ui/footer/Footer";
 
 const newHistory = createBrowserHistory();
 
@@ -35,6 +36,7 @@ function App() {
             <SignupPage />
           </Route>
         </Switch>
+        <Footer />
       </Router>
     </Fragment>
   );

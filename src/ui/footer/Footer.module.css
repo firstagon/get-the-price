@@ -1,0 +1,13 @@
+.footerSection {
+    display: flex;
+    position: relative;
+    width: 100%;
+
+    background-color: black;
+
+    bottom: 0;
+}
+
+.footerBlock {
+    color: white;
+}
