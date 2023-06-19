@@ -7,7 +7,7 @@ import Header from "./ui/Header";
 import HomePage from "./pages/HomePage";
 import ItemPage from "./pages/ItemPage";
 import LoginPage from "./pages/Auth/LoginPage";
-import SignupPage from './pages/Auth/SignupPage';
+import SignupPage from "./pages/Auth/SignupPage";
 import Footer from "./ui/footer/Footer";
 
 const newHistory = createBrowserHistory();
@@ -18,21 +18,18 @@ function App() {
   return (
     <Fragment>
       <Router history={newHistory}>
+        <Header />
         <Switch>
           <Route path="/" exact>
-            <Header />
             <HomePage />
           </Route>
           <Route path="/item/:itemId" exact>
-            <Header />
             <ItemPage />
           </Route>
           <Route path="/login" exact>
-            <Header />
             <LoginPage />
           </Route>
           <Route path="/signup" exact>
-            <Header />
             <SignupPage />
           </Route>
         </Switch>
