@@ -4,7 +4,7 @@ import classes from "./LoginPage.module.css";
 import Input from "../../ui/InputForms/Input";
 import { required, length, email } from "../../util/validators";
 
-const LoginPage = () => {
+const LoginPage = (props) => {
   const [state, setState] = useState({
     loginForm: {
       email: {
@@ -75,10 +75,11 @@ const LoginPage = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
+    props.onLogin({ email: state.loginForm.email.value, password: state.loginForm.password.value });
   };
 
   const eyeHandler = (synteticE) => {
-    const input = synteticE.target.previousSibling.id
+    const input = synteticE.target.previousSibling.id;
     setState((prevState) => {
       return {
         ...prevState,

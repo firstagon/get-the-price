@@ -3,9 +3,9 @@ import { useState } from "react";
 import classes from "./SignupPage.module.css";
 
 import Input from "../../ui/InputForms/Input";
-import { required, length, email, same } from "../../util/validators";
+import { required, length, email } from "../../util/validators";
 
-const LoginPage = () => {
+const LoginPage = (props) => {
   const [state, setState] = useState({
     loginForm: {
       email: {
@@ -105,6 +105,7 @@ const LoginPage = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
+    props.onSignup({ email: state.loginForm.email.value, password: state.loginForm.password.value });
   };
 
   return (
