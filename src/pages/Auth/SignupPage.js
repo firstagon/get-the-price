@@ -31,6 +31,7 @@ const LoginPage = (props) => {
       },
     },
     formIsValid: false,
+    highlite: false
   });
 
   const inputChangeHandler = (synteticE) => {
@@ -67,7 +68,7 @@ const LoginPage = (props) => {
     const value = synteticE.target.value;
     const input = synteticE.target.id;
 
-    // console.log(state);
+    console.log(state);
 
     if (!value) {
       return (synteticE.target.placeholder = `Enter ${input}`);
@@ -108,6 +109,21 @@ const LoginPage = (props) => {
     props.onSignup({ email: state.loginForm.email.value, password: state.loginForm.password.value });
   };
 
+  let highlighted = false;
+
+  const bothSame = () => {
+    if (state.loginForm.password.value === state.loginForm.passwordRepeat.value) {
+      return highlighted = false;
+    } else {
+      return highlighted = true;
+    }
+  }
+
+  if (state.loginForm.password.touched && state.loginForm.passwordRepeat.touched) {
+    console.log('both touched')
+    bothSame();
+  }
+
   return (
     <div className={classes.popupLogin}>
       <div className={classes.loginBlock}>
@@ -146,7 +162,7 @@ const LoginPage = (props) => {
           <input
             type="submit"
             name="submit"
-            placeholder="Submit"
+            placeholder={highlighted ? "Пароли отличаются" : "Submit"}
             onClick={submitHandler}
             disabled={!state.formIsValid}
           />
