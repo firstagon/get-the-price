@@ -2,14 +2,12 @@ import classes from "./ErrorPopup.module.css";
 import crossIcon from "../../icons/cross-closeicon.svg";
 
 const ErrorPopup = (props) => {
-  // console.log(props.error);
-
   // setTimeout(() => {
   //   props.close()
   // }, 2000);
 
   return (
-    <div className={classes.errorSection}>
+    <div className={classes.errorSection} onClick={props.close}>
       <div className={classes.errorBlock}>
       <img src={crossIcon} alt="closing button" className={classes.closingIcon} onClick={props.close}  />
         <h4 className={classes.errorHeader}> {props.error.name} </h4>

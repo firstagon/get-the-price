@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 import { createBrowserHistory } from "history";
 import { Router, Switch, Route } from "react-router-dom";
 import "./App.css";
@@ -16,6 +16,10 @@ const SIGNUP_URL = "http://127.0.0.1:3030/auth/signup";
 
 const newHistory = createBrowserHistory();
 
+const token = localStorage.getItem("token");
+const expiryDate = localStorage.getItem("expiryDate");
+const userId = localStorage.getItem("userId");
+
 function App() {
   const [state, setState] = useState({
     showBackdrop: false,
@@ -26,13 +30,10 @@ function App() {
     authLoading: false,
     error: null,
     errorShown: false,
+    name: null
   });
-  // console.log(newHistory);
-  // console.log("rendered");
 
   const mounted = () => {
-    const token = localStorage.getItem("token");
-    const expiryDate = localStorage.getItem("expiryDate");
     if (!token || !expiryDate) {
       return;
     }
@@ -40,18 +41,23 @@ function App() {
       logoutHandler();
       return;
     }
-    const userId = localStorage.getItem("userId");
-    const remainingMilliseconds =
-      new Date(expiryDate).getTime() - new Date().getTime();
+    // console.log('token!')
+
+    const remainingMilliseconds = new Date(expiryDate).getTime() - new Date().getTime();
     setState((prevState) => {
       return { ...prevState, isAuth: true, token: token, userId: userId };
     });
     setAutoLogout(remainingMilliseconds);
-  };
+  }
+
+  useEffect(() => {
+    mounted()
+  }, [])
+
 
   const logoutHandler = () => {
     setState((prevState) => {
-      return { ...prevState, isAuth: false, token: null };
+      return { ...prevState, isAuth: false, token: null, name: null, userId: null };
     });
     localStorage.removeItem("token");
     localStorage.removeItem("expiryDate");
@@ -78,6 +84,9 @@ function App() {
           throw new Error("Validation failed.");
         }
         if (res.status !== 200 && res.status !== 201) {
+          if (res.status === 401) {
+            throw new Error("User not exist.");
+          }
           console.log("Error!");
           throw new Error("Could not authenticate you!");
         }
@@ -92,16 +101,16 @@ function App() {
             token: resData.token,
             authLoading: false,
             userId: resData.userId,
+            name: resData.name
           };
         });
         localStorage.setItem("token", resData.token);
         localStorage.setItem("userId", resData.userId);
         const remainingMilliseconds = 60 * 60 * 1000;
-        const expiryDate = new Date(
-          new Date().getTime() + remainingMilliseconds
-        );
+        const expiryDate = new Date(new Date().getTime() + remainingMilliseconds);
         localStorage.setItem("expiryDate", expiryDate.toISOString());
         setAutoLogout(remainingMilliseconds);
+        newHistory.replace("/");
       })
       .catch((err) => {
         console.log(err);
@@ -111,7 +120,7 @@ function App() {
             isAuth: false,
             authLoading: false,
             error: err,
-            errorShown: true
+            errorShown: true,
           };
         });
       });
@@ -122,12 +131,14 @@ function App() {
     setState((prevState) => {
       return { ...prevState, authLoading: true };
     });
-    fetch(SIGNUP_URL)
+    fetch(SIGNUP_URL, {
+      method: "PUT",
+      headers: { "Content-type": "application/json" },
+      body: JSON.stringify(authData),
+    })
       .then((res) => {
         if (res.status === 422) {
-          throw new Error(
-            "Validation failed. Make shure the email adress isn't used yet"
-          );
+          throw new Error("Validation failed. Make shure the email adress isn't used yet");
         }
         if (res.status !== 200 && res.status !== 201) {
           console.log("Error!");
@@ -140,8 +151,10 @@ function App() {
         setState((prevState) => {
           return { ...prevState, isAuth: false, authLoading: false };
         });
+        loginHandler(authData)
         newHistory.replace("/");
-      }).catch((err) => {
+      })
+      .catch((err) => {
         console.log(err);
         setState((prevState) => {
           return {
@@ -149,7 +162,7 @@ function App() {
             isAuth: false,
             authLoading: false,
             error: err,
-            errorShown: true
+            errorShown: true,
           };
         });
       });
@@ -164,7 +177,7 @@ function App() {
   return (
     <Fragment>
       <Router history={newHistory}>
-        <Header />
+        <Header state={state} logout={logoutHandler} />
         <Switch>
           <Route path="/" exact>
             <HomePage />
@@ -176,18 +189,16 @@ function App() {
           </Route>
           <Route path="/login" exact>
             <LoginPage onLogin={loginHandler} loading={state.authLoading} />
-            {state.errorShown && (
-              <ErrorPopup error={state.error} close={errorCloseHandler} />
-            )}
+            {state.errorShown && <ErrorPopup error={state.error} close={errorCloseHandler} />}
           </Route>
           <Route path="/signup" exact>
-          {state.errorShown && (
-              <ErrorPopup error={state.error} close={errorCloseHandler} />
-            )}
+            {state.errorShown && <ErrorPopup error={state.error} close={errorCloseHandler} />}
             <SignupPage onSignup={signupHandler} loading={state.authLoading} />
           </Route>
+          <Route path='/profile' exact>
+            
+          </Route>
         </Switch>
-        
       </Router>
     </Fragment>
   );

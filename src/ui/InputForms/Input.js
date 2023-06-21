@@ -13,7 +13,6 @@ const Input = (props) => {
     eye,
     hided,
     eyeToggle,
-    higlited
   } = props;
   return (
     <div className={classes.flexInput}>

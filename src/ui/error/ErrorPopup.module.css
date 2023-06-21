@@ -29,6 +29,8 @@
 
     width: 60%;
     height: 30%;
+
+    z-index: 3;
 }
 
 .errorHeader {
