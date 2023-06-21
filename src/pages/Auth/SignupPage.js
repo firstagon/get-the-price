@@ -1,13 +1,13 @@
-import { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
 
 import classes from "./SignupPage.module.css";
 
 import Input from "../../ui/InputForms/Input";
 import { required, length, email } from "../../util/validators";
 
-const LoginPage = (props) => {
+const SignupPage = (props) => {
   const [state, setState] = useState({
-    loginForm: {
+    signupForm: {
       email: {
         value: "",
         valid: false,
@@ -31,34 +31,48 @@ const LoginPage = (props) => {
       },
     },
     formIsValid: false,
-    highlite: false
+    passwordsSame: false,
   });
+
+  const higlightClass = state.passwordsSame && state.formIsValid
+    ? classes.greenHighlight
+    : !state.passwordsSame &&
+      !state.formIsValid &&
+      state.signupForm.email.valid && state.signupForm.passwordRepeat.value
+    ? classes.redHighlight
+    : '';
 
   const inputChangeHandler = (synteticE) => {
     const value = synteticE.target.value;
     const input = synteticE.target.id;
     setState((prevState) => {
       let isValid = true;
-      for (const validator of prevState.loginForm[input].validators) {
+      for (const validator of prevState.signupForm[input].validators) {
         isValid = isValid && validator(value);
       }
       const updatedForm = {
-        ...prevState.loginForm,
+        ...prevState.signupForm,
         [input]: {
-          ...prevState.loginForm[input],
+          ...prevState.signupForm[input],
           valid: isValid,
           value: value,
         },
       };
       let formIsValid = true;
+      let passwordsSame = false;
       for (const inputName in updatedForm) {
+        passwordsSame =
+          updatedForm.password.value === updatedForm.passwordRepeat.value
+            ? true
+            : false;
         formIsValid =
           formIsValid &&
           !!updatedForm[inputName].valid &&
           updatedForm.password.value === updatedForm.passwordRepeat.value;
       }
       return {
-        loginForm: updatedForm,
+        signupForm: updatedForm,
+        passwordsSame: passwordsSame,
         formIsValid: formIsValid,
       };
     });
@@ -77,10 +91,10 @@ const LoginPage = (props) => {
     setState((prevState) => {
       return {
         ...prevState,
-        loginForm: {
-          ...prevState.loginForm,
+        signupForm: {
+          ...prevState.signupForm,
           [input]: {
-            ...prevState.loginForm[input],
+            ...prevState.signupForm[input],
             touched: true,
           },
         },
@@ -93,11 +107,11 @@ const LoginPage = (props) => {
     setState((prevState) => {
       return {
         ...prevState,
-        loginForm: {
-          ...prevState.loginForm,
+        signupForm: {
+          ...prevState.signupForm,
           [input]: {
-            ...prevState.loginForm[input],
-            hided: !prevState.loginForm[input].hided,
+            ...prevState.signupForm[input],
+            hided: !prevState.signupForm[input].hided,
           },
         },
       };
@@ -106,28 +120,16 @@ const LoginPage = (props) => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    props.onSignup({ email: state.loginForm.email.value, password: state.loginForm.password.value });
+    props.onSignup({
+      email: state.signupForm.email.value,
+      password: state.signupForm.password.value,
+    });
   };
-
-  let highlighted = false;
-
-  const bothSame = () => {
-    if (state.loginForm.password.value === state.loginForm.passwordRepeat.value) {
-      return highlighted = false;
-    } else {
-      return highlighted = true;
-    }
-  }
-
-  if (state.loginForm.password.touched && state.loginForm.passwordRepeat.touched) {
-    console.log('both touched')
-    bothSame();
-  }
 
   return (
     <div className={classes.popupLogin}>
-      <div className={classes.loginBlock}>
-        <form className={classes.loginForm}>
+      <div className={classes.signupBlock}>
+        <form className={classes.signupForm}>
           <Input
             type="text"
             id="email"
@@ -138,38 +140,46 @@ const LoginPage = (props) => {
             onChange={inputChangeHandler}
           />
           <Input
-            type={state.loginForm.password.hided ? "password" : "text"}
+            type={state.signupForm.password.hided ? "password" : "text"}
             id="password"
             placeholder="Enter password"
             onFocus={(e) => (e.target.placeholder = "")}
             onBlur={inputBlurHandler}
             eye={true}
-            hided={state.loginForm.password.hided}
+            hided={state.signupForm.password.hided}
             onChange={inputChangeHandler}
             eyeClick={eyeHandler}
           />
           <Input
-            type={state.loginForm.passwordRepeat.hided ? "password" : "text"}
+            type={state.signupForm.passwordRepeat.hided ? "password" : "text"}
             id="passwordRepeat"
             placeholder="Enter password repeat"
             onFocus={(e) => (e.target.placeholder = "")}
             onBlur={inputBlurHandler}
             eye={true}
-            hided={state.loginForm.passwordRepeat.hided}
+            hided={state.signupForm.passwordRepeat.hided}
             onChange={inputChangeHandler}
             eyeClick={eyeHandler}
           />
-          <input
+          <button
+            className={classes.subButton + ' ' + higlightClass}
             type="submit"
             name="submit"
-            placeholder={highlighted ? "Пароли отличаются" : "Submit"}
             onClick={submitHandler}
             disabled={!state.formIsValid}
-          />
+          >
+            {state.passwordsSame && state.formIsValid
+              ? "Отправить"
+              : !state.passwordsSame &&
+                !state.formIsValid &&
+                state.signupForm.email.valid
+              ? "Пароли должны совпадать"
+              : "Заполните форму"}
+          </button>
         </form>
       </div>
     </div>
   );
 };
 
-export default LoginPage;
+export default SignupPage;

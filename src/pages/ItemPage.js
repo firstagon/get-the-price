@@ -9,12 +9,12 @@ const ItemPage = (props) => {
   return (
     <div className={classes.page}>
       <section className={classes.mainInfo}>
-        <section className={classes.mainContainer}>
+        <div className={classes.mainContainer}>
           <div className={classes.container}>
             <ItemCard />
             <ItemActions />
           </div>
-        </section>
+        </div>
       </section>
       <InfoGraphic />
       <FavoriteSlider />

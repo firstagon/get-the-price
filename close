@@ -1,0 +1,77 @@
+[33mcommit 9e1ecb0af065b128205c624ea536e97d885b1cc6[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: Remservis computer <firstagon@gmail.com>
+Date:   Tue Jun 20 16:09:37 2023 +0500
+
+    added error messages popup statrted highliting on signup page
+
+[33mcommit dbaeb502a97921e4c013c29e33212531cd6b915f[m
+Author: firstagon <98339053+firstagon@users.noreply.github.com>
+Date:   Mon Jun 19 20:13:40 2023 +0500
+
+    started connection login page with node app
+
+[33mcommit b0743813b83eee2950843337fa7c0d0d160ee13c[m
+Author: Remservis computer <firstagon@gmail.com>
+Date:   Mon Jun 19 14:12:53 2023 +0500
+
+    seting up headers links
+
+[33mcommit 471d8c5a6da45e79bf6baaf1c263baa388549fc4[m
+Author: Remservis computer <firstagon@gmail.com>
+Date:   Fri Jun 16 16:13:16 2023 +0500
+
+    added input for url and validator urlOzon removed use ref from inputs
+
+[33mcommit 7eaca791c37ce44a08a843e5f9677c20bb577e9e[m
+Author: Remservis computer <firstagon@gmail.com>
+Date:   Thu Jun 15 15:43:27 2023 +0500
+
+    completed login and signup validation
+
+[33mcommit a8a68926acb30301d5a5665ab7bb1a49c8be5dac[m
+Author: firstagon <98339053+firstagon@users.noreply.github.com>
+Date:   Wed Jun 14 21:53:21 2023 +0500
+
+    added some validation on login page
+
+[33mcommit 66d0ca869f1c9a9dca8b2ac38fa184122b2cf16e[m
+Author: Remservis computer <firstagon@gmail.com>
+Date:   Wed Jun 14 15:30:52 2023 +0500
+
+    created custom
+
+[33mcommit d683e53fc665b3ffa663eb9d9a73b51c0be82c9c[m
+Author: Remservis computer <firstagon@gmail.com>
+Date:   Tue Jun 13 16:07:11 2023 +0500
+
+    start creating a universal input element
+
+[33mcommit c234c263b0acfeac0a6df57d3ec76933acfdcac5[m
+Author: firstagon <98339053+firstagon@users.noreply.github.com>
+Date:   Mon Jun 12 18:49:24 2023 +0500
+
+    added simple validation for login page, created signup page
+
+[33mcommit 93114f8d5be7b351ded7f3c2a3bd04a771f0e5fd[m
+Author: Remservis computer <firstagon@gmail.com>
+Date:   Fri Jun 9 15:05:23 2023 +0500
+
+    added nav icons
+
+[33mcommit b030005f2b1d446cf52afb4b8502992dfd7e97c9[m
+Author: Remservis computer <firstagon@gmail.com>
+Date:   Thu Jun 8 15:47:09 2023 +0500
+
+    added login page and main page
+
+[33mcommit 64efb4649b2d8d0bbe33f50d16ff6fc2add84b55[m
+Author: firstagon <98339053+firstagon@users.noreply.github.com>
+Date:   Mon Jun 5 19:33:57 2023 +0500
+
+    adding ui
+
+[33mcommit fbb0510c87ca45e1618a7a46f54a394185134c47[m
+Author: firstagon <98339053+firstagon@users.noreply.github.com>
+Date:   Tue Dec 13 19:24:06 2022 +0500
+
+    Initialize project using Create React App

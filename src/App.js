@@ -168,9 +168,11 @@ function App() {
         <Switch>
           <Route path="/" exact>
             <HomePage />
+            <Footer />
           </Route>
           <Route path="/item/:itemId" exact>
             <ItemPage />
+            <Footer />
           </Route>
           <Route path="/login" exact>
             <LoginPage onLogin={loginHandler} loading={state.authLoading} />
@@ -185,7 +187,7 @@ function App() {
             <SignupPage onSignup={signupHandler} loading={state.authLoading} />
           </Route>
         </Switch>
-        <Footer />
+        
       </Router>
     </Fragment>
   );

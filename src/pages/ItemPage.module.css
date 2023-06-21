@@ -31,3 +31,7 @@
     /* background-color: #f9f9f9; */
     background-color: white;
 }
+
+section:last-child {
+    margin-bottom: 2vh;
+}

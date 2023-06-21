@@ -19,7 +19,7 @@
     display: none;
   }
   
-  .loginBlock {
+  .signupBlock {
     position: fixed;
     top: 30%;
     
@@ -35,7 +35,7 @@
     border-radius: 4px;
   }
   
-  .loginForm {
+  .signupForm {
     padding: 15px;
     display: flex;
     flex-direction: column;
@@ -72,4 +72,29 @@
     }
   }
   
-  
+  .subButton {
+    display: inline-block;
+
+    margin: 8px 0;
+    padding: 5px;
+
+    box-sizing: border-box;
+
+    border: 1px solid #ccc;
+    border-radius: 4px;
+
+    text-align: center;
+  }
+
+  .subButton:hover {
+    background-color: var(--blue-main);
+    border: 1px solid transparent;
+  }
+
+  .greenHighlight {
+    border: 1px solid green;
+  }
+
+  .redHighlight {
+      border: 1px solid rgb(252, 94, 94)
+  }
