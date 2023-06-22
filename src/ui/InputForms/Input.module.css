@@ -1,26 +1,31 @@
 .flexInput {
-    display: inline;
-    flex-direction: column;
+  display: inline-flex;
+  flex-direction: column;
+  flex-grow: 1;
+  width: 100%;
+}
+
+.inputBlock {
+  display: inline-flex;
+  flex-direction: row;
+  justify-content: flex-end;
 }
 
 .eye {
-    content: url(../../icons/hidedEye.svg);
+  content: url(../../icons/hidedEye.svg);
+  display: inline-block;
+  position: absolute;
+  width: 20px;
+  height: 20px;
 
-    position: absolute;
-    width: 20px;
-    height: 20px;
-  
-    right: 6%;
-  
-    margin: 0;
-    padding: 11px 0 0 0;
-  
-    cursor: pointer;
-  
-    user-select: none;
-  }
-  
-  .eyeOpen {
-    content: url(../../icons/openEye.svg);
-  
-  }
+  margin: 0 5px 0 0;
+  padding: 11px 0 0 0;
+
+  cursor: pointer;
+
+  user-select: none;
+}
+
+.eyeOpen {
+  content: url(../../icons/openEye.svg);
+}

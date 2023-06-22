@@ -19,20 +19,23 @@ const Input = (props) => {
       <label htmlFor={id} className={classes.inputLabel}>
         {label}
       </label>
-      <input
-
-        id={id}
-        type={eyeToggle ? "text" : type}
-        placeholder={placeholder}
-        className={classes.inputInput}
-        onFocus={onFocus}
-        onBlur={onBlur}
-        onChange={onChange}
-      />
-      {eye && <i
-        className={classes.eye + " " + (hided ? "" : classes.eyeOpen)}
-        onClick={eyeClick}
-      />}
+      <div className={classes.inputBlock}>
+        <input
+          id={id}
+          type={eyeToggle ? "text" : type}
+          placeholder={placeholder}
+          className={classes.inputInput}
+          onFocus={onFocus}
+          onBlur={onBlur}
+          onChange={onChange}
+        />
+        {eye && (
+          <i
+            className={classes.eye + " " + (hided ? "" : classes.eyeOpen)}
+            onClick={eyeClick}
+          />
+        )}
+      </div>
     </div>
   );
 };

@@ -76,4 +76,5 @@ input[type=submit]:hover {
   /* background-color: #45a049; */
   background-color: var(--blue-main);
   color: black;
+  transition: all 0.2s ease-out;
 }

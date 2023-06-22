@@ -12,17 +12,26 @@
   height: 100%;
 
   background-color: rgba(0, 0, 0, 0.8);
-
 }
 
 ::-webkit-scrollbar {
   display: none;
 }
 
-.loginBlock {
+.loginSection {
   position: fixed;
   top: 30%;
-  
+
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.loginBlock {
+
   display: flex;
   justify-content: center;
   align-items: center;
@@ -33,6 +42,12 @@
   background-color: var(--grey-light);
 
   border-radius: 4px;
+
+  margin-bottom: 2vh;
+}
+
+.loginBlock:last-child {
+  margin-bottom: 0;
 }
 
 .loginForm {
@@ -41,7 +56,6 @@
   flex-direction: column;
   width: 90%;
 }
-
 
 .eye {
   content: url(../../icons/hidedEye.svg);
@@ -62,6 +76,87 @@
 
 .eyeOpen {
   content: url(../../icons/openEye.svg);
+}
+
+.testForm {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+
+  width: 100%;
+
+  background-color: var(--grey-light);
+
+  border-radius: 4px;
+}
+
+.subButton {
+  display: inline-flex;
+  justify-content: center;
+  flex-direction: row;
+  flex-grow: 1;
+
+  margin: 8px 0 8px calc(1vw + 15px);
+  padding: 5px;
+
+  box-sizing: border-box;
+
+  border: 1px solid #ccc;
+  border-radius: 4px;
+
+  text-align: center;
+
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.subButton:hover {
+  background-color: var(--blue-main);
+  border: 1px solid transparent;
+  color: black;
+  transition: all 0.2s ease-out;
+}
+
+.subButtText {
+  margin-left: 4vw;
+}
+
+.questionMark {
+  font-family: "arial";
+  font-size: 13.33px;
+
+  margin: 8px calc(1vw + 12px) 8px calc(1vw);
+  padding: 5px 9px;
+
+  box-sizing: border-box;
+
+  border: 1px solid #ccc;
+  border-radius: 4px;
+
+  text-align: center;
+
+  user-select: none;
+  cursor: help;
+}
+
+.questionMark:hover {
+  border: 1px solid var(--blue-main);
+  transition: all 0.2s ease-out;
+}
+
+.helpBlock {
+  display: inline-block;
+  position: absolute;
+
+  top: 140%;
+
+  background-color: #ccc;
+
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  padding: 5px;
 
 }
 
@@ -70,4 +165,3 @@
     width: 80%;
   }
 }
-

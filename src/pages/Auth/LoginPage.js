@@ -23,6 +23,7 @@ const LoginPage = (props) => {
     },
     formIsValid: false,
   });
+  const [isHelp, setIsHelp] = useState(false);
 
   const inputChangeHandler = (synteticE) => {
     const value = synteticE.target.value;
@@ -75,7 +76,10 @@ const LoginPage = (props) => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    props.onLogin({ email: state.loginForm.email.value, password: state.loginForm.password.value });
+    props.onLogin({
+      email: state.loginForm.email.value,
+      password: state.loginForm.password.value,
+    });
   };
 
   const eyeHandler = (synteticE) => {
@@ -94,39 +98,71 @@ const LoginPage = (props) => {
     });
   };
 
+  const submitTestHandler = (e) => {
+    e.preventDefault();
+  };
+
+  const questionEnterHandler = (e) => {
+    e.preventDefault();
+    setIsHelp(true);
+  };
+
+  const questionLeaveHandler = (e) => {
+    e.preventDefault();
+    setIsHelp(false);
+  };
+
   return (
     <div className={classes.popupLogin}>
-      <div style={{ color: "white" }}> Login page </div>
-      <div className={classes.loginBlock}>
-        <form className={classes.loginForm}>
-          <Input
-            type="text"
-            id="email"
-            placeholder="Enter E-mail"
-            onFocus={(e) => (e.target.placeholder = "")}
-            onBlur={inputBlurHandler}
-            eye={false}
-            onChange={inputChangeHandler}
-          />
-          <Input
-            type={state.loginForm.password.hided ? "password" : "text"}
-            id="password"
-            placeholder="Enter password"
-            onFocus={(e) => (e.target.placeholder = "")}
-            onBlur={inputBlurHandler}
-            eye={true}
-            hided={state.loginForm.password.hided}
-            onChange={inputChangeHandler}
-            eyeClick={eyeHandler}
-          />
-          <input
-            type="submit"
-            name="submit"
-            placeholder="Submit"
-            onClick={submitHandler}
-            disabled={!state.formIsValid}
-          />
-        </form>
+      <div className={classes.loginSection}>
+        <div className={classes.loginBlock}>
+          <form className={classes.loginForm}>
+            <Input
+              type="text"
+              id="email"
+              placeholder="Enter E-mail"
+              onFocus={(e) => (e.target.placeholder = "")}
+              onBlur={inputBlurHandler}
+              eye={false}
+              onChange={inputChangeHandler}
+            />
+            <Input
+              type={state.loginForm.password.hided ? "password" : "text"}
+              id="password"
+              placeholder="Enter password"
+              onFocus={(e) => (e.target.placeholder = "")}
+              onBlur={inputBlurHandler}
+              eye={true}
+              hided={state.loginForm.password.hided}
+              onChange={inputChangeHandler}
+              eyeClick={eyeHandler}
+            />
+            <input
+              type="submit"
+              name="submit"
+              placeholder="Submit"
+              onClick={submitHandler}
+              disabled={!state.formIsValid}
+            />
+          </form>
+        </div>
+        <div className={classes.loginBlock}>
+          <div className={classes.testForm}>
+            <button className={classes.subButton} onClick={submitTestHandler}>
+              <p className={classes.subButtText}> Быстрый вход </p>
+            </button>
+            <div
+              className={classes.questionMark}
+              onMouseEnter={questionEnterHandler}
+              onMouseLeave={questionLeaveHandler}
+            >
+              ?
+            </div>
+            {isHelp && <div className={classes.helpBlock}> 
+            Автовход под тестовой почтой. <br />
+            Возможно, кто-то уже пользовался. </div>}
+          </div>
+        </div>
       </div>
     </div>
   );
