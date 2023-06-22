@@ -111,7 +111,7 @@
 
   border-radius: 50%;
 
-  background-color: #0057ff;
+  background-color: var(--blue-main);
   color: white;
 
   font-size: 180%;

@@ -3,9 +3,10 @@ import classes from "./Header.module.css";
 import { Fragment } from "react";
 
 const Header = ({ state, logout }) => {
-  console.log(state);
+  // console.log(state);
 
   const userName = !!state.name ? state.name : "username";
+  const userFirstLetter = userName.match(/\b(\w)/)[0];
 
   return (
     <header className={classes.header}>
@@ -42,7 +43,7 @@ const Header = ({ state, logout }) => {
           </div>
         </div>
         <div className={classes.userImage} alt="profile pic">
-          A
+          {userFirstLetter.toUpperCase()}
         </div>
       </div>
     </header>
