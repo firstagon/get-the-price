@@ -10,6 +10,7 @@ import LoginPage from "./pages/Auth/LoginPage";
 import SignupPage from "./pages/Auth/SignupPage";
 import Footer from "./ui/footer/Footer";
 import ErrorPopup from "./ui/error/ErrorPopup";
+import ProfilePage from "./pages/Profile/ProfilePage";
 
 const LOGIN_URL = "http://127.0.0.1:3030/auth/login";
 const SIGNUP_URL = "http://127.0.0.1:3030/auth/signup";
@@ -30,7 +31,7 @@ function App() {
     authLoading: false,
     error: null,
     errorShown: false,
-    name: null
+    name: null,
   });
 
   const mounted = () => {
@@ -43,21 +44,27 @@ function App() {
     }
     // console.log('token!')
 
-    const remainingMilliseconds = new Date(expiryDate).getTime() - new Date().getTime();
+    const remainingMilliseconds =
+      new Date(expiryDate).getTime() - new Date().getTime();
     setState((prevState) => {
       return { ...prevState, isAuth: true, token: token, userId: userId };
     });
     setAutoLogout(remainingMilliseconds);
-  }
+  };
 
   useEffect(() => {
-    mounted()
-  }, [])
-
+    mounted();
+  }, []);
 
   const logoutHandler = () => {
     setState((prevState) => {
-      return { ...prevState, isAuth: false, token: null, name: null, userId: null };
+      return {
+        ...prevState,
+        isAuth: false,
+        token: null,
+        name: null,
+        userId: null,
+      };
     });
     localStorage.removeItem("token");
     localStorage.removeItem("expiryDate");
@@ -101,13 +108,15 @@ function App() {
             token: resData.token,
             authLoading: false,
             userId: resData.userId,
-            name: resData.name
+            name: resData.name,
           };
         });
         localStorage.setItem("token", resData.token);
         localStorage.setItem("userId", resData.userId);
         const remainingMilliseconds = 60 * 60 * 1000;
-        const expiryDate = new Date(new Date().getTime() + remainingMilliseconds);
+        const expiryDate = new Date(
+          new Date().getTime() + remainingMilliseconds
+        );
         localStorage.setItem("expiryDate", expiryDate.toISOString());
         setAutoLogout(remainingMilliseconds);
         newHistory.replace("/");
@@ -138,7 +147,9 @@ function App() {
     })
       .then((res) => {
         if (res.status === 422) {
-          throw new Error("Validation failed. Make shure the email adress isn't used yet");
+          throw new Error(
+            "Validation failed. Make shure the email adress isn't used yet"
+          );
         }
         if (res.status !== 200 && res.status !== 201) {
           console.log("Error!");
@@ -151,7 +162,7 @@ function App() {
         setState((prevState) => {
           return { ...prevState, isAuth: false, authLoading: false };
         });
-        loginHandler(authData)
+        loginHandler(authData);
         newHistory.replace("/");
       })
       .catch((err) => {
@@ -189,14 +200,19 @@ function App() {
           </Route>
           <Route path="/login" exact>
             <LoginPage onLogin={loginHandler} loading={state.authLoading} />
-            {state.errorShown && <ErrorPopup error={state.error} close={errorCloseHandler} />}
+            {state.errorShown && (
+              <ErrorPopup error={state.error} close={errorCloseHandler} />
+            )}
           </Route>
           <Route path="/signup" exact>
-            {state.errorShown && <ErrorPopup error={state.error} close={errorCloseHandler} />}
+            {state.errorShown && (
+              <ErrorPopup error={state.error} close={errorCloseHandler} />
+            )}
             <SignupPage onSignup={signupHandler} loading={state.authLoading} />
           </Route>
-          <Route path='/profile' exact>
-            
+          <Route path="/profile" exact>
+            <ProfilePage state={state} />
+            <Footer />
           </Route>
         </Switch>
       </Router>

@@ -49,7 +49,7 @@ const RequestChoice = () => {
     const value = synteticE.target.value;
     const input = synteticE.target.id;
 
-    console.log(state);
+    // console.log(state);
 
     if (!value) {
       return (synteticE.target.placeholder = `Enter ${input}`);

@@ -165,6 +165,22 @@
   margin: 4px 2px 0 5px;
 }
 
+.linkText {
+  display: flex;
+
+  border: none;
+
+  background: none;
+
+  font-size: inherit;
+  font-family: 'Mukta';
+  text-decoration: underline;
+  color: #55158b;
+
+  cursor: pointer;
+  
+}
+
 .userLoginBlock .linkText:last-child {
   margin-left: 0.5em;
 }
