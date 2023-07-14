@@ -25,3 +25,10 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+/* @media (prefers-color-scheme: dark)  {
+  body, section, div, h1, p, form, input {
+    background-color: #1f2023 !important;
+    color: #dadada !important;
+  }
+} */

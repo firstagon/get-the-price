@@ -34,6 +34,29 @@ function App() {
     name: null,
   });
 
+  const [isDark, setIsDark] = useState(false);
+
+  const themeToggle = (e) => {
+    e.preventDefault();
+    setIsDark((prevState) => !prevState);
+    localStorage.setItem("theme", !isDark);
+  };
+
+  const theme = localStorage.getItem("theme");
+
+  const getTheme = () => {
+    if (!theme) {
+      localStorage.setItem("theme", isDark);
+      return;
+    } else if (theme === "true") {
+      setIsDark(true);
+    } else {
+      setIsDark(false);
+    }
+  };
+
+  const darkClass = isDark ? "dark" : "";
+
   const mounted = () => {
     if (!token || !expiryDate) {
       return;
@@ -54,6 +77,7 @@ function App() {
 
   useEffect(() => {
     mounted();
+    getTheme();
   }, []);
 
   const logoutHandler = () => {
@@ -188,7 +212,11 @@ function App() {
   return (
     <Fragment>
       <Router history={newHistory}>
-        <Header state={state} logout={logoutHandler} />
+        <Header
+          state={state}
+          logout={logoutHandler}
+          theme={{ toggle: themeToggle, class: darkClass }}
+        />
         <Switch>
           <Route path="/" exact>
             <HomePage />
