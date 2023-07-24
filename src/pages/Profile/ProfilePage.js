@@ -15,7 +15,7 @@ const props = {
 };
 
 const ProfilePage = () => {
-  const passwordChangeHandler = (password) => {
+  const passwordChangeHandler = (e) => {
     // fetch to url for chanching password
   };
 

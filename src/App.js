@@ -11,6 +11,7 @@ import SignupPage from "./pages/Auth/SignupPage";
 import Footer from "./ui/footer/Footer";
 import ErrorPopup from "./ui/error/ErrorPopup";
 import ProfilePage from "./pages/Profile/ProfilePage";
+import UsersFeed from "./pages/UsersFeed/UsersFeed";
 
 const LOGIN_URL = "http://127.0.0.1:3030/auth/login";
 const SIGNUP_URL = "http://127.0.0.1:3030/auth/signup";
@@ -67,8 +68,7 @@ function App() {
     }
     // console.log('token!')
 
-    const remainingMilliseconds =
-      new Date(expiryDate).getTime() - new Date().getTime();
+    const remainingMilliseconds = new Date(expiryDate).getTime() - new Date().getTime();
     setState((prevState) => {
       return { ...prevState, isAuth: true, token: token, userId: userId };
     });
@@ -116,7 +116,7 @@ function App() {
         }
         if (res.status !== 200 && res.status !== 201) {
           if (res.status === 401) {
-            throw new Error("User not exist.");
+            throw new Error("User not exist or incorrect password.");
           }
           console.log("Error!");
           throw new Error("Could not authenticate you!");
@@ -125,6 +125,7 @@ function App() {
       })
       .then((resData) => {
         console.log(resData);
+        newHistory.replace("/");
         setState((prevState) => {
           return {
             ...prevState,
@@ -138,9 +139,7 @@ function App() {
         localStorage.setItem("token", resData.token);
         localStorage.setItem("userId", resData.userId);
         const remainingMilliseconds = 60 * 60 * 1000;
-        const expiryDate = new Date(
-          new Date().getTime() + remainingMilliseconds
-        );
+        const expiryDate = new Date(new Date().getTime() + remainingMilliseconds);
         localStorage.setItem("expiryDate", expiryDate.toISOString());
         setAutoLogout(remainingMilliseconds);
         newHistory.replace("/");
@@ -171,9 +170,7 @@ function App() {
     })
       .then((res) => {
         if (res.status === 422) {
-          throw new Error(
-            "Validation failed. Make shure the email adress isn't used yet"
-          );
+          throw new Error("Validation failed. Make shure the email adress isn't used yet");
         }
         if (res.status !== 200 && res.status !== 201) {
           console.log("Error!");
@@ -212,11 +209,7 @@ function App() {
   return (
     <Fragment>
       <Router history={newHistory}>
-        <Header
-          state={state}
-          logout={logoutHandler}
-          theme={{ toggle: themeToggle, class: darkClass }}
-        />
+        <Header state={state} logout={logoutHandler} theme={{ toggle: themeToggle, class: darkClass }} />
         <Switch>
           <Route path="/" exact>
             <HomePage />
@@ -228,18 +221,23 @@ function App() {
           </Route>
           <Route path="/login" exact>
             <LoginPage onLogin={loginHandler} loading={state.authLoading} />
-            {state.errorShown && (
-              <ErrorPopup error={state.error} close={errorCloseHandler} />
-            )}
+            {state.errorShown && <ErrorPopup error={state.error} close={errorCloseHandler} />}
           </Route>
           <Route path="/signup" exact>
-            {state.errorShown && (
-              <ErrorPopup error={state.error} close={errorCloseHandler} />
-            )}
+            {state.errorShown && <ErrorPopup error={state.error} close={errorCloseHandler} />}
             <SignupPage onSignup={signupHandler} loading={state.authLoading} />
           </Route>
           <Route path="/profile" exact>
             <ProfilePage state={state} />
+            <Footer />
+          </Route>
+          <Route path="/userfeed" exact>
+            <UsersFeed
+              userState={{
+                token: state.token,
+                iserId: state.userId,
+              }}
+            />
             <Footer />
           </Route>
         </Switch>

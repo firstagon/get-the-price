@@ -5,6 +5,9 @@
 		},
 		{
 			"path": "../../../../downloads/torrent/NodeJS - The Complete Guide (incl. Deno, REST APIs, GraphQL)/25. Working with REST APIs - The Practical Application/07-frontend-updating-a-post"
+		},
+		{
+			"path": "../../../../downloads/torrent/NodeJS - The Complete Guide (incl. Deno, REST APIs, GraphQL)/25. Working with REST APIs - The Practical Application/01-frontend-fetching-list-of-posts"
 		}
 	],
 	"settings": {}

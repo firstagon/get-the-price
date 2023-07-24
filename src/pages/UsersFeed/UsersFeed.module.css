@@ -1,0 +1,22 @@
+.feedSection {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .feedBlock {
+    background-color: white;
+    border-radius: 25px;
+    border: none;
+  
+    min-height: 10vh;
+  
+    margin: 0 2vw 2vw 2vw;
+  }
+
+  .feedList {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  
+    margin: 5px 0 5px 0;
+  }
