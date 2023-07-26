@@ -29,7 +29,7 @@ const UsersFeed = ({ userState }) => {
   };
 
   useEffect(() => {
-    console.log('use effect')
+    // console.log('use effect')
     if (!!userState.token) {
       getRequest();
     }

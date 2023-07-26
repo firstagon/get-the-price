@@ -136,6 +136,12 @@
   color: red;
 }
 
+.textLink {
+  margin: 0;
+  padding: 0;
+  width: fit-content;
+}
+
 .iconHome {
   background-image: url(../icons/home-icon.svg);
   background-blend-mode: color;

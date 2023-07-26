@@ -8,11 +8,11 @@ import MainInfo from "../ui/MainElements/MainInfo";
 
 const isAuth = false;
 
-const HomePage = () => {
+const HomePage = ({userState}) => {
   return (
     <div className={classes.mainBody}>
       <WelcomeBlock />
-      <RequestChoice />
+      <RequestChoice userState={userState} />
       <MainInfo />
       {isAuth ? <ItemsChoice /> : ""}
     </div>

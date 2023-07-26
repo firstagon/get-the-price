@@ -15,6 +15,7 @@ const Header = ({ state, logout, theme }) => {
         <NavLink to="/item/1" className={classes.navLink + " " + classes.iconRandom} />
         <NavLink to="/login" className={classes.navLink + " " + classes.iconLogin} />
         <NavLink to="/signup" className={classes.navLink + " " + classes.iconSignup} />
+        <NavLink to="/userfeed" className={classes.navLink + " " + classes.textLink}> userFeed </NavLink>
         <button className={classes.linkText} onClick={theme.toggle}>
                   theme
                 </button>

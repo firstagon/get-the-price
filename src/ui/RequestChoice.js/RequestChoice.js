@@ -3,7 +3,9 @@ import classes from "./RequestChioce.module.css";
 import Input from "../InputForms/Input";
 import { urlOzon } from "../../util/validators";
 
-const RequestChoice = () => {
+const URL_REQUEST = 'http://127.0.0.1:3030/';
+
+const RequestChoice = ({userState}) => {
   const [state, setState] = useState({
     urlForm: {
       url: {
@@ -71,6 +73,12 @@ const RequestChoice = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
+    const inputValue = state.urlForm.url.value;
+    fetch(URL_REQUEST, {
+      method: "POST",
+      headers: { "Content-type": "application/json" },
+      body: JSON.stringify({url: inputValue, ...userState}),
+    });
   };
 
   return (
@@ -95,13 +103,7 @@ const RequestChoice = () => {
               eye={false}
               onChange={inputChangeHandler}
             />
-            <input
-              onClick={submitHandler}
-              disabled={!state.formIsValid}
-              className=""
-              type="submit"
-              value="Submit"
-            />
+            <input onClick={submitHandler} disabled={!state.formIsValid} className="" type="submit" value="Submit" />
           </form>
         </div>
       </div>

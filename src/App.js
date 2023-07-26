@@ -35,6 +35,8 @@ function App() {
     name: null,
   });
 
+  const userState = { token: state.token, iserId: state.userId };
+
   const [isDark, setIsDark] = useState(false);
 
   const themeToggle = (e) => {
@@ -212,11 +214,11 @@ function App() {
         <Header state={state} logout={logoutHandler} theme={{ toggle: themeToggle, class: darkClass }} />
         <Switch>
           <Route path="/" exact>
-            <HomePage />
+            <HomePage userState={userState} />
             <Footer />
           </Route>
           <Route path="/item/:itemId" exact>
-            <ItemPage />
+            <ItemPage userState={userState} />
             <Footer />
           </Route>
           <Route path="/login" exact>
@@ -232,12 +234,7 @@ function App() {
             <Footer />
           </Route>
           <Route path="/userfeed" exact>
-            <UsersFeed
-              userState={{
-                token: state.token,
-                iserId: state.userId,
-              }}
-            />
+            <UsersFeed userState={userState} />
             <Footer />
           </Route>
         </Switch>
