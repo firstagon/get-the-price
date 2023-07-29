@@ -1,10 +1,10 @@
 import classes from "./ItemCard.module.css";
 import ItemInfo from "./ItemCardUI/ItemInfo";
 
-const ItemCard = (props) => {
+const ItemCard = ({state}) => {
   return (
     <div className={classes.container}>
-      <ItemInfo />
+      <ItemInfo state={state} />
     </div>
   );
 };

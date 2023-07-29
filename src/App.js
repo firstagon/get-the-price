@@ -35,7 +35,7 @@ function App() {
     name: null,
   });
 
-  const userState = { token: state.token, iserId: state.userId };
+  const userState = { token: state.token, userId: state.userId };
 
   const [isDark, setIsDark] = useState(false);
 
@@ -126,7 +126,7 @@ function App() {
         return res.json();
       })
       .then((resData) => {
-        console.log(resData);
+        // console.log(resData);
         newHistory.replace("/");
         setState((prevState) => {
           return {

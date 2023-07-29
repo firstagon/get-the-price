@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import classes from "./ItemPage.module.css";
 import FavoriteSlider from "../ui/FavoriteSlider";
 import ItemCard from "../ui/ItemCard";
@@ -22,32 +22,45 @@ const ItemPage = ({ userState }) => {
   const params = useParams();
   const itemId = params.itemId;
 
-  // const [state, dispatch] = useState(reducer, { user: userState });
-
+  const [state, setState] = useState(false);
 
   const getItem = (itemCode) => {
+    // console.log(ITEM_URL + itemCode);
     fetch(ITEM_URL + itemCode, {
       method: "POST",
       headers: { "Content-type": "application/json" },
-      Authorization: `Basic ${userState.token}`,
-      body: JSON.stringify({...userState}),
-    });
+      body: JSON.stringify({ ...userState, itemId }),
+    })
+      .then((res) => {
+        return res.json();
+      })
+      .then((res) => {
+        setState(() => {
+          return res;
+        });
+      });
   };
 
-  getItem()
+  useEffect(() => {
+    if (userState.token) {
+      getItem(itemId);
+    }
+  }, [userState.token]);
 
-  console.log(itemId);
+  // console.log(state);
+  // console.log(userState);
+
   return (
     <div className={classes.page}>
       <section className={classes.mainInfo}>
         <div className={classes.mainContainer}>
           <div className={classes.container}>
-            <ItemCard />
+            {!!state ? <ItemCard state={state.data} /> : ""}
             <ItemActions />
           </div>
         </div>
       </section>
-      <InfoGraphic />
+      {!!state ? <InfoGraphic array={state.data.itemPrice} /> : ""}
       <FavoriteSlider />
     </div>
   );

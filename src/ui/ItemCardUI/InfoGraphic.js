@@ -2,7 +2,7 @@ import React, { useEffect, useRef, memo } from "react";
 import classes from "./InfoGraphic.module.css";
 
 // const propFromParent = [1046, 1000, 2501, 3000, 1500, 100];
-const propFromParent = [1046, 10, 2000, 3500, 15];
+// const propFromParent = [1046, 10, 2000, 3500, 15];
 
 const chartRender = (ref, points) => {
   var c = document.getElementById("priceGraph");
@@ -43,7 +43,7 @@ const chartRender = (ref, points) => {
     const startX = width / pointsArray.length;
     const startY = height * 0.9;
 
-    const maxY = Math.max(...propFromParent);
+    const maxY = Math.max(...points);
 
     for (let i = 0; i < pointsArray.length; i++) {
       const startPoint = pointsArray[i].startPoint;
@@ -116,12 +116,16 @@ const chartRender = (ref, points) => {
   renderPoints();
 };
 
-const InfoGraphic = (props) => {
+const InfoGraphic = ({array}) => {
   const ref = useRef();
 
+  // console.log(array)
+
+  const points = array.map(el => el.price)
+
   useEffect(() => {
-    chartRender(ref, propFromParent);
-  }, [props]);
+    chartRender(ref, points);
+  }, [points]);
 
   return (
     <section className={classes.container}>
