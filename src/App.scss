@@ -1,0 +1,17 @@
+@use './ui/Header.scss';
+@use './pages/HomePage.scss';
+
+@import './ui/utilities/variables';
+
+
+body {
+  font: 100% $font-stack;
+}
+
+.mainBody {
+  display: flex;
+  flex-direction: column;
+
+  background: linear-gradient($main-bgcolor, $base-colour);
+}
+

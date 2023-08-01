@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
-import classes from "./Header.module.css";
+// import classes from "./Header.module.css";
 import { Fragment } from "react";
 
 const Header = ({ state, logout, theme }) => {
@@ -9,44 +9,47 @@ const Header = ({ state, logout, theme }) => {
   const userFirstLetter = userName.match(/\b(\w)/)[0];
 
   return (
-    <header className={classes.header + ' ' + theme.class}>
-      <nav className={classes.navContainer}>
-        <NavLink to="/" className={classes.navLink + " " + classes.iconHome + " "} />
-        <NavLink to="/item/1" className={classes.navLink + " " + classes.iconRandom} />
-        <NavLink to="/login" className={classes.navLink + " " + classes.iconLogin} />
-        <NavLink to="/signup" className={classes.navLink + " " + classes.iconSignup} />
-        <NavLink to="/userfeed" className={classes.navLink + " " + classes.textLink}> userFeed </NavLink>
-        <button className={classes.linkText} onClick={theme.toggle}>
-                  theme
-                </button>
+    <header className="header">
+      <nav className={"navContainer"}>
+        <NavLink to="/" className={"navLink iconHome"} />
+        <NavLink to="/item/1" className={"navLink iconRandom"} />
+        <NavLink to="/login" className={"navLink iconLogin"} />
+        <NavLink to="/signup" className={"navLink iconSignup"} />
+        <NavLink to="/userfeed" className={"navLinkb textLink"}>
+          {" "}
+          userFeed{" "}
+        </NavLink>
+        <button className={"linkText"} onClick={theme.toggle}>
+          theme
+        </button>
       </nav>
-      <div className={classes.userContainer}>
-        <div className={classes.userData}>
-          <div className={classes.userName}> {userName} </div>
-          <div className={classes.userLoginBlock}>
+      <div className={"userContainer"}>
+        <div className={"userData"}>
+          <div className={"userName"}> {userName} </div>
+          <div className={"userLoginBlock"}>
             {!state.isAuth && (
               <Fragment>
-                <NavLink to="/signup" className={classes.linkText}>
+                <NavLink to="/signup" className={"linkText"}>
                   Sign up
                 </NavLink>
-                <NavLink to="/login" className={classes.linkText}>
+                <NavLink to="/login" className={"linkText"}>
                   Login
                 </NavLink>
               </Fragment>
             )}
             {state.isAuth && (
               <Fragment>
-                <NavLink to="/profile" className={classes.linkText}>
+                <NavLink to="/profile" className={"linkText"}>
                   Profile
                 </NavLink>
-                <button className={classes.linkText} onClick={logout}>
+                <button className={"linkText"} onClick={logout}>
                   Log out
                 </button>
               </Fragment>
             )}
           </div>
         </div>
-        <div className={classes.userImage} alt="profile pic">
+        <div className={"userImage"} alt="profile pic">
           {userFirstLetter.toUpperCase()}
         </div>
       </div>

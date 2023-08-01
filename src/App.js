@@ -1,7 +1,7 @@
 import React, { Fragment, useState, useEffect } from "react";
 import { createBrowserHistory } from "history";
 import { Router, Switch, Route } from "react-router-dom";
-import "./App.css";
+import "./App.scss";
 import Header from "./ui/Header";
 
 import HomePage from "./pages/HomePage";
@@ -58,7 +58,15 @@ function App() {
     }
   };
 
-  const darkClass = isDark ? "dark" : "";
+  const themechanger = (style) => {
+    if (style === "dark") {
+      document.documentElement.style.setProperty("--base-colour", "#ffffff");
+    } else {
+      document.documentElement.style.setProperty("--base-colour", "black");
+    }
+  };
+
+  const darkClass = isDark ? themechanger("dark") : themechanger();
 
   const mounted = () => {
     if (!token || !expiryDate) {
@@ -70,7 +78,8 @@ function App() {
     }
     // console.log('token!')
 
-    const remainingMilliseconds = new Date(expiryDate).getTime() - new Date().getTime();
+    const remainingMilliseconds =
+      new Date(expiryDate).getTime() - new Date().getTime();
     setState((prevState) => {
       return { ...prevState, isAuth: true, token: token, userId: userId };
     });
@@ -141,7 +150,9 @@ function App() {
         localStorage.setItem("token", resData.token);
         localStorage.setItem("userId", resData.userId);
         const remainingMilliseconds = 60 * 60 * 1000;
-        const expiryDate = new Date(new Date().getTime() + remainingMilliseconds);
+        const expiryDate = new Date(
+          new Date().getTime() + remainingMilliseconds
+        );
         localStorage.setItem("expiryDate", expiryDate.toISOString());
         setAutoLogout(remainingMilliseconds);
         newHistory.replace("/");
@@ -172,7 +183,9 @@ function App() {
     })
       .then((res) => {
         if (res.status === 422) {
-          throw new Error("Validation failed. Make shure the email adress isn't used yet");
+          throw new Error(
+            "Validation failed. Make shure the email adress isn't used yet"
+          );
         }
         if (res.status !== 200 && res.status !== 201) {
           console.log("Error!");
@@ -211,7 +224,11 @@ function App() {
   return (
     <Fragment>
       <Router history={newHistory}>
-        <Header state={state} logout={logoutHandler} theme={{ toggle: themeToggle, class: darkClass }} />
+        <Header
+          state={state}
+          logout={logoutHandler}
+          theme={{ toggle: themeToggle, class: darkClass }}
+        />
         <Switch>
           <Route path="/" exact>
             <HomePage userState={userState} />
@@ -223,10 +240,14 @@ function App() {
           </Route>
           <Route path="/login" exact>
             <LoginPage onLogin={loginHandler} loading={state.authLoading} />
-            {state.errorShown && <ErrorPopup error={state.error} close={errorCloseHandler} />}
+            {state.errorShown && (
+              <ErrorPopup error={state.error} close={errorCloseHandler} />
+            )}
           </Route>
           <Route path="/signup" exact>
-            {state.errorShown && <ErrorPopup error={state.error} close={errorCloseHandler} />}
+            {state.errorShown && (
+              <ErrorPopup error={state.error} close={errorCloseHandler} />
+            )}
             <SignupPage onSignup={signupHandler} loading={state.authLoading} />
           </Route>
           <Route path="/profile" exact>

@@ -1,0 +1,197 @@
+@import "../ui/utilities/variables";
+
+.welcomeSection {
+  display: flex;
+  flex-direction: column;
+}
+
+.welcomeBlock {
+  background-color: $base-colour;
+  border-radius: 25px;
+  border: none;
+
+  min-height: 10vh;
+
+  margin: 0 2vw 2vw 2vw;
+}
+
+.welcomeInfo {
+  margin: 5px 2vw 5px 2vw;
+}
+
+.requestBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  // background-color: white;
+  border-radius: 25px;
+  border: none;
+
+  min-height: 10vh;
+
+  margin: 5vh 2vw 2vw 2vw;
+}
+
+.requestInfo {
+  display: flex;
+  justify-content: center;
+  margin: 5px 2vw 5px 2vw;
+
+  width: 50vw;
+}
+
+.formReq {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  justify-items: center;
+  align-items: center;
+  width: 80vw;
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 5px 5px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid $base-grey;
+  border-radius: 4px;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+input[type="password"] {
+  width: 100%;
+  padding: 5px 5px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid $base-grey;
+  border-radius: 4px;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.formReq input[type="submit"] {
+  width: 50%;
+}
+
+input[type="submit"] {
+  width: 100%;
+  background-color: $main-green;
+  /* color: white; */
+  /* padding: 14px 20px; */
+  padding: 5px 5px;
+  margin: 8px 0;
+  border: none;
+  border: 1px solid $main-green;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease-in;
+}
+
+input[type="submit"]:disabled {
+  background-color: transparent;
+  border: 1px solid #ccc;
+}
+
+input[type="submit"]:hover {
+  /* background-color: #45a049; */
+  border: 1px solid transparent;
+  background-color: $main-blue;
+  color: black;
+  transition: all 0.2s ease-out;
+}
+
+input[type="submit"]:disabled:hover {
+  border: 1px solid #ccc;
+  background-color: inherit;
+}
+
+.joinSection {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.joinBlock {
+  display: flex;
+  justify-content: center;
+
+  width: 100%;
+}
+
+.line {
+  display: flex;
+  align-self: center;
+  height: 30vh;
+
+  width: 0.1vw;
+
+  margin: 0 10%;
+
+//   background: linear-gradient(
+//     90deg,
+//     transparent,
+//     $base-colour 50%,
+//     transparent 100%
+//   );
+}
+
+.joinCard {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+
+  height: 30vh;
+  width: 20vw;
+
+  box-sizing: border-box;
+  padding: 2vw;
+  margin: 5vh 0;
+
+  background-color: $base-colour;
+
+  border-radius: 1px solid transparent;
+  border-radius: 10px;
+}
+
+.butt {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+
+  width: 100%;
+
+  margin: 0;
+  padding: 5px;
+
+  box-sizing: border-box;
+
+  border: 1px solid #ccc;
+  border-radius: 4px;
+
+  text-align: center;
+
+  color: rgba(255, 255, 255, 0.8);
+  font-size: medium;
+
+  background-color: $main-blue;
+}
+
+.butt:hover {
+  background-color: $main-green;
+  border: 1px solid transparent;
+  color: black;
+  transition: all 0.2s ease-out;
+}

@@ -1,11 +1,11 @@
 import { useState } from "react";
-import classes from "./RequestChioce.module.css";
+// import classes from "./RequestChioce.module.css";
 import Input from "../InputForms/Input";
 import { urlOzon } from "../../util/validators";
 
-const URL_REQUEST = 'http://127.0.0.1:3030/';
+const URL_REQUEST = "http://127.0.0.1:3030/";
 
-const RequestChoice = ({userState}) => {
+const RequestChoice = ({ userState }) => {
   const [state, setState] = useState({
     urlForm: {
       url: {
@@ -77,16 +77,15 @@ const RequestChoice = ({userState}) => {
     fetch(URL_REQUEST, {
       method: "POST",
       headers: { "Content-type": "application/json" },
-      body: JSON.stringify({url: inputValue, ...userState}),
+      body: JSON.stringify({ url: inputValue, ...userState }),
     });
   };
 
   return (
-    <section className={classes.requestSection}>
-      <div className={classes.requestBlock}>
-        <div className={classes.requestInfo}>
-          <form className={classes.formReq}>
-            {/* <input
+    <div className={"requestBlock"}>
+      <div className={"requestInfo"}>
+        <form className={"formReq"}>
+          {/* <input
               ref={inputUrl}
               onChange={urlValidation}
               id="url"
@@ -94,20 +93,25 @@ const RequestChoice = ({userState}) => {
               name="Enter url"
               placeholder="Enter url to item"
             /> */}
-            <Input
-              type="text"
-              id="url"
-              placeholder="Enter url"
-              onFocus={(e) => (e.target.placeholder = "")}
-              onBlur={inputBlurHandler}
-              eye={false}
-              onChange={inputChangeHandler}
-            />
-            <input onClick={submitHandler} disabled={!state.formIsValid} className="" type="submit" value="Submit" />
-          </form>
-        </div>
+          <Input
+            type="text"
+            id="url"
+            placeholder="Enter url"
+            onFocus={(e) => (e.target.placeholder = "")}
+            onBlur={inputBlurHandler}
+            eye={false}
+            onChange={inputChangeHandler}
+          />
+          <input
+            onClick={submitHandler}
+            disabled={!state.formIsValid}
+            className=""
+            type="submit"
+            value="Submit"
+          />
+        </form>
       </div>
-    </section>
+    </div>
   );
 };
 

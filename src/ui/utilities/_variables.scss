@@ -1,0 +1,28 @@
+$font-stack: Helvetica, sans-serif;
+
+$base-colour: #ffffff;
+$base-grey: #aaa;
+$base-bg: #1e1e1e;
+$main-blue: #3636d6;
+$main-green: #4caf50;
+$main-link: #55158b;
+$main-link-hover: #64b5ef;
+$main-link-accent: #1a8ad5;
+
+$main-bgcolor: #1e1e1e;
+
+$blue-light: #0057ff;
+$grey-light: #eee;
+$grey-main: #aaa;
+
+$text-color: #fff;
+$second-color: #7d7f81;
+$accent-color: #64b5ef;
+$accent-line-color: #64b5ef;
+$accent-btn-color: #000000;
+$accent-color-hover: #1a8ad5;
+$bubble-bgcolor: #1e1e1e;
+
+:export {
+  baseColour: $base-colour;
+}
