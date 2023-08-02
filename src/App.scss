@@ -1,9 +1,8 @@
-@use './ui/Header.scss';
-@use './pages/HomePage.scss';
-@use './ui/InputForms/Inputs.scss';
+@use "./ui/Header.scss";
+@use "./pages/HomePage.scss";
+@use "./ui/InputForms/Inputs.scss";
 
-@import './ui/utilities/variables';
-
+@import "./ui/utilities/variables";
 
 body {
   font: 100% $font-stack;
@@ -13,6 +12,10 @@ body {
   display: flex;
   flex-direction: column;
 
-  background: linear-gradient($main-bgcolor, $base-color);
+  // background: linear-gradient($main-bgcolor, $base-color);
 }
 
+#root {
+  background: linear-gradient($base-color 15%, $base-grey);
+  background-color: $base-grey;
+}

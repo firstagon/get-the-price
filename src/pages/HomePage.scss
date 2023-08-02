@@ -164,7 +164,7 @@ input[type="submit"]:disabled:hover {
   border: 1px solid white;
   border-radius: 10px;
   
-  background: radial-gradient(rgba($base-bg, 0.5) 8%, transparent 8%);
+  background: radial-gradient(rgba($base-bg, 1) 8%, transparent 8%);
   background-position: 0% 0%;
   background-size: 1.5vmin 1.5vmin;
   background-color: rgba($base-color, 0.2);
