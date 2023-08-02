@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import classes from "./LoginPage.module.css";
+// import classes from "./LoginPage.module.css";
 import Input from "../../ui/InputForms/Input";
 import { required, length, email } from "../../util/validators";
 
@@ -113,10 +113,10 @@ const LoginPage = (props) => {
   };
 
   return (
-    <div className={classes.popupLogin}>
-      <div className={classes.loginSection}>
-        <div className={classes.loginBlock}>
-          <form className={classes.loginForm}>
+    <div className={'popupLogin'}>
+      <div className={'loginSection'}>
+        <div className={'loginBlock'}>
+          <form className={'loginForm'}>
             <Input
               type="text"
               id="email"
@@ -146,19 +146,19 @@ const LoginPage = (props) => {
             />
           </form>
         </div>
-        <div className={classes.loginBlock}>
-          <div className={classes.testForm}>
-            <button className={classes.subButton} onClick={submitTestHandler}>
-              <p className={classes.subButtText}> Быстрый вход </p>
+        <div className={'loginBlock'}>
+          <div className={'testForm'}>
+            <button className={'subButton'} onClick={submitTestHandler}>
+              <p className={'subButtText'}> Быстрый вход </p>
             </button>
             <div
-              className={classes.questionMark}
+              className={'questionMark'}
               onMouseEnter={questionEnterHandler}
               onMouseLeave={questionLeaveHandler}
             >
               ?
             </div>
-            {isHelp && <div className={classes.helpBlock}> 
+            {isHelp && <div className={'helpBlock'}> 
             Автовход под тестовой почтой. <br />
             Возможно, кто-то уже пользовался. </div>}
           </div>

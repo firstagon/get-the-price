@@ -1,4 +1,4 @@
-import classes from "./Input.module.css";
+// import classes from "./Input.module.css";
 
 const Input = (props) => {
   const {
@@ -15,23 +15,23 @@ const Input = (props) => {
     eyeToggle,
   } = props;
   return (
-    <div className={classes.flexInput}>
-      <label htmlFor={id} className={classes.inputLabel}>
+    <div className={'flexInput'}>
+      <label htmlFor={id} className={'inputLabel'}>
         {label}
       </label>
-      <div className={classes.inputBlock}>
+      <div className={'inputBlock'}>
         <input
           id={id}
           type={eyeToggle ? "text" : type}
           placeholder={placeholder}
-          className={classes.inputInput}
+          className={'inputInput'}
           onFocus={onFocus}
           onBlur={onBlur}
           onChange={onChange}
         />
         {eye && (
           <i
-            className={classes.eye + " " + (hided ? "" : classes.eyeOpen)}
+            className={'eye' + " " + (hided ? "" : 'eyeOpen')}
             onClick={eyeClick}
           />
         )}

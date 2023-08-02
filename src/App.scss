@@ -1,5 +1,6 @@
 @use './ui/Header.scss';
 @use './pages/HomePage.scss';
+@use './ui/InputForms/Inputs.scss';
 
 @import './ui/utilities/variables';
 
@@ -12,6 +13,6 @@ body {
   display: flex;
   flex-direction: column;
 
-  background: linear-gradient($main-bgcolor, $base-colour);
+  background: linear-gradient($main-bgcolor, $base-color);
 }
 
