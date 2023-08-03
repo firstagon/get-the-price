@@ -145,8 +145,8 @@ const LoginPage = (props) => {
               disabled={!state.formIsValid}
             />
           </form>
-        </div>
-        <div className={'loginBlock'}>
+        
+        
           <div className={'testForm'}>
             <button className={'subButton'} onClick={submitTestHandler}>
               <p className={'subButtText'}> Быстрый вход </p>
@@ -162,7 +162,7 @@ const LoginPage = (props) => {
             Автовход под тестовой почтой. <br />
             Возможно, кто-то уже пользовался. </div>}
           </div>
-        </div>
+          </div>
       </div>
     </div>
   );

@@ -66,6 +66,7 @@ label {
 }
 
 .inputBlock {
+  position: relative;
   display: flex;
   width: 100%;
 }
@@ -113,6 +114,7 @@ input[type="submit"] {
 input[type="submit"]:disabled {
   background-color: rgba($base-color, 0.5);
   border: 1px solid $base-grey-light;
+  cursor: default;
 }
 
 input[type="submit"]:hover {
@@ -164,7 +166,7 @@ input[type="submit"]:disabled:hover {
   border: 1px solid white;
   border-radius: 10px;
   
-  background: radial-gradient(rgba($base-bg, 1) 8%, transparent 8%);
+  background: radial-gradient(rgba($base-bg, 0.5) 8%, transparent 8%);
   background-position: 0% 0%;
   background-size: 1.5vmin 1.5vmin;
   background-color: rgba($base-color, 0.2);
@@ -268,7 +270,7 @@ input[type="submit"]:disabled:hover {
 
   text-align: center;
 
-  color: rgba(255, 255, 255, 0.8);
+  color: $font-black;
   font-size: larger;
 
 

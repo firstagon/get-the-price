@@ -24,7 +24,7 @@
   position: fixed;
   top: 30%;
 
-  width: 100%;
+  width: 40vw;
 
   display: flex;
   justify-content: center;
@@ -48,7 +48,8 @@
   border-radius: 4px;
 }
 
-.signupForm {
+.signupForm,
+.loginBlock {
   padding: 15px;
   display: flex;
   flex-direction: column;
@@ -63,7 +64,7 @@
   height: 20px;
 
   /* left: 90%; */
-  right: 20px;
+  right: 5px;
 
   margin: 0;
   padding: 11px 0 0 0;
@@ -83,6 +84,16 @@
   }
 }
 
+.testForm {
+  display: flex;
+  position: relative;
+  flex-direction: row;
+
+  // width: 95%;
+
+  // padding: 15px;
+}
+
 .subButton {
   display: inline-block;
 
@@ -91,15 +102,24 @@
 
   box-sizing: border-box;
 
-  border: 1px solid #ccc;
+  border: 1px solid $base-grey-light;
   border-radius: 4px;
 
   text-align: center;
+
+  cursor: pointer;
+
+  flex-grow: 1;
 }
 
 .subButton:hover {
-  background-color: var(--blue-main);
+  background-color: $blue-light;
   border: 1px solid transparent;
+}
+
+.subButtText {
+  margin: 0;
+  padding: 0;
 }
 
 .greenHighlight {
@@ -114,21 +134,43 @@
   font-family: "arial";
   font-size: 13.33px;
 
-  margin: 8px calc(1vw + 12px) 8px calc(1vw);
+  height: 100%;
+  width: 30px;
+
+  margin: 8px 0 8px 0.5vw;
   padding: 5px 9px;
 
   box-sizing: border-box;
 
-  border: 1px solid #ccc;
+  border: 1px solid $base-grey-light;
   border-radius: 4px;
 
   text-align: center;
 
+  color: $base-color;
+
   user-select: none;
   cursor: help;
+
+  transition: border 350ms ease,
+  color 350ms ease;
 }
 
 .questionMark:hover {
-  border: 1px solid var(--blue-main);
+  border: 1px solid rgba($base-color, 0.5);
   transition: all 0.2s ease-out;
+  color: rgba($base-color, 0.5);
+}
+
+.helpBlock {
+  display: flex;
+  position: absolute;
+
+  top: 100%;
+  right: 0;
+
+  padding: 5px;
+  border-radius: 5px;
+
+  background: $base-color;
 }
