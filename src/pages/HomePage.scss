@@ -155,7 +155,9 @@ input[type="submit"]:disabled:hover, .inputButton:disabled:hover {
   height: 25vh;
   width: 15vw;
 
-  padding: 2.5vh 2.5vw;
+  max-width: 200px;
+
+  // padding: 2.5vh 2.5vw;
 
   // box-sizing: border-box;
   // padding: 2vw;
@@ -172,20 +174,20 @@ input[type="submit"]:disabled:hover, .inputButton:disabled:hover {
   background-color: rgba($base-color, 0.2);
   transition: background-position 350ms ease, padding 350ms ease,
     height 350ms ease, width 350ms ease, border 350ms ease;
+
+  overflow: hidden;
 }
 
 .joinCard:hover {
   justify-content: center;
   align-items: center;
   background-position: -15% 0;
-  padding: 0;
 
-  height: 30vh;
-  width: 20vw;
+  // height: 30vh;
+  // width: 20vw;
+  // max-width: 200px;
 
   border: 1px solid transparent;
-
-  overflow: hidden;
 }
 
 .joinCard::before {
@@ -200,8 +202,9 @@ input[type="submit"]:disabled:hover, .inputButton:disabled:hover {
 
   height: 30vh;
   width: 20vw;
-
-  box-sizing: border-box;
+  max-width: 200px;
+  
+  // box-sizing: border-box;
 
   border-radius: 10px;
 
@@ -220,7 +223,7 @@ input[type="submit"]:disabled:hover, .inputButton:disabled:hover {
   padding: 0;
   margin: 0;
 
-  z-index: 1;
+  // z-index: 1;
 }
 
 .joinCard:hover::before {

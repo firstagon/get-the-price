@@ -5,7 +5,7 @@ import { Fragment } from "react";
 const Header = ({ state, logout, theme }) => {
   // console.log(state);
   // state.isAuth = true;
-  const userName = !!state.name ? state.name : "asername";
+  const userName = !!state.name ? state.name : "username";
   const userFirstLetter = userName.match(/\b(\w)/)[0];
 
   return (

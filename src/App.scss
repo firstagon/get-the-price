@@ -6,6 +6,9 @@
 
 body {
   font: 100% $font-stack;
+
+  margin: 0;
+  padding: 0;
 }
 
 .mainBody {
@@ -16,6 +19,21 @@ body {
 }
 
 #root {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  
+  height: 100%;
+  width: 100%;
+
   background: linear-gradient($base-color 15%, $base-grey);
   background-color: $base-grey;
+}
+
+.mainSection {
+  display: flex;
+
+  width: 1000px;
 }

@@ -61,8 +61,10 @@ function App() {
   const themechanger = (style) => {
     if (style === "dark") {
       document.documentElement.style.setProperty("--base-colour", "#ffffff");
+      document.documentElement.style.setProperty("--base-font-colour", "#000");
     } else {
       document.documentElement.style.setProperty("--base-colour", "black");
+      document.documentElement.style.setProperty("--base-font-colour", "#fff");
     }
   };
 
@@ -231,11 +233,15 @@ function App() {
         />
         <Switch>
           <Route path="/" exact>
+            <section className="mainSection">
             <HomePage userState={userState} />
+            </section>
             <Footer />
           </Route>
           <Route path="/item/:itemId" exact>
+          <section className="mainSection">
             <ItemPage userState={userState} />
+            </section>
             <Footer />
           </Route>
           <Route path="/login" exact>
@@ -251,11 +257,14 @@ function App() {
             <SignupPage onSignup={signupHandler} loading={state.authLoading} />
           </Route>
           <Route path="/profile" exact>
+          <section className="mainSection">
             <ProfilePage state={state} />
-            <Footer />
+            </section>
           </Route>
           <Route path="/userfeed" exact>
+          <section className="mainSection">
             <UsersFeed userState={userState} />
+            </section>
             <Footer />
           </Route>
         </Switch>
