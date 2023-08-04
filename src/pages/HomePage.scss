@@ -97,7 +97,7 @@ input[type="password"] {
   width: 50%;
 }
 
-input[type="submit"] {
+input[type="submit"], .inputButton {
   width: 100%;
   background-color: $main-green;
   /* color: white; */
@@ -111,13 +111,13 @@ input[type="submit"] {
   transition: all 0.2s ease-in;
 }
 
-input[type="submit"]:disabled {
+input[type="submit"]:disabled, .inputButton:disabled {
   background-color: rgba($base-color, 0.5);
   border: 1px solid $base-grey-light;
   cursor: default;
 }
 
-input[type="submit"]:hover {
+input[type="submit"]:hover, .inputButton:hover {
   /* background-color: #45a049; */
   border: 1px solid transparent;
   background-color: $main-blue;
@@ -126,7 +126,7 @@ input[type="submit"]:hover {
   
 }
 
-input[type="submit"]:disabled:hover {
+input[type="submit"]:disabled:hover, .inputButton:disabled:hover {
   border: 1px solid $base-grey-light;
   background-color: rgba($base-color, 0.7);
 }

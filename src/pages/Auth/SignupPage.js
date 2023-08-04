@@ -1,7 +1,5 @@
 import { useState } from "react";
 
-import classes from "./SignupPage.module.css";
-
 import Input from "../../ui/InputForms/Input";
 import { required, length, email } from "../../util/validators";
 
@@ -35,11 +33,11 @@ const SignupPage = (props) => {
   });
 
   const higlightClass = state.passwordsSame && state.formIsValid
-    ? classes.greenHighlight
+    ? 'greenHighlight'
     : !state.passwordsSame &&
       !state.formIsValid &&
       state.signupForm.email.valid && state.signupForm.passwordRepeat.value
-    ? classes.redHighlight
+    ? 'redHighlight'
     : '';
 
   const inputChangeHandler = (synteticE) => {
@@ -82,7 +80,7 @@ const SignupPage = (props) => {
     const value = synteticE.target.value;
     const input = synteticE.target.id;
 
-    console.log(state);
+    // console.log(state);
 
     if (!value) {
       return (synteticE.target.placeholder = `Enter ${input}`);
@@ -127,9 +125,10 @@ const SignupPage = (props) => {
   };
 
   return (
-    <div className={classes.popupLogin}>
-      <div className={classes.signupBlock}>
-        <form className={classes.signupForm}>
+    <div className={'popupLogin'}>
+      <div className="loginSection">
+      <div className={'loginBlock'}>
+        <form className={'signupForm'}>
           <Input
             type="text"
             id="email"
@@ -162,7 +161,7 @@ const SignupPage = (props) => {
             eyeClick={eyeHandler}
           />
           <button
-            className={classes.subButton + ' ' + higlightClass}
+            className={'inputButton' + ' ' + higlightClass}
             type="submit"
             name="submit"
             onClick={submitHandler}
@@ -177,6 +176,7 @@ const SignupPage = (props) => {
               : "Заполните форму"}
           </button>
         </form>
+      </div>
       </div>
     </div>
   );
