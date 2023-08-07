@@ -24,6 +24,7 @@ const LoginPage = (props) => {
     formIsValid: false,
   });
   const [isHelp, setIsHelp] = useState(false);
+  const [buttonText, setButtonText] = useState('Войти');
 
   const inputChangeHandler = (synteticE) => {
     const value = synteticE.target.value;
@@ -76,6 +77,13 @@ const LoginPage = (props) => {
 
   const submitHandler = (e) => {
     e.preventDefault();
+    if(!state.formIsValid) {
+      if(!state.loginForm.email.touched) {
+        setButtonText('Введите Емэйл');
+        console.log('toched')
+      }
+      return
+    }
     props.onLogin({
       email: state.loginForm.email.value,
       password: state.loginForm.password.value,
@@ -113,10 +121,10 @@ const LoginPage = (props) => {
   };
 
   return (
-    <div className={'popupLogin'}>
-      <div className={'loginSection'}>
-        <div className={'loginBlock'}>
-          <form className={'loginForm'}>
+    <div className={"popupLogin"}>
+      <div className={"loginSection"}>
+        <div className={"loginBlock"}>
+          <form className={"loginForm"}>
             <Input
               type="text"
               id="email"
@@ -137,32 +145,40 @@ const LoginPage = (props) => {
               onChange={inputChangeHandler}
               eyeClick={eyeHandler}
             />
-            <input
+            {/* <input
               type="submit"
               name="submit"
               placeholder="Submit"
               onClick={submitHandler}
               disabled={!state.formIsValid}
-            />
+            /> */}
+
+            <button
+              className="inputButton"
+              onClick={submitHandler}
+              // disabled={!state.formIsValid}
+            > {buttonText} </button>
           </form>
-        
-        
-          <div className={'testForm'}>
-            <button className={'subButton'} onClick={submitTestHandler}>
-              <p className={'subButtText'}> Быстрый вход </p>
+
+          <div className={"testForm"}>
+            <button className={"subButton"} onClick={submitTestHandler}>
+              <p className={"subButtText"}> Быстрый вход </p>
             </button>
             <div
-              className={'questionMark'}
+              className={"questionMark"}
               onMouseEnter={questionEnterHandler}
               onMouseLeave={questionLeaveHandler}
             >
               ?
             </div>
-            {isHelp && <div className={'helpBlock'}> 
-            Автовход под тестовой почтой. <br />
-            Возможно, кто-то уже пользовался. </div>}
+            {isHelp && (
+              <div className={"helpBlock"}>
+                Автовход под тестовой почтой. <br />
+                Возможно, кто-то уже пользовался.{" "}
+              </div>
+            )}
           </div>
-          </div>
+        </div>
       </div>
     </div>
   );
