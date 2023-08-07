@@ -1,6 +1,7 @@
 :root {
-  --base-colour: #ffffff;
-  --base-font-color: #000;
+  --base-color: #ffffff;
+  --base-font-color: rgb(0, 0, 0);
+  --base-font-vsColor: rgb(255,255,255);
 }
 
 $font-stack: Helvetica, sans-serif;
@@ -9,14 +10,15 @@ $base-color: var(--base-colour);
 $base-grey: #aaa;
 $base-grey-light: #ccc;
 $base-bg: #1e1e1e;
+
 $main-blue: #3636d6;
 $main-green: #4caf50;
 $main-link: #55158b;
 $main-link-hover: #64b5ef;
 $main-link-accent: #1a8ad5;
 
-$font-white: #fff;
-$font-black: var(--base-font-color);
+$font-base: var(--base-font-color);
+$font-vsBase: var(--base-font-vsColor);
 
 $main-bgcolor: #1e1e1e;
 

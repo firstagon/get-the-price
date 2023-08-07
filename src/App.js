@@ -60,11 +60,13 @@ function App() {
 
   const themechanger = (style) => {
     if (style === "dark") {
-      document.documentElement.style.setProperty("--base-colour", "#ffffff");
-      document.documentElement.style.setProperty("--base-font-colour", "#000");
+      document.documentElement.style.setProperty("--base-color", "#ffffff");
+      document.documentElement.style.setProperty("--base-font-color", "rgb(255,255,255)");
+      document.documentElement.style.setProperty("--base-font-vsColor", "rgb(0, 0, 0)");
     } else {
       document.documentElement.style.setProperty("--base-colour", "black");
-      document.documentElement.style.setProperty("--base-font-colour", "#fff");
+      document.documentElement.style.setProperty("--base-font-color", "rgb(0, 0, 0)");
+      document.documentElement.style.setProperty("--base-font-vsColor", "rgb(255,255,255)");
     }
   };
 

@@ -100,7 +100,8 @@ input[type="password"] {
 input[type="submit"], .inputButton {
   width: 100%;
   background-color: $main-green;
-  /* color: white; */
+  // color: rgba($font-white, 0.8);
+  // color: rgba(rgb(255,255,255), 0.8);
   /* padding: 14px 20px; */
   padding: 5px 5px;
   margin: 8px 0;
@@ -113,17 +114,19 @@ input[type="submit"], .inputButton {
 
 input[type="submit"]:disabled, .inputButton:disabled {
   background-color: rgba($base-color, 0.5);
-  border: 1px solid $base-grey-light;
+  border: 1px solid rgba($base-grey-light, 0.2);
   cursor: default;
+
+  color: rgba($font-vsBase, 0.2);
 }
 
 input[type="submit"]:hover, .inputButton:hover {
   /* background-color: #45a049; */
   border: 1px solid transparent;
   background-color: $main-blue;
-  color: black;
+  // color: black;
   transition: all 0.2s ease-out;
-  
+  color: rgba($font-vsBase, 0.8);
 }
 
 input[type="submit"]:disabled:hover, .inputButton:disabled:hover {
@@ -273,7 +276,7 @@ input[type="submit"]:disabled:hover, .inputButton:disabled:hover {
 
   text-align: center;
 
-  color: $font-black;
+  color: $font-base;
   font-size: larger;
 
 
