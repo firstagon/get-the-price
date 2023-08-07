@@ -1,11 +1,9 @@
-import classes from "./MainInfo.module.css";
-
 const MainInfo = () => {
   return (
-    <section className={classes.infoSection}>
-      <div className={classes.infoBlock}>
-        <div className={classes.infoBlock_text}>
-          <h1 className={classes.headerMain}> Как это работает? </h1>
+    <section className={'infoSection'}>
+      <div className={'infoBlock'}>
+        <div className={'infoBlock_text'}>
+          <h1 className={'headerMain'}> Как это работает? </h1>
           <p>
             {" "}
             Огромное количество товаров продается на марткеплейсах. Не меньшее

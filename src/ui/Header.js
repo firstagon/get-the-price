@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
 // import classes from "./Header.module.css";
 import { Fragment } from "react";
 
-const Header = ({ state, logout, theme }) => {
+const Header = ({ state, logout, themeToggle }) => {
   // console.log(state);
   // state.isAuth = true;
   const userName = !!state.name ? state.name : "username";
@@ -19,7 +19,9 @@ const Header = ({ state, logout, theme }) => {
           {" "}
           userFeed{" "}
         </NavLink>
-        <button className={"linkText"} onClick={theme.toggle}>
+        <button className={"linkText"}
+          onClick={themeToggle}
+        >
           theme
         </button>
       </nav>

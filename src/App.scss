@@ -1,14 +1,18 @@
-@use "./ui/Header.scss";
-@use "./pages/HomePage.scss";
-@use "./ui/InputForms/Inputs.scss";
+@use "./ui/utilities/Header.scss";
+@use "./ui/utilities/HomePage.scss";
+@use "./ui/utilities/Inputs.scss";
 
 @import "./ui/utilities/variables";
 
 body {
+  position: inherit;
   font: 100% $font-stack;
 
   margin: 0;
   padding: 0;
+
+  width: 100vw;
+  height: 100%;
 }
 
 .mainBody {
@@ -24,16 +28,16 @@ body {
   justify-content: center;
   align-items: center;
 
-  
-  height: 100%;
-  width: 100%;
+  // background: linear-gradient($base-color 15%, $base-grey);
+  background-color: $base-bg;
 
-  background: linear-gradient($base-color 15%, $base-grey);
-  background-color: $base-grey;
+  width: 100%;
+  height: 100vh;
 }
 
 .mainSection {
   display: flex;
 
-  width: 1000px;
+  width: 100%;
+  max-width: 1000px;
 }

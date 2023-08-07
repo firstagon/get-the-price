@@ -1,22 +1,29 @@
 :root {
-  --base-colour: #ffffff;
-  --base-font-color: #000;
+  --base-color: #fff;
+  --base-bg: #1e1e1e;
+  --base-font-color: #fff;
+  --base-border: rgba(255,255,255, 0.2);
 }
 
 $font-stack: Helvetica, sans-serif;
 
-$base-color: var(--base-colour);
+$base-color: var(--base-color);
+$base-border: var(--base-border);
 $base-grey: #aaa;
 $base-grey-light: #ccc;
-$base-bg: #1e1e1e;
+$base-bg: var(--base-bg);
+
 $main-blue: #3636d6;
 $main-green: #4caf50;
+$main-red : rgb(253, 0, 0);
+
 $main-link: #55158b;
 $main-link-hover: #64b5ef;
 $main-link-accent: #1a8ad5;
 
+$font-color: var(--base-font-color);
+
 $font-white: #fff;
-$font-black: var(--base-font-color);
 
 $main-bgcolor: #1e1e1e;
 

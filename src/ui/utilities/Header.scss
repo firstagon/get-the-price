@@ -1,12 +1,12 @@
-@import "./utilities/variables";
+@import "variables";
 
 .header {
+  position: absolute;
   display: flex;
   flex-direction: row;
 
   justify-content: space-between;
   position: -webkit-sticky;
-  position: sticky;
 
   top: 0;
   left: 0;
@@ -73,6 +73,8 @@
   flex-grow: 1;
 
   padding-bottom: 2px;
+
+  color: $font-color;
 }
 
 .loginButton {
@@ -142,7 +144,7 @@
 }
 
 .iconHome {
-  background-image: url('../icons/home-icon.svg');
+  background-image: url(../../icons/home-icon.svg);
   background-blend-mode: color;
   background-repeat: no-repeat;
 
@@ -150,21 +152,21 @@
 }
 
 .iconRandom {
-  background-image: url('../icons/random-icon.svg');
+  background-image: url(../../icons/random-icon.svg);
   background-repeat: no-repeat;
 
   margin: 4px 0 0 5px;
 }
 
 .iconLogin {
-  background-image: url("../icons/login.svg");
+  background-image: url(../../icons/login.svg);
   background-repeat: no-repeat;
 
   margin: 2px 0 0 5px;
 }
 
 .iconSignup {
-  background-image: url('../icons/register.svg');
+  background-image: url(../../icons/register.svg);
   background-repeat: no-repeat;
 
   margin: 4px 2px 0 5px;

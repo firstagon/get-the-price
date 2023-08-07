@@ -37,38 +37,45 @@ function App() {
 
   const userState = { token: state.token, userId: state.userId };
 
-  const [isDark, setIsDark] = useState(false);
+  const theme = localStorage.getItem("theme");
+
+  const [isDark, setIsDark] = useState(null);
 
   const themeToggle = (e) => {
     e.preventDefault();
     setIsDark((prevState) => !prevState);
-    localStorage.setItem("theme", !isDark);
+    // themechanger(isDark);
+    localStorage.setItem("theme", `${!isDark}`);
   };
-
-  const theme = localStorage.getItem("theme");
 
   const getTheme = () => {
-    if (!theme) {
-      localStorage.setItem("theme", isDark);
-      return;
+    if (theme === "false") {
+      setIsDark(false);
     } else if (theme === "true") {
+      console.log('its true')
       setIsDark(true);
+      console.log(isDark)
     } else {
       setIsDark(false);
+      localStorage.setItem("theme", 'false');
     }
+
   };
 
-  const themechanger = (style) => {
-    if (style === "dark") {
-      document.documentElement.style.setProperty("--base-colour", "#ffffff");
-      document.documentElement.style.setProperty("--base-font-colour", "#000");
-    } else {
-      document.documentElement.style.setProperty("--base-colour", "black");
-      document.documentElement.style.setProperty("--base-font-colour", "#fff");
-    }
-  };
+  if (!isDark) {
+    document.documentElement.style.setProperty("--base-color", "#ffffff");
+    document.documentElement.style.setProperty("--base-bg", "white");
+    document.documentElement.style.setProperty("--base-font-color", "#000");
+    document.documentElement.style.setProperty("--base-border", "rgba(255,255,255, 0.2)");
+  } else {
+    document.documentElement.style.setProperty("--base-color", "black");
+    document.documentElement.style.setProperty("--base-bg", "#1e1e1e");
+    document.documentElement.style.setProperty("--base-font-color", "#fff");
+    document.documentElement.style.setProperty("--base-border", "rgba(255,255,255, 0.2)");
+  }
 
-  const darkClass = isDark ? themechanger("dark") : themechanger();
+
+  // isDark ? themechanger(true) : themechanger(false);
 
   const mounted = () => {
     if (!token || !expiryDate) {
@@ -229,18 +236,18 @@ function App() {
         <Header
           state={state}
           logout={logoutHandler}
-          theme={{ toggle: themeToggle, class: darkClass }}
+          themeToggle={themeToggle}
         />
         <Switch>
           <Route path="/" exact>
             <section className="mainSection">
-            <HomePage userState={userState} />
+              <HomePage userState={userState} />
             </section>
             <Footer />
           </Route>
           <Route path="/item/:itemId" exact>
-          <section className="mainSection">
-            <ItemPage userState={userState} />
+            <section className="mainSection">
+              <ItemPage userState={userState} />
             </section>
             <Footer />
           </Route>
@@ -257,13 +264,13 @@ function App() {
             <SignupPage onSignup={signupHandler} loading={state.authLoading} />
           </Route>
           <Route path="/profile" exact>
-          <section className="mainSection">
-            <ProfilePage state={state} />
+            <section className="mainSection">
+              <ProfilePage state={state} />
             </section>
           </Route>
           <Route path="/userfeed" exact>
-          <section className="mainSection">
-            <UsersFeed userState={userState} />
+            <section className="mainSection">
+              <UsersFeed userState={userState} />
             </section>
             <Footer />
           </Route>

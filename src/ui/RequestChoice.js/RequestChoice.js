@@ -105,7 +105,7 @@ const RequestChoice = ({ userState }) => {
           <input
             onClick={submitHandler}
             disabled={!state.formIsValid}
-            className=""
+            className="inputButt"
             type="submit"
             value="Submit"
           />
