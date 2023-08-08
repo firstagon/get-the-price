@@ -63,15 +63,17 @@ function App() {
   };
 
   if (!isDark) {
-    document.documentElement.style.setProperty("--base-color", "#ffffff");
-    document.documentElement.style.setProperty("--base-bg", "white");
+    document.documentElement.style.setProperty("--base-color", "#fff");
+    document.documentElement.style.setProperty("--base-bg", "#f9f9f9");
     document.documentElement.style.setProperty("--base-font-color", "#000");
-    document.documentElement.style.setProperty("--base-border", "rgba(255,255,255, 0.2)");
+    document.documentElement.style.setProperty("--base-font-vsColor", "#fff");
+    // document.documentElement.style.setProperty("--base-border", "#aaa");
   } else {
     document.documentElement.style.setProperty("--base-color", "black");
     document.documentElement.style.setProperty("--base-bg", "#1e1e1e");
     document.documentElement.style.setProperty("--base-font-color", "#fff");
-    document.documentElement.style.setProperty("--base-border", "rgba(255,255,255, 0.2)");
+    document.documentElement.style.setProperty("--base-font-vsColor", "#000");
+    // document.documentElement.style.setProperty("--base-border", "#aaa");
   }
 
 

@@ -156,7 +156,7 @@ const LoginPage = (props) => {
             <button
               className="inputButton"
               onClick={submitHandler}
-              // disabled={!state.formIsValid}
+              disabled={!state.formIsValid}
             > {buttonText} </button>
           </form>
 
