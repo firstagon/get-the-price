@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
 import { Fragment } from "react";
 
 const Header = ({ state, logout, themeToggle }) => {
-  // console.log(state);
+  console.log(state.name);
   // state.isAuth = true;
   const userName = !!state.name ? state.name : "username";
   const userFirstLetter = userName.match(/\b(\w)/)[0];
@@ -27,7 +27,7 @@ const Header = ({ state, logout, themeToggle }) => {
       </nav>
       <div className={"userContainer"}>
         <div className={"userData"}>
-          <div className={"userName"}> {userName} </div>
+          <div className={"userName"}> {state.name} </div>
           <div className={"userLoginBlock"}>
             {!state.isAuth && (
               <Fragment>

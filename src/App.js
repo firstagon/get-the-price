@@ -21,6 +21,7 @@ const newHistory = createBrowserHistory();
 const token = localStorage.getItem("token");
 const expiryDate = localStorage.getItem("expiryDate");
 const userId = localStorage.getItem("userId");
+const name = localStorage.getItem("name");
 
 function App() {
   const [state, setState] = useState({
@@ -35,7 +36,7 @@ function App() {
     name: null,
   });
 
-  const userState = { token: state.token, userId: state.userId };
+  const userState = { token: state.token, userId: state.userId, name: state.name };
 
   const theme = localStorage.getItem("theme");
 
@@ -92,7 +93,7 @@ function App() {
     const remainingMilliseconds =
       new Date(expiryDate).getTime() - new Date().getTime();
     setState((prevState) => {
-      return { ...prevState, isAuth: true, token: token, userId: userId };
+      return { ...prevState, isAuth: true, token: token, userId: userId, name: name };
     });
     setAutoLogout(remainingMilliseconds);
   };
@@ -115,6 +116,7 @@ function App() {
     localStorage.removeItem("token");
     localStorage.removeItem("expiryDate");
     localStorage.removeItem("userId");
+    localStorage.removeItem("name");
   };
 
   function setAutoLogout(millisseconds) {
@@ -160,6 +162,7 @@ function App() {
         });
         localStorage.setItem("token", resData.token);
         localStorage.setItem("userId", resData.userId);
+        localStorage.setItem("name", resData.name);
         const remainingMilliseconds = 60 * 60 * 1000;
         const expiryDate = new Date(
           new Date().getTime() + remainingMilliseconds
@@ -205,7 +208,7 @@ function App() {
         return res.json();
       })
       .then((resData) => {
-        console.log(resData);
+        // console.log(resData);
         setState((prevState) => {
           return { ...prevState, isAuth: false, authLoading: false };
         });

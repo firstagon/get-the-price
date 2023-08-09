@@ -31,7 +31,7 @@
 
   min-height: 10vh;
 
-  margin: 5vh 2vw 2vw 2vw;
+  margin: 8vh 2vw 2vw 2vw;
 }
 
 .requestInfo {
@@ -72,8 +72,6 @@ label {
   width: auto;
 }
 
-
-
 .joinSection {
   display: flex;
   flex-direction: row;
@@ -103,16 +101,15 @@ label {
   margin: 5vh 1vw 5vh 2vw;
 
   text-decoration: none;
-  
+
   border: 1px solid $base-border;
   border-radius: 10px;
-  
+
   background: radial-gradient(rgba($base-bg, 0.5) 8%, transparent 8%);
   background-position: 0% 0%;
   background-size: 1.5vmin 1.5vmin;
   background-color: rgba($base-color, 0.2);
-  transition: background-position 350ms ease, padding 350ms ease,
-    height 350ms ease, width 350ms ease, border 350ms ease;
+  transition: background-position 350ms ease, padding 350ms ease, height 350ms ease, width 350ms ease, border 350ms ease;
 
   overflow: hidden;
 }
@@ -140,13 +137,7 @@ label {
   width: 100%;
   border-radius: 10px;
 
-  background: linear-gradient(
-    130deg,
-    transparent 0% 33%,
-    $main-red 65%,
-    $main-blue,
-    $main-green 95%
-  );
+  background: linear-gradient(130deg, transparent 0% 33%, $main-red 65%, $main-blue, $main-green 95%);
   background-size: 300% 300%;
   background-position: 0% 0%;
 
@@ -201,7 +192,6 @@ label {
   color: $font-color;
   font-size: larger;
 
-
   background-color: transparent;
 
   transition: color 350ms ease;
@@ -241,11 +231,12 @@ label {
   background-position: 0% 0%;
   background-size: 1.5vmin 1.5vmin;
   background-color: rgba($base-color, 0.2);
-  transition: background-position 350ms ease, padding 350ms ease,
-    height 350ms ease, width 350ms ease, border 350ms ease,
+  transition: background-position 350ms ease, 
+  padding 350ms ease, height 350ms ease, 
+  width 350ms ease, border 350ms ease,
     color 350ms ease;
 
-    color: $font-color;
+  color: $font-color;
 
   overflow: hidden;
 }

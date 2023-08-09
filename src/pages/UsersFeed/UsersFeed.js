@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import ItemsList from "../../ui/itemsList/ItemsList";
 import NoItemsYet from "./NoItemsYet";
-import classes from "./UsersFeed.module.css";
 
 const FEED_URL = "http://127.0.0.1:3030/userfeed";
 
@@ -36,9 +35,9 @@ const UsersFeed = ({ userState }) => {
   }, [userState.token]);
 
   return (
-    <section className={classes.feedSection}>
-      <div className={classes.feedBlock}>
-        <ul className={classes.feedList}>
+    <section className={'feedSection'}>
+      <div className={'feedBlock'}>
+        <ul className={'feedList'}>
           {_state ? <ItemsList items={_state} /> : <NoItemsYet />}
           </ul>
       </div>

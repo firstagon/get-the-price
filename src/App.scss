@@ -1,6 +1,8 @@
 @use "./ui/utilities/Header.scss";
 @use "./ui/utilities/HomePage.scss";
 @use "./ui/utilities/Inputs.scss";
+@use "./ui/utilities/userFedd.scss";
+
 
 @import "./ui/utilities/variables";
 
@@ -26,7 +28,7 @@ body {
 #root {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  // justify-content: center;
   align-items: center;
 
   // background: linear-gradient($base-color 15%, $base-grey);
@@ -38,6 +40,7 @@ body {
 
 .mainSection {
   display: flex;
+  flex-direction: column;
 
   width: 100%;
   max-width: 1000px;

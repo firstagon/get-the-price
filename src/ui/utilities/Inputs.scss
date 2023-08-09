@@ -226,13 +226,15 @@ input[type="submit"]:disabled:hover, .inputButton:disabled:hover {
   display: flex;
   position: absolute;
 
-  top: 100%;
+  top: 110%;
   right: 0;
 
   padding: 5px;
   border-radius: 5px;
 
-  background: $base-color;
+  // background: $base-color;
+  background-color: $base-bg;
+  color: $font-color;
 }
 
 .inputButton {
