@@ -51,7 +51,7 @@ const Header = ({ state, logout, themeToggle }) => {
             )}
           </div>
         </div>
-        <div className={"userImage"} alt="profile pic">
+       <div className={"userImage"} alt="profile pic">
           {userFirstLetter.toUpperCase()}
         </div>
       </div>

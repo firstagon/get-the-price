@@ -1,7 +1,7 @@
 @import "variables";
 
 .header {
-  position: absolute;
+  // position: sticky;
   display: flex;
   flex-direction: row;
 
@@ -46,6 +46,8 @@
   display: flex;
   justify-content: flex-end;
   align-items: center;
+
+  margin-right: 2vw;
 
   height: 100%;
 }
@@ -104,8 +106,6 @@
 
   height: 5vh;
   width: 5vh;
-
-  margin-right: 1em;
 
   border-radius: 50%;
 
@@ -191,4 +191,10 @@
 
 .active {
   color: $main-link-accent;
+}
+
+@media (width >= 1000px) {
+  .userContainer {
+    margin-right: 7vw;
+  }
 }

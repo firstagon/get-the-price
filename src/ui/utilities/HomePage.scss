@@ -109,7 +109,8 @@ label {
   background-position: 0% 0%;
   background-size: 1.5vmin 1.5vmin;
   background-color: rgba($base-color, 0.2);
-  transition: background-position 350ms ease, padding 350ms ease, height 350ms ease, width 350ms ease, border 350ms ease;
+  transition: background-position 350ms ease, padding 350ms ease,
+    height 350ms ease, width 350ms ease, border 350ms ease;
 
   overflow: hidden;
 }
@@ -137,7 +138,13 @@ label {
   width: 100%;
   border-radius: 10px;
 
-  background: linear-gradient(130deg, transparent 0% 33%, $main-red 65%, $main-blue, $main-green 95%);
+  background: linear-gradient(
+    130deg,
+    transparent 0% 33%,
+    $main-red 65%,
+    $main-blue,
+    $main-green 95%
+  );
   background-size: 300% 300%;
   background-position: 0% 0%;
 
@@ -231,10 +238,8 @@ label {
   background-position: 0% 0%;
   background-size: 1.5vmin 1.5vmin;
   background-color: rgba($base-color, 0.2);
-  transition: background-position 350ms ease, 
-  padding 350ms ease, height 350ms ease, 
-  width 350ms ease, border 350ms ease,
-    color 350ms ease;
+  transition: background-position 350ms ease, padding 350ms ease,
+    height 350ms ease, width 350ms ease, border 350ms ease, color 350ms ease;
 
   color: $font-color;
 
@@ -248,3 +253,79 @@ label {
 
   margin: 5px 2vw 5px 2vw;
 }
+
+.spinnerContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-self: center;
+}
+
+.spinnerBlock {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  height: 20vh;
+  width: 20vh;
+
+  // background: aliceblue;
+}
+
+.spinnerLine {
+  position: absolute;
+
+  width: 50%;
+  height: 50%;
+
+  border-bottom: 4px solid $main-red;
+  border-radius: 50%;
+
+  animation: rotatingRight 1s linear infinite;
+}
+
+.spinnerLine_middle {
+  position: absolute;
+  width: 30%;
+  height: 30%;
+
+  border-top: 3px solid $main-blue;
+  border-radius: 50%;
+  border-bottom-right-radius: 1.5px;
+
+  animation: rotatingLeft 1.5s linear infinite;
+}
+
+.spinnerLine_center {
+  position: absolute;
+
+  width: 10%;
+  height: 10%;
+
+  border-bottom: 2px solid $main-green;
+  border-radius: 50%;
+
+  animation: rotatingRight 2s linear infinite;
+}
+
+@keyframes rotatingRight {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes rotatingLeft {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(-360deg);
+  }
+}
+

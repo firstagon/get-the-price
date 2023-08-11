@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import classes from "./ItemPage.module.css";
+
 import FavoriteSlider from "../ui/FavoriteSlider";
 import ItemCard from "../ui/ItemCard";
 import ItemActions from "../ui/ItemActions";
@@ -32,36 +32,50 @@ const ItemPage = ({ userState }) => {
       body: JSON.stringify({ ...userState, itemId }),
     })
       .then((res) => {
+        // console.log(res.status)
         return res.json();
       })
       .then((res) => {
         setState(() => {
-          return res;
+          return { ...res, status: !!res ? "ok" : "error, failed to fetch" };
         });
-      });
+      })
+      .catch((err) =>
+        setState(() => {
+          return { status: "error" };
+        })
+      );
   };
 
   useEffect(() => {
     if (userState.token) {
       getItem(itemId);
     }
+    getItem(itemId);
   }, [userState.token]);
 
   // console.log(state);
   // console.log(userState);
 
   return (
-    <div className={classes.page}>
-      <section className={classes.mainInfo}>
-        <div className={classes.mainContainer}>
-          <div className={classes.container}>
-            {!!state ? <ItemCard state={state.data} /> : ""}
-            <ItemActions />
-          </div>
+    <div className={'page'}>
+      <section className={'mainInfo'}>
+        <div className={'mainContainer'}>
+          {!!state.status === "ok" ? (
+            <div className={'container'}>
+              <ItemCard state={state.data} /> 
+              <ItemActions /> 
+              <FavoriteSlider />
+            </div>
+          ) : <p className="errorMessage"> Error: connection failed </p>}
         </div>
       </section>
-      {!!state ? <InfoGraphic array={state.data.itemPrice} /> : ""}
-      <FavoriteSlider />
+      {!!state.status === "ok" ? (
+        <InfoGraphic array={state.data.itemPrice} />
+      ) : (
+        ""
+      )}
+      
     </div>
   );
 };

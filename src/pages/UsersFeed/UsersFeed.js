@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import ItemsList from "../../ui/itemsList/ItemsList";
 import NoItemsYet from "./NoItemsYet";
+import LoadSpinner from '../../ui/LoadSpinner/Spinner';
 
 const FEED_URL = "http://127.0.0.1:3030/userfeed";
 
@@ -38,7 +39,7 @@ const UsersFeed = ({ userState }) => {
     <section className={'feedSection'}>
       <div className={'feedBlock'}>
         <ul className={'feedList'}>
-          {_state ? <ItemsList items={_state} /> : <NoItemsYet />}
+          {_state ? <ItemsList items={_state} /> : <LoadSpinner />}
           </ul>
       </div>
     </section>
