@@ -46,3 +46,17 @@ body {
   width: 100%;
   max-width: 1000px;
 }
+
+.footerSection {
+  display: flex;
+
+  width: 100%;
+
+  background-color: black;
+
+  bottom: 0;
+}
+
+.footerBlock {
+  color: white;
+}
