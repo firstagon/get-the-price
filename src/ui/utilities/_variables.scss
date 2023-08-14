@@ -1,9 +1,10 @@
 :root {
   --base-color: #f9f9f9;
   --base-bg: #1e1e1e;
+  // --base-bg: #abb8c3;
   --base-font-color: #fff;
   --base-font-vsColor: #000;
-  --base-border: #aaa;
+  --base-border: #abb8c3;
 }
 
 $font-stack: Helvetica, sans-serif;
@@ -17,6 +18,7 @@ $base-bg: var(--base-bg);
 $main-blue: #3636d6;
 $main-green: #4caf50;
 $main-red : rgb(253, 0, 0);
+$main-grey: #abb8c3;
 
 $main-link: #55158b;
 $main-link-hover: #64b5ef;
