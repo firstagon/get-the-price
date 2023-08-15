@@ -3,7 +3,7 @@
 import ItemsChoice from "../ui/ItemChoiceUI/ItemsChoice";
 import WelcomeBlock from "../ui/MainElements/WelcomeBlock";
 import RequestChoice from "../ui/RequestChoice.js/RequestChoice";
-import MainInfo from "../ui/MainElements/MainInfo";
+import MainInfo from "../ui/HomePage/MainInfo";
 import CardBlock from "../ui/MainElements/CardBlock";
 
 const isAuth = false;

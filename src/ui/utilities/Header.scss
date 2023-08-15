@@ -198,3 +198,98 @@
     margin-right: 7vw;
   }
 }
+
+.themeToggle_Container {
+  position: relative;
+
+  padding: 0;
+  margin: 0 10px;
+  background: none;
+  border: none;
+
+  width: 3vw;
+  height: 2vh;
+  width: 32px;
+  height: 16;
+
+  cursor: pointer;
+}
+
+.themetoggle_Block {
+
+
+  height: 100%;
+  width: 100%;
+
+  background-color: $theme-light-bg;
+  // background-color: $theme-dark;
+
+  // border: 1px solid $theme-light-bg;
+
+  border-radius: 2vh;
+
+  transition: all 350ms ease;
+}
+
+.themeToggle_Point {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: $theme-light;
+
+  height: 1.5vh;
+  width: 1.5vh;
+
+  border-radius: 50%;
+  border: 2px solid $theme-light-bg;
+
+  top: calc(0.25vh - 2px);
+  left: 1px;
+
+  transition: all 350ms ease;
+}
+
+.themeToggle_Point_type {
+  position: absolute;
+  background-color: $theme-light-bg;
+  z-index: 1;
+
+  height: 30%;
+  width: 30%;
+
+  border-radius: 50%;
+
+  transition: all 350ms ease;
+}
+
+.darkBlock {
+  justify-content: flex-end;
+  background-color: $theme-dark-bg;
+
+  // border: 2px solid $theme-dark-bg;
+}
+
+.darkPoint {
+  left: calc(100% - 1.5vh - 3px);
+  top: 0.25vh;
+
+  border: 2px solid transparent;
+  // border: none;
+  background-color: $theme-dark;
+
+  height: calc(1.5vh - 2px);
+  width: calc(1.5vh - 2px);
+}
+
+.darkType {
+  top: 1%;
+  left: -3px;
+
+  height: 90%;
+  width: 90%;
+
+  background-color: $theme-dark-bg;
+  border: none;
+}

@@ -242,6 +242,7 @@ function App() {
           state={state}
           logout={logoutHandler}
           themeToggle={themeToggle}
+          isDark={isDark}
         />
         <Switch>
           <Route path="/" exact>

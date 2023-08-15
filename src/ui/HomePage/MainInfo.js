@@ -58,7 +58,7 @@ const MainInfo = () => {
           </p>
         </div>
         {textArray.map((el) => (
-          <MainInfoBlock info={el} />
+          <MainInfoBlock key={textArray.indexOf(el)} info={el} />
         ))}
         {endBlock}
       </div>
