@@ -207,10 +207,10 @@
   background: none;
   border: none;
 
-  width: 3vw;
-  height: 2vh;
-  width: 32px;
-  height: 16;
+  // width: 3vw;
+  // height: 2vh;
+  width: 40px;
+  height: 20px;
 
   cursor: pointer;
 }
@@ -226,7 +226,7 @@
 
   // border: 1px solid $theme-light-bg;
 
-  border-radius: 2vh;
+  border-radius: 10px;
 
   transition: all 350ms ease;
 }
@@ -239,29 +239,31 @@
 
   background-color: $theme-light;
 
-  height: 1.5vh;
-  width: 1.5vh;
+  height: 14px;
+  width: 14px;
 
   border-radius: 50%;
-  border: 2px solid $theme-light-bg;
+  // border: 2px dotted $theme-light-bg;
 
-  top: calc(0.25vh - 2px);
-  left: 1px;
+  top: 3px;
+  left: 3px;
 
   transition: all 350ms ease;
 }
 
 .themeToggle_Point_type {
-  position: absolute;
-  background-color: $theme-light-bg;
+  // position: absolute;
+  // background-color: $theme-light-bg;
   z-index: 1;
 
-  height: 30%;
-  width: 30%;
+  height: 8px;
+  width: 8px;
 
+  border: 1px solid $theme-light-bg;
   border-radius: 50%;
 
   transition: all 350ms ease;
+
 }
 
 .darkBlock {
@@ -272,23 +274,29 @@
 }
 
 .darkPoint {
-  left: calc(100% - 1.5vh - 3px);
-  top: 0.25vh;
+  // left: calc(100% - 1.5vh - 3px);
+  // top: calc(0.25vh - 1px);
 
-  border: 2px solid transparent;
+  top: 3px;
+  left: calc(100% - 14px - 3px);
+
+  // border: 2px solid transparent;
   // border: none;
   background-color: $theme-dark;
 
-  height: calc(1.5vh - 2px);
-  width: calc(1.5vh - 2px);
+  // height: calc(1.5vh);
+  // width: calc(1.5vh);
+  // height: calc(1.5vh - 2px);
+  // width: calc(1.5vh - 2px);
 }
 
 .darkType {
+  position: absolute;
   top: 1%;
   left: -3px;
 
-  height: 90%;
-  width: 90%;
+  height: 80%;
+  width: 80%;
 
   background-color: $theme-dark-bg;
   border: none;

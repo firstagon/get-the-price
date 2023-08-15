@@ -1,10 +1,10 @@
 // import classes from "./HomePage.module.css";
 
 import ItemsChoice from "../ui/ItemChoiceUI/ItemsChoice";
-import WelcomeBlock from "../ui/MainElements/WelcomeBlock";
+// import WelcomeBlock from "../ui/MainElements/WelcomeBlock";
 import RequestChoice from "../ui/RequestChoice.js/RequestChoice";
 import MainInfo from "../ui/HomePage/MainInfo";
-import CardBlock from "../ui/MainElements/CardBlock";
+import CardBlock from "../ui/HomePage/CardBlock";
 
 const isAuth = false;
 
