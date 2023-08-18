@@ -1,13 +1,14 @@
 @use "./ui/utilities/Header.scss";
 @use "./ui/utilities/HomePage.scss";
 @use "./ui/utilities/Inputs.scss";
-@use "./ui/utilities/userFedd.scss";
+@use "./ui/utilities/userFeed.scss";
 @use "./ui/utilities/ItemPage.scss";
 
 @import "./ui/utilities/variables";
 
 body {
   position: inherit;
+
   font: 100% $font-stack;
 
   margin: 0;
@@ -34,7 +35,7 @@ body {
   background-color: $base-bg;
 
   width: 100%;
-  height: 100vh;
+  height: 100%;
 }
 
 .mainSection {
@@ -43,9 +44,11 @@ body {
 
   width: 100%;
   max-width: 1000px;
+  min-height: 80vh;
 }
 
 .footerSection {
+  // position: absolute;
   display: flex;
   flex-direction: row;
 

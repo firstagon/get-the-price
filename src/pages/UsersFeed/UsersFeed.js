@@ -39,7 +39,8 @@ const UsersFeed = ({ userState }) => {
     <section className={'feedSection'}>
       <div className={'feedBlock'}>
         <ul className={'feedList'}>
-          {_state ? <ItemsList items={_state} /> : <LoadSpinner />}
+          {/* {_state ? <ItemsList items={_state} /> : <LoadSpinner />} */}
+          <ItemsList items={_state} /> 
           </ul>
       </div>
     </section>
