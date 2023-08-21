@@ -1,28 +1,36 @@
 import MainInfoBlock from "./MainInfoBlock";
 
+import registration from '../../img/registration.png';
+import search from '../../img/searching.png';
+import clock from '../../img/clock.png';
+import addingItems from '../../img/addeditems.png';
+import end from '../../img/end.png';
+
+
+
 const textArray = [
   {
     header: "Зачем нужна регистрация",
     text: "Регистрируемся, чтобы не потерять свою выборку.",
-    imgSrc: "#",
+    imgSrc: registration,
     reversed: false,
   },
   {
     header: "",
     text: "Переходим на сайт и копируем ссылку.",
-    imgSrc: "#",
+    imgSrc: search,
     reversed: true,
   },
   {
     header: "",
     text: "Добавляем к себе в список отслеживаемых товаров.",
-    imgSrc: "#",
+    imgSrc: addingItems,
     reversed: false,
   },
   {
     header: "",
     text: "Ждем когда цена станет приемлимого уровня.",
-    imgSrc: "#",
+    imgSrc: clock,
     reversed: true,
   },
 ];
@@ -31,7 +39,7 @@ const endBlock = (
   <div className="infoBlock_text">
     <div className={`infoBlock_infoEnd`}>
       <div className={"infoImg_container"}>
-        <img className="infoImg" src='#' alt="imaginate this" />
+        <img className="infoImg" src={end} alt="imaginate this" />
       </div>
       <p className={"infoText_column"}> Готово! Вы восхитительны! </p>
     </div>
