@@ -477,3 +477,54 @@ label {
 
   width: 100%;
 }
+
+.logoSection {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+
+  margin: 2vh 0;
+}
+
+.logoBlock {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.logoLogo {
+  font-size: 72px;
+  letter-spacing: -2px;
+  word-spacing: -2px;
+
+  color: $font-color;
+
+  margin: 0;
+  transition: all 1350ms ease;
+
+  background: linear-gradient($font-color 40%, $main-red 55%, $main-blue 75%, $main-green 80%);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 100% 3em;
+  background-position: 0 0em;
+  background-repeat: no-repeat;
+  transition: background-position 1350ms ease;
+}
+
+.logoLogo:hover {
+  background-position: 0 -1.5em;
+}
+
+.logoText {
+  margin: 0.5em 0;
+  color: $font-color;
+
+  transition: color 1350ms ease;
+}
+
+p, h1, h2,h4, h6 {
+  transition: color 350ms ease;
+}

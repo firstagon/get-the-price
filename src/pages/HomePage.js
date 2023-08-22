@@ -5,6 +5,7 @@ import ItemsChoice from "../ui/ItemChoiceUI/ItemsChoice";
 import RequestChoice from "../ui/RequestChoice.js/RequestChoice";
 import MainInfo from "../ui/HomePage/MainInfo";
 import CardBlock from "../ui/HomePage/CardBlock";
+import MainLogo from "../ui/HomePage/MainLogo";
 
 const isAuth = false;
 
@@ -12,6 +13,7 @@ const HomePage = ({ userState }) => {
   return (
     <div className={"mainBody"}>
       {/* <WelcomeBlock /> */}
+      <MainLogo />
       {userState.isAuth && <RequestChoice userState={userState} />}
       <CardBlock isAuth={userState.isAuth} />
       <MainInfo />
