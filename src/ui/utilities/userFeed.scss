@@ -4,7 +4,10 @@
   display: flex;
   flex-direction: column;
 
-  margin-top: 8vh;
+  width: 100%;
+  max-width: 1000px;
+
+  margin-top: 2vh;
 }
 
 .feedBlock {
@@ -12,9 +15,9 @@
   border-radius: 25px;
   border: none;
 
-  min-height: 70vh;
+  min-height: 80vh;
   
-  margin: 0 2vw 2vw 2vw;
+  margin: 0 2vw 0 2vw;
 }
 
 .feedList {
@@ -23,12 +26,12 @@
   align-items: flex-start;
 
   margin: 5px 0 5px 0;
-  padding: 0 2vw;
+  padding: 0;
 }
 
 .itemSection {
   display: flex;
-  /* flex-direction: column; */
+
   list-style: none;
 
   width: 100%;
@@ -46,10 +49,15 @@
 }
 
 .itemSection:hover {
-  background-color: lightgrey;
-  border: 1px solid transparent;
-
+  border: 4px solid;
+  border-image-source: linear-gradient(to right, $main-red, $main-green);
+  border-image-slice: 0 1 0;
+  box-sizing: border-box;
+  
+  border-color: transparent $base-border transparent $base-border;
+  
   cursor: pointer;
+  // background-color: rgba(0, 0, 0, 0.1);
 }
 
 .itemBlock {

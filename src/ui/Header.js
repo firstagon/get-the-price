@@ -26,50 +26,52 @@ const Header = ({ state, logout, themeToggle, isDark }) => {
 
   return (
     <header className="header">
-      <nav className={"navContainer"}>
-        <NavLink to="/" className={"navLink iconHome"} />
-        <NavLink to="/item/1" className={"navLink iconRandom"} />
-        <NavLink to="/login" className={"navLink iconLogin"} />
-        <NavLink to="/signup" className={"navLink iconSignup"} />
-        <NavLink to="/userfeed" className={"navLinkb textLink"}>
-          userFeed
-        </NavLink>
-        <button className="themeToggle_Container" onClick={themeToggle}>
-          <div className={"themetoggle_Block " + darkBlock}>
-            <div className={"themeToggle_Point " + darkPoint}>
-              <div className={"themeToggle_Point_type " + darkType}></div>
+      <div className="headerBlock">
+        <nav className={"navContainer"}>
+          <NavLink to="/" className={"navLink iconHome"} />
+          <NavLink to="/item/1" className={"navLink iconRandom"} />
+          <NavLink to="/login" className={"navLink iconLogin"} />
+          <NavLink to="/signup" className={"navLink iconSignup"} />
+          <NavLink to="/userfeed" className={"navLinkb textLink"}>
+            userFeed
+          </NavLink>
+          <button className="themeToggle_Container" onClick={themeToggle}>
+            <div className={"themetoggle_Block " + darkBlock}>
+              <div className={"themeToggle_Point " + darkPoint}>
+                <div className={"themeToggle_Point_type " + darkType}></div>
+              </div>
+            </div>
+          </button>
+        </nav>
+        <div className={"userContainer"}>
+          <div className={"userData"}>
+            <div className={"userName"}> {state.name} </div>
+            <div className={"userLoginBlock"}>
+              {!state.isAuth && (
+                <Fragment>
+                  <NavLink to="/signup" className={"linkText"}>
+                    Sign up
+                  </NavLink>
+                  <NavLink to="/login" className={"linkText"}>
+                    Login
+                  </NavLink>
+                </Fragment>
+              )}
+              {state.isAuth && (
+                <Fragment>
+                  <NavLink to="/profile" className={"linkText"}>
+                    Profile
+                  </NavLink>
+                  <button className={"linkText"} onClick={logout}>
+                    Log out
+                  </button>
+                </Fragment>
+              )}
             </div>
           </div>
-        </button>
-      </nav>
-      <div className={"userContainer"}>
-        <div className={"userData"}>
-          <div className={"userName"}> {state.name} </div>
-          <div className={"userLoginBlock"}>
-            {!state.isAuth && (
-              <Fragment>
-                <NavLink to="/signup" className={"linkText"}>
-                  Sign up
-                </NavLink>
-                <NavLink to="/login" className={"linkText"}>
-                  Login
-                </NavLink>
-              </Fragment>
-            )}
-            {state.isAuth && (
-              <Fragment>
-                <NavLink to="/profile" className={"linkText"}>
-                  Profile
-                </NavLink>
-                <button className={"linkText"} onClick={logout}>
-                  Log out
-                </button>
-              </Fragment>
-            )}
+          <div className={"userImage"} alt="profile pic">
+            {userFirstLetter.toUpperCase()}
           </div>
-        </div>
-        <div className={"userImage"} alt="profile pic">
-          {userFirstLetter.toUpperCase()}
         </div>
       </div>
     </header>

@@ -275,9 +275,9 @@ function App() {
             </section>
           </Route>
           <Route path="/userfeed" exact>
-            <section className="mainSection">
+            {/* <section className="mainSection"> */}
               <UsersFeed userState={userState} />
-            </section>
+            {/* </section> */}
             <Footer />
           </Route>
         </Switch>
