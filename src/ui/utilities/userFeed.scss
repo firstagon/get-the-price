@@ -30,6 +30,7 @@
 }
 
 .itemSection {
+  position: relative;
   display: flex;
 
   list-style: none;
@@ -42,9 +43,9 @@
   border-radius: 5px;
 
   margin: 10px 0 0 0;
-  box-sizing: border-box;
+  // box-sizing: border-box;
 
-  transition: border 50ms ease;
+  transition: border 50ms ease, transform 150ms ease;
 }
 
 .itemSection:last-child {
@@ -64,6 +65,8 @@
 
   cursor: pointer;
 
+  transform: scale(1.025);
+
   // background-color: rgba(0, 0, 0, 0.1);
 }
 
@@ -80,8 +83,8 @@
 }
 
 .itemImage {
-  width: 10%;
-  // height: auto;
+  width: 10vh;
+  height: 10vh;
 
   object-fit: contain;
 
@@ -117,7 +120,7 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: flex-end;
-  flex-grow: 1;
+
 
   width: 100%;
 }
@@ -143,4 +146,43 @@
   width: 20px;
 
   margin: 0 0 2px 0;
+}
+
+@media (max-width: 395px) {
+  .itemBlock_info,
+  .itemName,
+  .itemInfo {
+    font-size: 0.9em;
+  }
+
+  .itemInfo_right {
+    font-size: 0.8em;
+  }
+
+  .itemInfo {
+    flex-direction: column;
+  }
+
+  .itemInfo_left {
+    flex-direction: row;
+  }
+
+  .itemName {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .rating, .price {
+    display: flex;
+    margin-right: 2vw;
+    align-items: center;
+  }
+
+  .price {
+    margin: 0;
+  }
+
+  .rating::before {
+    align-items: center;
+  }
 }

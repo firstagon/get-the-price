@@ -198,9 +198,15 @@ label {
 .infoSection {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .infoBlock {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   border-radius: 25px;
   border: none;
 
@@ -299,6 +305,7 @@ label {
 }
 
 .headerMain {
+  font-size: 1.5em;
   margin: 0px 0px 0px 0px;
 }
 
@@ -552,44 +559,114 @@ span {
   transition: color 350ms ease;
 }
 
+
+@media (max-width: 720px) {
+  .header {
+    height: 8vh;
+  }
+
+  .userImage {
+    font-size: 1em;
+  }
+}
+
+@media (max-width: 410px) {
+  .logoSection {
+    margin-bottom: 0;
+  }
+
+  .logoLogo {
+    background: linear-gradient(
+      $font-color 40%,
+      $main-red 55%,
+      $main-blue 70%,
+      $main-green 80%
+    );
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 100% 6em;
+    background-position: 0 0em;
+
+    line-height: 0.8em;
+    padding-bottom: 0.2em;
+  }
+
+  .logoLogo:hover {
+    background-position: 0 -3.2em;
+  }
+
+  .userImage {
+    display: none;
+  }
+}
+
 @media (max-width: 300px) {
   .logoLogo {
     background: linear-gradient(
       $font-color 40%,
       $main-red 55%,
       $main-blue 70%,
-      $main-green 90%
+      $main-green 80%
     );
     background-clip: text;
     -webkit-text-fill-color: transparent;
     background-size: 100% 6em;
     background-position: 0 0em;
+
+    line-height: 0.8em;
+
+    padding-bottom: 0.2em;
   }
 
   .logoLogo:hover {
-    background-position: 0 -3em;
+    background-position: 0 -3.2em;
   }
 
   .joinBlock {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+
+    width: 90%;
   }
 
   .joinCard {
     display: flex;
-    flex-grow: 1;
-    max-width: 100%;
 
-    margin: 0 2vw;
-    flex-grow: 1;
+    width: 100%;
+
+    margin: 0 2vw 0 2vw;
   }
 
-  .iconHome, .iconRandom, .iconLogin, .iconSignup {
+  .iconHome,
+  .iconRandom,
+  .iconLogin,
+  .iconSignup {
     display: none;
   }
 
-  .infoText_column, .infoText_column_reversed {
+  .infoText_column,
+  .infoText_column_reversed {
     margin: 0 0 2vh 0;
+  }
+
+  .infoBlock {
+    width: 90%;
+  }
+
+  .infoBlock_text > .infoText:first-child {
+    text-align: center;
+  }
+
+  .userImage {
+    display: none;
+  }
+
+  .centeredText {
+    text-align: center;
+  }
+
+  .header {
+    height: 6vh;
   }
 }
