@@ -6,17 +6,17 @@
 
 @import "./ui/utilities/variables";
 
-body {
-  position: inherit;
+html, body {
+  // position: relative;
+  display: flex;
+  justify-content: center;
 
-  font: 100% $font-stack;
+  width: 100%;
 
   margin: 0;
   padding: 0;
-
-  // width: 100vw;
-  // height: 100%;
   background-color: $base-bg;
+  font: 100% $font-stack;
 }
 
 .mainBody {

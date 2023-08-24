@@ -43,10 +43,10 @@ const ItemList = ({ items }) => {
             <h4 className={"itemName"}> {el.itemName} </h4>
             <div className={"itemInfo"}>
               <div className={"itemInfo_left"}>
-                <div className={"rating"}> {el.data.itemRating} </div>
-                <div className={"price"}> {el.lastPrice} ₽ </div>
+                <span className="rating"> {el.data.itemRating} </span>
+                <span className="price"> {el.lastPrice} ₽ </span>
               </div>
-              <div className={"itemInfo_right"}>Обновлено: {el.updated}</div>
+              <span className={"itemInfo_right"}>Обновлено: {el.updated}</span>
             </div>
           </div>
         </div>

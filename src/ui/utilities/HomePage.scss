@@ -313,7 +313,7 @@ label {
 }
 
 .infoBlock_infoColumn::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 80%;
   left: 20%;
@@ -326,12 +326,12 @@ label {
 
   margin: 0;
   padding: 0;
-  
+
   transition: all 350ms ease;
 }
 
 .infoBlock_infoColumn::after {
-  content: '';
+  content: "";
   position: absolute;
   top: 80%;
   left: 80%;
@@ -362,7 +362,7 @@ label {
 }
 
 .infoBlock_infoColumn_reversed::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 80%;
   right: 20%;
@@ -380,7 +380,7 @@ label {
 }
 
 .infoBlock_infoColumn_reversed::after {
-  content: '';
+  content: "";
   position: absolute;
   top: 80%;
   right: 80%;
@@ -465,8 +465,13 @@ label {
 }
 
 .infoImg {
-  width: 250px;
-  height: 250px;
+  display: flex;
+
+  width: 40vw;
+  height: 40vw;
+
+  max-width: 250px;
+  max-height: 250px;
 
   background: radial-gradient($base-bg 60%, transparent 80%);
 
@@ -474,7 +479,6 @@ label {
 
   z-index: 1;
 }
-
 
 .infoBlock_infoEnd {
   position: relative;
@@ -504,6 +508,7 @@ label {
 }
 
 .logoLogo {
+  text-align: center;
   font-size: 72px;
   letter-spacing: -2px;
   word-spacing: -2px;
@@ -513,7 +518,12 @@ label {
   margin: 0;
   transition: all 1350ms ease;
 
-  background: linear-gradient($font-color 40%, $main-red 55%, $main-blue 75%, $main-green 80%);
+  background: linear-gradient(
+    $font-color 40%,
+    $main-red 55%,
+    $main-blue 75%,
+    $main-green 80%
+  );
   background-clip: text;
   -webkit-text-fill-color: transparent;
   background-size: 100% 3em;
@@ -533,6 +543,53 @@ label {
   transition: color 1350ms ease;
 }
 
-p, h1, h2,h4, h6 {
+p,
+h1,
+h2,
+h4,
+h6,
+span {
   transition: color 350ms ease;
+}
+
+@media (max-width: 300px) {
+  .logoLogo {
+    background: linear-gradient(
+      $font-color 40%,
+      $main-red 55%,
+      $main-blue 70%,
+      $main-green 90%
+    );
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 100% 6em;
+    background-position: 0 0em;
+  }
+
+  .logoLogo:hover {
+    background-position: 0 -3em;
+  }
+
+  .joinBlock {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .joinCard {
+    display: flex;
+    flex-grow: 1;
+    max-width: 100%;
+
+    margin: 0 2vw;
+    flex-grow: 1;
+  }
+
+  .iconHome, .iconRandom, .iconLogin, .iconSignup {
+    display: none;
+  }
+
+  .infoText_column, .infoText_column_reversed {
+    margin: 0 0 2vh 0;
+  }
 }
