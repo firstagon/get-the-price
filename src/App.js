@@ -278,7 +278,7 @@ function App() {
             {/* <section className="mainSection"> */}
               <UsersFeed userState={userState} />
             {/* </section> */}
-            <Footer />
+            <Footer isDark={isDark} />
           </Route>
         </Switch>
       </Router>

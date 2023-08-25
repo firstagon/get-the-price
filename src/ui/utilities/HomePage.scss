@@ -221,14 +221,6 @@ label {
   overflow: hidden;
 }
 
-.infoBlock_text {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
-  margin: 5px 2vw 5px 2vw;
-}
-
 .spinnerContainer {
   display: flex;
   justify-content: center;
@@ -446,7 +438,12 @@ label {
 }
 
 .infoBlock_text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
   margin: 2vh 0;
+  width: 95%;
 }
 
 .infoText_column {
@@ -480,7 +477,7 @@ label {
   max-width: 250px;
   max-height: 250px;
 
-  background: radial-gradient($base-bg 60%, transparent 80%);
+  background: radial-gradient($base-bg 65%, transparent 80%);
 
   border-radius: 10px;
 
@@ -558,7 +555,6 @@ h6,
 span {
   transition: color 350ms ease;
 }
-
 
 @media (max-width: 720px) {
   .header {
