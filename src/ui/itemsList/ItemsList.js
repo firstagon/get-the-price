@@ -16,6 +16,7 @@ const testItem = [
 
 const ItemList = ({ items }) => {
   // const [state, setState] = useState([...items])
+  // console.log(items)
   const history = useHistory();
 
   // console.log(state)
@@ -25,7 +26,7 @@ const ItemList = ({ items }) => {
     history.push(`item/${code}`);
   };
 
-  return testItem.map((el) => {
+  return items.map((el) => {
     if (!el.data) {
       return "";
     }
@@ -34,7 +35,7 @@ const ItemList = ({ items }) => {
       <li
         className={"itemSection"}
         // key={items.indexOf(el)}
-        key={testItem.indexOf(el)}
+        key={items.indexOf(el)}
         onClick={(e) => itemHandler(e, el.itemCode)}
       >
         <div className={"itemBlock"}>
@@ -44,7 +45,7 @@ const ItemList = ({ items }) => {
             <div className={"itemInfo"}>
               <div className={"itemInfo_left"}>
                 <span className="rating"> {el.data.itemRating} </span>
-                <span className="price"> {el.lastPrice} ₽ </span>
+                <span className="price"> {el.lastPrice ? el.lastPrice : 'ended'} ₽ </span>
               </div>
               <span className={"itemInfo_right"}>Обновлено: {el.updated}</span>
             </div>

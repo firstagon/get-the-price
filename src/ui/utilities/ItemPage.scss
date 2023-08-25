@@ -1,7 +1,7 @@
 
 @import "variables";
 
-.page {
+.itemPage {
     display: flex;
     flex-direction: column;
 
@@ -24,7 +24,7 @@
 
 }
 
-.container {
+.itemContainer {
     display: flex;
 
     width: 100%;
@@ -41,4 +41,65 @@ section:last-child {
 
 .errorMessage {
     color: $font-color;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+
+    height: auto;
+    width: auto;
+}
+
+.ContainerInfoImage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+
+    max-width: 30vw;
+    min-width: 20vw;
+}
+
+.itemImage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    height: 15vw;
+    width: 15vw;
+
+    margin: 2vw 2vw 1vw 2vw;
+
+    border-radius: 25px;
+
+    background-color: grey;
+}
+
+.itemPriceSection {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.itemPrice {
+    display: flex;
+
+    margin-right: 1vw;
+}
+
+._up {
+    font-weight: bold;
+    color: red;
+}
+
+._down {
+    font-weight: bold;
+    color: green;
+}
+
+.itemChangeImage {
+    display: flex;
 }
