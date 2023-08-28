@@ -65,7 +65,7 @@ const ItemPage = ({ userState }) => {
 
   return (
     <div className={'itemPage'}>
-      <section className={'mainInfo'}>
+      <div className={'mainInfo'}>
         <div className={'mainContainer'}>
           {state.status === "ok" ? (
             <div className={'container'}>
@@ -76,7 +76,7 @@ const ItemPage = ({ userState }) => {
             </div>
           ) : <p className="errorMessage"> Error: connection failed </p>}
         </div>
-      </section>
+      </div>
       {state.status === "ok" ? (
         <InfoGraphic array={state.data.itemPrice} />
       ) : (

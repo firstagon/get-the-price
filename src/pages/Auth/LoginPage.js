@@ -5,6 +5,7 @@ import Input from "../../ui/InputForms/Input";
 import { required, length, email } from "../../util/validators";
 
 const LoginPage = (props) => {
+
   const [state, setState] = useState({
     loginForm: {
       email: {
@@ -24,7 +25,7 @@ const LoginPage = (props) => {
     formIsValid: false,
   });
   const [isHelp, setIsHelp] = useState(false);
-  const [buttonText, setButtonText] = useState('Войти');
+  const [buttonText, setButtonText] = useState("Войти");
 
   const inputChangeHandler = (synteticE) => {
     const value = synteticE.target.value;
@@ -77,12 +78,12 @@ const LoginPage = (props) => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    if(!state.formIsValid) {
-      if(!state.loginForm.email.touched) {
-        setButtonText('Введите Емэйл');
-        console.log('toched')
+    if (!state.formIsValid) {
+      if (!state.loginForm.email.touched) {
+        setButtonText("Введите Емэйл");
+        // console.log("toched");
       }
-      return
+      return;
     }
     props.onLogin({
       email: state.loginForm.email.value,
@@ -108,6 +109,12 @@ const LoginPage = (props) => {
 
   const submitTestHandler = (e) => {
     e.preventDefault();
+    props.onLogin({
+      email: "test@test.ru",
+      password: "testmeplease",
+    });
+    props.history.push('/');
+
   };
 
   const questionEnterHandler = (e) => {
@@ -157,7 +164,10 @@ const LoginPage = (props) => {
               className="inputButton"
               onClick={submitHandler}
               disabled={!state.formIsValid}
-            > {buttonText} </button>
+            >
+              {" "}
+              {buttonText}{" "}
+            </button>
           </form>
 
           <div className={"testForm"}>
