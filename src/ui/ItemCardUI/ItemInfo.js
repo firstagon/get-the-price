@@ -31,14 +31,16 @@ const ItemInfo = ({ state }) => {
           <img className={'itemImage'} src={state.imageUrl} alt="how item looks"></img>
           <div className={'itemPriceSection'}>
             {/* <div className={'itemPrice' + " " + priceChange}> {state.itemPrice.slice(-1)[0].price} {changeInicator ? "DOWN" : "UP"}</div> */}
-            <div className={'itemPrice' + " " + priceChange}> {currPrice(state.itemPrice)} {changeInicator ? "DOWN" : "UP"}</div>
+            <div className={'itemPrice' + " " + priceChange}> 
+              {currPrice(state.itemPrice)} P {changeInicator ? "DOWN" : "UP"}
+            </div>
             <Link className={'linkText'} to={{pathname: state.itemUrl}} target='_blank'> Страница товара  </Link>
           </div>
         </div>
 
         <div className={'ContainerInfoText'}>
           <h2 className={'itemTitle'}> {state.itemName} </h2>
-          <div className={'itemDesc'}> {state.desc} </div>
+          <p className={'itemDesc'}> {state.desc} </p>
         </div>
       </section>
     </React.Fragment>

@@ -107,8 +107,7 @@ label {
   background-position: 0% 0%;
   background-size: 1.5vmin 1.5vmin;
   background-color: rgba($base-color, 0.2);
-  transition: background-position 350ms ease, padding 350ms ease,
-    height 350ms ease, width 350ms ease, border 350ms ease;
+  transition: background-position 350ms ease, padding 350ms ease, height 350ms ease, width 350ms ease, border 350ms ease;
 
   overflow: hidden;
 }
@@ -136,13 +135,7 @@ label {
   width: 100%;
   border-radius: 10px;
 
-  background: linear-gradient(
-    130deg,
-    transparent 0% 33%,
-    $main-red 65%,
-    $main-blue,
-    $main-green 95%
-  );
+  background: linear-gradient(130deg, transparent 0% 33%, $main-red 65%, $main-blue, $main-green 95%);
   background-size: 300% 300%;
   background-position: 0% 0%;
 
@@ -183,8 +176,7 @@ label {
 .joinCard:hover .joinText {
   background-color: transparent;
 
-  transition: background-color 300ms ease, transform 250ms ease,
-    color 500ms ease;
+  transition: background-color 300ms ease, transform 250ms ease, color 500ms ease;
 
   animation-duration: 350ms;
   animation-iteration-count: 1;
@@ -522,12 +514,7 @@ label {
   margin: 0;
   transition: all 1350ms ease;
 
-  background: linear-gradient(
-    $font-color 40%,
-    $main-red 55%,
-    $main-blue 75%,
-    $main-green 80%
-  );
+  background: linear-gradient($font-color 40%, $main-red 55%, $main-blue 75%, $main-green 80%);
   background-clip: text;
   -webkit-text-fill-color: transparent;
   background-size: 100% 3em;
@@ -553,6 +540,7 @@ h2,
 h4,
 h6,
 span {
+  color: $font-color;
   transition: color 350ms ease;
 }
 
@@ -572,12 +560,7 @@ span {
   }
 
   .logoLogo {
-    background: linear-gradient(
-      $font-color 40%,
-      $main-red 55%,
-      $main-blue 70%,
-      $main-green 80%
-    );
+    background: linear-gradient($font-color 40%, $main-red 55%, $main-blue 70%, $main-green 80%);
     background-clip: text;
     -webkit-text-fill-color: transparent;
     background-size: 100% 6em;
@@ -598,12 +581,7 @@ span {
 
 @media (max-width: 300px) {
   .logoLogo {
-    background: linear-gradient(
-      $font-color 40%,
-      $main-red 55%,
-      $main-blue 70%,
-      $main-green 80%
-    );
+    background: linear-gradient($font-color 40%, $main-red 55%, $main-blue 70%, $main-green 80%);
     background-clip: text;
     -webkit-text-fill-color: transparent;
     background-size: 100% 6em;

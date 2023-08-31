@@ -39,7 +39,7 @@ const ItemList = ({ items }) => {
         onClick={(e) => itemHandler(e, el.itemCode)}
       >
         <div className={"itemBlock"}>
-          <img className={"itemImage"} src={itemImage} alt="how good looks" />
+          <img className={"feedImage"} src={itemImage} alt="how good looks" />
           <div className={"itemBlock_info"}>
             <h4 className={"itemName"}> {el.itemName} </h4>
             <div className={"itemInfo"}>

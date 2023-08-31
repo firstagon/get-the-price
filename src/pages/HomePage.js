@@ -14,8 +14,8 @@ const HomePage = ({ userState }) => {
     <div className={"mainBody"}>
       {/* <WelcomeBlock /> */}
       <MainLogo />
-      {userState.isAuth && <RequestChoice userState={userState} />}
-      <CardBlock isAuth={userState.isAuth} />
+      {!!userState.token && <RequestChoice userState={userState} />}
+      <CardBlock isToken={!!userState.token} />
       <MainInfo />
       {isAuth ? <ItemsChoice /> : ""}
     </div>

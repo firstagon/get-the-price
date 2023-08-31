@@ -1,10 +1,10 @@
 import React, { useEffect, useRef, memo } from "react";
-import classes from "./InfoGraphic.module.css";
 
 // const propFromParent = [1046, 1000, 2501, 3000, 1500, 100];
 // const propFromParent = [1046, 10, 2000, 3500, 15];
 
 const chartRender = (ref, points) => {
+
   var c = document.getElementById("priceGraph");
 
   // console.log(ref.current.getContext("2d").canvas.clientWidth);
@@ -24,20 +24,20 @@ const chartRender = (ref, points) => {
     const pointsArray = [];
 
 
-      for (let i = 0; i < points.length; i++) {
-        // console.log(i);
-        // console.log(points[i])
-        let j = i + 1;
-        // console.log(j);
-        const currPoint = {
-          currentValue: points[i],
-          startPoint: points[i],
-          endPoint: points[j] ? points[j] : points[i],
-        };
-        // console.log(currPoint);
-        pointsArray.push(currPoint);
-      }
-    
+    for (let i = 0; i < points.length; i++) {
+      // console.log(i);
+      // console.log(points[i])
+      let j = i + 1;
+      // console.log(j);
+      const currPoint = {
+        currentValue: points[i],
+        startPoint: points[i],
+        endPoint: points[j] ? points[j] : points[i],
+      };
+      // console.log(currPoint);
+      pointsArray.push(currPoint);
+    }
+
 
     //Creating a function to render middleware points
     const startX = width / pointsArray.length;
@@ -46,6 +46,7 @@ const chartRender = (ref, points) => {
     const maxY = Math.max(...points);
 
     for (let i = 0; i < pointsArray.length; i++) {
+
       const startPoint = pointsArray[i].startPoint;
       const endPoint = pointsArray[i].endPoint;
 
@@ -63,7 +64,7 @@ const chartRender = (ref, points) => {
       }
 
       const scaleModificator = (value) => {
-        return value > 10000 ? height/maxY * 0.8 : height/maxY * 0.8;
+        return value > 10000 ? height / maxY * 0.8 : height / maxY * 0.8;
       };
 
       ctx.moveTo(
@@ -85,15 +86,22 @@ const chartRender = (ref, points) => {
       ctx.fillStyle = ctx.strokeStyle;
       ctx.fill();
       ctx.font = "12px serif";
-      ctx.fillText(
-        pointsArray[i].currentValue,
-        startX * i + 15,
-        startY - startPoint * scaleModificator(startPoint) + sideNumb
-      );
+        ctx.fillText(
+          pointsArray[i].currentValue,
+          startX * i + 15,
+          startY - startPoint * scaleModificator(startPoint) + sideNumb
+        );
+      
 
       if (startPoint === endPoint) {
-        return;
-      } else {
+        ctx.lineTo(
+          startX * (i + 1) + 10,
+          startY - endPoint * scaleModificator(endPoint)
+        );
+      } else if (startPoint && !endPoint) {
+        break;
+      }
+      else {
         ctx.lineTo(
           startX * (i + 1) + 10,
           startY - endPoint * scaleModificator(endPoint)
@@ -116,20 +124,21 @@ const chartRender = (ref, points) => {
   renderPoints();
 };
 
-const InfoGraphic = ({array}) => {
+const InfoGraphic = ({ array }) => {
   const ref = useRef();
 
   // console.log(array)
 
   const points = array.map(el => el.price)
+  // console.log(points)
 
   useEffect(() => {
     chartRender(ref, points);
   }, [points]);
 
   return (
-    <section className={classes.container}>
-      <canvas className={classes.canvas} id="priceGraph" ref={ref}></canvas>
+    <section className='container'>
+      <canvas className='canvas' id="priceGraph" ref={ref}></canvas>
     </section>
   );
 };

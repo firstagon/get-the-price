@@ -22,8 +22,8 @@ const loggedBlock = (
   </div>
 );
 
-const JoinBlock = ({ isAuth }) => {
-  return <div className="joinSection">{!isAuth ? joinBlock : loggedBlock}</div>;
+const JoinBlock = ({ isToken }) => {
+  return <div className="joinSection">{!isToken ? joinBlock : loggedBlock}</div>;
 };
 
 export default JoinBlock;
