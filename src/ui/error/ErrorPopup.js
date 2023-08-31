@@ -1,4 +1,3 @@
-import classes from "./ErrorPopup.module.css";
 import crossIcon from "../../icons/cross-closeicon.svg";
 
 const ErrorPopup = (props) => {
@@ -7,15 +6,16 @@ const ErrorPopup = (props) => {
   // }, 2000);
 
   return (
-    <div className={classes.errorSection} onClick={props.close}>
-      <div className={classes.errorBlock}>
-      <img src={crossIcon} alt="closing button" className={classes.closingIcon} onClick={props.close}  />
-        <h4 className={classes.errorHeader}> {props.error.name} </h4>
-        <p className={classes.errorText}> {props.error.message} </p>
-        <button className={classes.errorButton_close} onClick={props.close}>
-          {" "}
-          close{" "}
+    <div className="errorSection">
+      <div className="errorBlock">
+        <h4 className="errorHeader"> {props.error.name} </h4>
+        <p className="errorText"> {props.error.message} </p>
+        <button className="errorButton_close" onClick={props.close}>
+          close
         </button>
+      </div>
+      <div className="closingBlock" onClick={props.close}>
+        <button className="closingIcon" onClick={props.close} />
       </div>
     </div>
   );

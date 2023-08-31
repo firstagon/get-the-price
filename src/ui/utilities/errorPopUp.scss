@@ -1,0 +1,139 @@
+@import "variables";
+
+.errorSection {
+    position: fixed;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+    height: 20%;
+
+    bottom: 0;
+    left: 0;
+
+    border-top: 1px solid $base-border;
+
+    background-color: $main-bgcolor;
+
+    z-index: 2;
+
+    animation: rise 300ms ease;
+}
+
+@keyframes rise {
+    from {
+        height: 0;
+    }
+    to {
+        height: 20%;
+    }
+}
+
+.errorBlock {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    
+    background-color: var(--grey-light);
+
+    border-radius: 4px;
+
+    z-index: 3;
+}
+
+.errorHeader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin: 0;
+    
+    color: $font-white;
+}
+
+.errorText {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    margin: 1vh 0 2vh 0;
+    
+    color: $font-white;
+}
+
+.errorButton_close {
+    display: flex;
+
+    background-color: none;
+
+    border: 1px solid black;
+    border-radius: 4px;
+
+    box-sizing: content-box;
+    padding: 5px 15px 5px 15px;
+
+    // margin-bottom: 3vh;
+}
+
+.errorButton_close:hover {
+    background-color: var(--blue-main);
+    border: 1px solid transparent;
+}
+
+.errorButton_close:active {
+    background-color: #1b1b6b;
+    border: 1px solid transparent;
+}
+
+.closingBlock {
+    position: absolute;
+    display: flex;
+    align-self: flex-end;
+    justify-self: flex-end;
+    margin: 1vh 0 0 55%;
+    
+
+    top: 2vh;
+    right: 4vw;
+}
+
+.closingIcon {
+    background-color: transparent;
+    border: none;
+
+    width: 25px;
+    height: 25px;
+
+    transition: all 350ms ease;
+    z-index: 4;
+}
+
+.closingIcon::before {
+    position: absolute;
+    content: '';
+    top: 0;
+    height: 25px;
+    border-left: 2px solid white;
+
+    transform: rotate(45deg);
+}
+
+.closingIcon::after {
+    position: absolute;
+    content: '';
+    top: 0;
+    height: 25px;
+    border-left: 2px solid white;
+
+    transform: rotate(135deg);
+}
+
+.closingIcon:hover {
+    transform: rotate(90deg);
+    transition: all 0.2s ease-out;
+}

@@ -173,12 +173,18 @@ function App() {
       })
       .catch((err) => {
         console.log(err);
+        const newErr = {
+          name: 'Ошибка подключения',
+          message: 'Проблемы с подключением к серверу.'
+        }
+        const error = err.message == 'Failed to fetch' ? newErr : err;
+
         setState((prevState) => {
           return {
             ...prevState,
             isAuth: false,
             authLoading: false,
-            error: err,
+            error: error,
             errorShown: true,
           };
         });
@@ -248,17 +254,23 @@ function App() {
           <Route path="/" exact>
             <section className="mainSection">
               <HomePage userState={userState} />
+              {state.errorShown && (
+              <ErrorPopup error={state.error} close={errorCloseHandler} />
+            )}
             </section>
             <Footer />
           </Route>
           <Route path="/item/:itemId" exact>
             <section className="mainSection">
               <ItemPage userState={userState} />
+              {state.errorShown && (
+              <ErrorPopup error={state.error} close={errorCloseHandler} />
+            )}
             </section>
             <Footer />
           </Route>
           <Route path="/login" exact>
-            <LoginPage onLogin={loginHandler} loading={state.authLoading} />
+            <LoginPage onLogin={loginHandler} history={newHistory} loading={state.authLoading} />
             {state.errorShown && (
               <ErrorPopup error={state.error} close={errorCloseHandler} />
             )}
@@ -272,11 +284,17 @@ function App() {
           <Route path="/profile" exact>
             <section className="mainSection">
               <ProfilePage state={state} />
+              {state.errorShown && (
+              <ErrorPopup error={state.error} close={errorCloseHandler} />
+            )}
             </section>
           </Route>
           <Route path="/userfeed" exact>
             {/* <section className="mainSection"> */}
               <UsersFeed userState={userState} />
+              {state.errorShown && (
+              <ErrorPopup error={state.error} close={errorCloseHandler} />
+            )}
             {/* </section> */}
             <Footer isDark={isDark} />
           </Route>
