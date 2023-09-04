@@ -174,9 +174,13 @@ input[type="submit"]:disabled:hover, .inputButton:disabled:hover {
 
   text-align: center;
 
+  background-color: transparent;
+
   cursor: pointer;
 
   flex-grow: 1;
+
+  transition: all 350ms ease;
 }
 
 .subButton:hover {

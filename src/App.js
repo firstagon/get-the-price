@@ -12,6 +12,7 @@ import Footer from "./ui/footer/Footer";
 import ErrorPopup from "./ui/error/ErrorPopup";
 import ProfilePage from "./pages/Profile/ProfilePage";
 import UsersFeed from "./pages/UsersFeed/UsersFeed";
+import AboutPage from "./pages/About/AboutPage";
 
 const LOGIN_URL = "http://127.0.0.1:3030/auth/login";
 const SIGNUP_URL = "http://127.0.0.1:3030/auth/signup";
@@ -297,6 +298,10 @@ function App() {
             )}
             {/* </section> */}
             <Footer isDark={isDark} />
+          </Route>
+          <Route path='/about' exact>
+                <AboutPage />
+                <Footer isDark={isDark} />
           </Route>
         </Switch>
       </Router>
