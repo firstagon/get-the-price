@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800;900&display=swap');
+
 :root {
   --base-color: #f9f9f9;
   --base-bg: #1e1e1e;
@@ -8,6 +10,7 @@
 }
 
 $font-stack: Helvetica, sans-serif;
+$font-text: 'Montserrat';
 
 $base-color: var(--base-color);
 $base-border: var(--base-border);
@@ -19,14 +22,13 @@ $theme-docker: #64b5ef;
 $theme-light-bg: rgb(250, 202, 99);
 $theme-grey-dark: #859aaa;
 
-
 $theme-light: rgb(254, 234, 83);
 $theme-dark: rgb(6, 6, 6);
 $theme-dark-bg: #0693e3;
 
 $main-blue: #3636d6;
 $main-green: #4caf50;
-$main-red : rgb(253, 0, 0);
+$main-red: rgb(253, 0, 0);
 $main-grey: #abb8c3;
 
 $main-link: #55158b;

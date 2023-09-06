@@ -165,6 +165,7 @@ label {
 
   color: $font-color;
   font-size: larger;
+  font-weight: 600;
 
   background-color: transparent;
 
@@ -510,6 +511,8 @@ label {
   word-spacing: -2px;
 
   color: $font-color;
+  font-family: $font-text;
+  font-weight: 800;
 
   margin: 0;
   transition: all 1350ms ease;
@@ -535,15 +538,20 @@ label {
 }
 
 p,
+a,
 h1,
 h2,
 h3,
 h4,
 h5,
 h6,
-span {
+span,
+button,
+input,
+.linkText {
   color: $font-color;
   transition: color 350ms ease;
+  font-family: $font-text;
 }
 
 @media (max-width: 720px) {
@@ -570,6 +578,7 @@ span {
 
     line-height: 0.8em;
     padding-bottom: 0.2em;
+
   }
 
   .logoLogo:hover {
