@@ -5,8 +5,7 @@ import ItemActions from "../ui/ItemActions";
 import ItemInfo from "../ui/ItemCardUI/ItemInfo";
 import InfoGraphic from "../ui/ItemCardUI/InfoGraphic";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
-
-const ITEM_URL = "http://127.0.0.1:3030/item/";
+import {ITEM_URL} from '../links';
 
 // const reducer = (state, action) => {
 //   switch (action.type) {

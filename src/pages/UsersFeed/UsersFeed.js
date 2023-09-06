@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import ItemsList from "../../ui/itemsList/ItemsList";
 import NoItemsYet from "./NoItemsYet";
 import LoadSpinner from '../../ui/LoadSpinner/Spinner';
+import {FEED_URL} from '../../links';
 
-const FEED_URL = "http://127.0.0.1:3030/userfeed";
 
 const UsersFeed = ({ userState }) => {
   const [_state, setState] = useState(false);

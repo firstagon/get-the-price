@@ -14,8 +14,7 @@ import ProfilePage from "./pages/Profile/ProfilePage";
 import UsersFeed from "./pages/UsersFeed/UsersFeed";
 import AboutPage from "./pages/About/AboutPage";
 
-const LOGIN_URL = "http://127.0.0.1:3030/auth/login";
-const SIGNUP_URL = "http://127.0.0.1:3030/auth/signup";
+import {LOGIN_URL, SIGNUP_URL} from './links';
 
 const newHistory = createBrowserHistory();
 
