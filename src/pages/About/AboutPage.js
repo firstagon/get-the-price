@@ -1,5 +1,7 @@
 import Tilt from "react-parallax-tilt";
 
+import ReactIcon from '../../icons/techs/react';
+
 const AboutPage = () => {
   return (
     <section className="aboutSection">
@@ -14,7 +16,9 @@ const AboutPage = () => {
           >
             <div className="cardsWrapper">
               <div className="techCard">
-                <img className="techLogo" src="#" alt="techs logo" />
+                <ReactIcon cssclass={'techLogo'} />
+                
+                {/* <img className="techLogo" src='#'  alt="techs logo" /> */}
                 <p className="techDesc"> React </p>
               </div>
               <div className="techCard">
