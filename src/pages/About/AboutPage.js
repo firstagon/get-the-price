@@ -1,6 +1,13 @@
 import Tilt from "react-parallax-tilt";
 
 import ReactIcon from '../../icons/techs/react';
+import ReactRouterIcon from "../../icons/techs/reactRouter";
+import SccsIcon from '../../icons/techs/seal-color.png';
+import NodeIcon from "../../icons/techs/nodeIcon";
+import PptrIcon from '../../icons/techs/pptrIcon';
+import MonitorIcon from "../../icons/techs/build/monitor";
+import ServerIcon from "../../icons/techs/build/server";
+import DockerLogo from "../../icons/techs/build/dockerFull";
 
 const AboutPage = () => {
   return (
@@ -17,17 +24,16 @@ const AboutPage = () => {
             <div className="cardsWrapper">
               <div className="techCard">
                 <ReactIcon cssclass={'techLogo'} />
-                
-                {/* <img className="techLogo" src='#'  alt="techs logo" /> */}
                 <p className="techDesc"> React </p>
               </div>
               <div className="techCard">
-                <img className="techLogo" src="#" alt="techs logo" />
+                <ReactRouterIcon cssclass={"techLogo"} />
+                {/* <img className="techLogo" src="#" alt="techs logo" /> */}
                 <p className="techDesc"> React Router </p>
               </div>
               <div className="techCard">
-                <img className="techLogo" src="#" alt="techs logo" />
-                <p className="techDesc"> SASS </p>
+                <img className="techLogo" src={SccsIcon} alt="techs logo" />
+                <p className="techDesc"> SCSS </p>
               </div>
             </div>
             <p className="techText"> FronEnd </p>
@@ -44,11 +50,11 @@ const AboutPage = () => {
           >
             <div className="cardsWrapper">
               <div className="techCard">
-                <img className="techLogo" src="#" alt="techs logo" />
+                <NodeIcon cssclass='techLogo' />
                 <p className="techDesc"> Nodejs-express </p>
               </div>
               <div className="techCard">
-                <img className="techLogo" src="#" alt="techs logo" />
+                <PptrIcon cssclass={'tecgLogo'} />
                 <p className="techDesc"> Puppeteer </p>
               </div>
             </div>
@@ -58,30 +64,31 @@ const AboutPage = () => {
       </div>
 
       <div className="aboutBlock">
-      <h4 className="aboutHeader"> Схема работы </h4>
+        <h4 className="aboutHeader"> Схема работы </h4>
         <div className="dockerWrapper">
           <div className="workFeed _cluster">
             <div className="techCard">
-              <img className="techLogo" src="#" alt="techs logo" />
+              <MonitorIcon />
               <p className="techDesc vsColor"> Frontend </p>
             </div>
             <div
               className="workConn"
             />
             <div className="techCard">
-              <img className="techLogo" src="#" alt="techs logo" />
+              <ServerIcon />
               <p className="techDesc vsColor"> Rest API </p>
             </div>
             <div className="workConn" />
             <div className="techCard">
-              <img className="techLogo" src="#" alt="techs logo" />
+              {/* <img className="techLogo" src="#" alt="techs logo" /> */}
+              <ServerIcon />
               <p className="techDesc vsColor"> MongoDB </p>
             </div>
           </div>
           <div className="techCard techDocker">
-              <img className="techLogo" src="#" alt="techs logo" />
-              <p className="techDesc vsColor"> Docker </p>
-            </div>
+            {/* <img className="techLogo" src="#" alt="techs logo" /> */}
+            <DockerLogo className='techLogo' />
+          </div>
         </div>
       </div>
     </section>

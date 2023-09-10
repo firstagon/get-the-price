@@ -3,7 +3,7 @@
 .aboutSection {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   width: 100%;
   min-height: 82vh;
@@ -43,21 +43,23 @@
 .techPart {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
 
   width: 48%;
+  height: 80%;
 
   border: 1px solid $base-border;
   border-radius: 5px;
 
-  padding: 2vh 0 2vh 0;
+  padding: 2vh 0 1vh 0;
   box-sizing: content-box;
 
   background-color: rgba($font-vsColor, 0.2);
 }
 
 .cardsWrapper {
+  position: relative;
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
@@ -73,11 +75,13 @@
   justify-content: space-evenly;
   align-items: center;
 
+  height: 100%;
   width: 15vw;
 }
 
 .techLogo {
   display: flex;
+  flex-grow: 1;
 
   height: 5em;
   width: 5em;
@@ -86,10 +90,21 @@
 }
 
 .techText {
-  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  margin: 1vh 0 0 0;
+  padding: 1vh 0 0 0;
+
+  border-top: 1px solid $base-border;
 }
 
 .techDesc {
+  display: flex;
+  justify-content: flex-end;
+
   margin: 0.5em;
 }
 

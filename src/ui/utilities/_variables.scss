@@ -18,8 +18,8 @@ $base-grey: #aaa;
 $base-grey-light: #e6e6e6;
 $base-bg: var(--base-bg);
 
-$theme-docker: #64b5ef;
-$theme-light-bg: rgb(250, 202, 99);
+$theme-docker: rgba(#64b5ef, 0.2);
+$theme-light-bg: rgba(250, 202, 99, 0.8);
 $theme-grey-dark: #859aaa;
 
 $theme-light: rgb(254, 234, 83);
