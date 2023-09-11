@@ -51,7 +51,7 @@ const AboutPage = () => {
             <div className="cardsWrapper">
               <div className="techCard">
                 <NodeIcon cssclass='techLogo' />
-                <p className="techDesc"> Nodejs-express </p>
+                <p className="techDesc"> Express </p>
               </div>
               <div className="techCard">
                 <PptrIcon cssclass={'tecgLogo'} />
@@ -66,6 +66,7 @@ const AboutPage = () => {
       <div className="aboutBlock">
         <h4 className="aboutHeader"> Схема работы </h4>
         <div className="dockerWrapper">
+          <div className="userExp"> Доступ в интернет </div>
           <div className="workFeed _cluster">
             <div className="techCard">
               <MonitorIcon />
@@ -80,14 +81,12 @@ const AboutPage = () => {
             </div>
             <div className="workConn" />
             <div className="techCard">
-              {/* <img className="techLogo" src="#" alt="techs logo" /> */}
               <ServerIcon />
               <p className="techDesc vsColor"> MongoDB </p>
             </div>
           </div>
-          <div className="techCard techDocker">
-            {/* <img className="techLogo" src="#" alt="techs logo" /> */}
-            <DockerLogo className='techLogo' />
+          <div className="techCard">
+            <DockerLogo className='techLogo techDocker' />
           </div>
         </div>
       </div>
