@@ -292,6 +292,8 @@ label {
 .headerMain {
   font-size: 1.5em;
   margin: 0px 0px 0px 0px;
+
+  text-align: center;
 }
 
 .infoBlock_infoColumn {
@@ -654,4 +656,19 @@ input,
   .header {
     height: 6vh;
   }
+
+  p,
+a,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+span,
+button,
+input,
+.linkText {
+  font-size: 0.7em;
+}
 }

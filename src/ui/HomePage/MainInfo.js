@@ -29,7 +29,7 @@ const textArray = [
   },
   {
     header: "",
-    text: "Ждем когда цена станет приемлимого уровня.",
+    text: "Ждем когда цена достигнет удовлетворительного уровня.",
     imgSrc: clock,
     reversed: true,
   },
@@ -41,7 +41,7 @@ const endBlock = (
       <div className={"infoImg_container"}>
         <img className="infoImg" src={end} alt="imaginate this" />
       </div>
-      <p className={"infoText_column"}> Готово! Вы восхитительны! </p>
+      <p className={"infoText_column"}> Готово! Вы восхитительны! А покупать или нет, решайте сами. </p>
     </div>
   </div>
 );
