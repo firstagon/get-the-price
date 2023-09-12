@@ -10,6 +10,7 @@ import ServerIcon from "../../icons/techs/build/server";
 import DockerLogo from "../../icons/techs/build/dockerFull";
 
 const AboutPage = () => {
+  console.log(process.env.REACT_APP_STR);
   return (
     <section className="aboutSection">
       <div className="aboutBlock">
@@ -51,7 +52,7 @@ const AboutPage = () => {
             <div className="cardsWrapper">
               <div className="techCard">
                 <NodeIcon cssclass='techLogo' />
-                <p className="techDesc"> Nodejs-express </p>
+                <p className="techDesc"> Express </p>
               </div>
               <div className="techCard">
                 <PptrIcon cssclass={'tecgLogo'} />
@@ -85,9 +86,9 @@ const AboutPage = () => {
               <p className="techDesc vsColor"> MongoDB </p>
             </div>
           </div>
-          <div className="techCard techDocker">
+          <div className="techCard ">
             {/* <img className="techLogo" src="#" alt="techs logo" /> */}
-            <DockerLogo className='techLogo' />
+            <DockerLogo className='techLogo techDocker' />
           </div>
         </div>
       </div>

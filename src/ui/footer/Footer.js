@@ -9,7 +9,7 @@ const Footer = ({ isDark }) => {
       <div className="footerBlock">
         <div className={"footerBlock_left"}>i'm footer</div>
         <div className="footerBlock_middle">
-          <Link className="gitBlock" to="#" target="_blank">
+          <Link className="gitBlock" to={{pathname: 'https://github.com/firstagon/get-the-price'}} target="_blank">
             <img
               className="gitIcon"
               src={gtIconWhite}

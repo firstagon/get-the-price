@@ -1,6 +1,7 @@
 import React, { Fragment, useState, useEffect } from "react";
 import { createBrowserHistory } from "history";
 import { Router, Switch, Route } from "react-router-dom";
+
 import "./App.scss";
 import Header from "./ui/Header";
 
@@ -53,9 +54,9 @@ function App() {
     if (theme === "false") {
       setIsDark(false);
     } else if (theme === "true") {
-      console.log('its true')
+      // console.log('its true')
       setIsDark(true);
-      console.log(isDark)
+      // console.log(isDark);
     } else {
       setIsDark(false);
       localStorage.setItem("theme", 'false');

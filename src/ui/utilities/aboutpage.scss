@@ -216,4 +216,61 @@
 
 .techDocker {
   margin-top: 1vh;
+  width: 15vw;
+}
+
+@media (width <= 720px) {
+  .techLogo {
+    height: 4em;
+    width: 5em;
+  }
+}
+
+@media (width <= 420px) {
+  .techFeed, .cardsWrapper {
+    flex-direction: column;
+  }
+  
+  .techPart {
+    width: 100%;
+  }
+
+  .techPart:first-child {
+    margin-bottom: 2vh;
+  }
+
+  .techCard {
+    height: auto;
+    width: 100%;
+    justify-content: flex-end;
+  }
+
+  .dockerWrapper {
+    height: auto;
+  }
+
+  ._cluster {
+    flex-direction: column;
+    width: 80%;
+  }
+
+  .workConn {
+    transform: rotate(90deg);
+    
+    width: 10vh;
+    height: 40vw
+  }
+
+  .workConn:before {
+    top: 25%
+  }
+
+  .workConn::after {
+    bottom: 25%;
+  }
+
+  .techDocker {
+    width: 40vw;
+  }
+
 }
