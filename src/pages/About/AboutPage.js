@@ -11,7 +11,7 @@ import ServerIcon from "../../icons/techs/build/server";
 import DockerLogo from "../../icons/techs/build/dockerFull";
 
 const AboutPage = () => {
-  console.log(process.env.REACT_APP_STR);
+  console.log(process.env);
   return (
     <section className="aboutSection">
       <div className="aboutBlock">

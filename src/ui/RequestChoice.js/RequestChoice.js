@@ -2,10 +2,9 @@ import { useState } from "react";
 // import classes from "./RequestChioce.module.css";
 import Input from "../InputForms/Input";
 import { urlOzon } from "../../util/validators";
+import { BACK_URL } from '../../links';
 
-const URL_REQUEST = "http://127.0.0.1:3030/";
-
-const RequestChoice = ({ userState }) => {
+const RequestChoice = ({ userState, showError }) => {
   const [state, setState] = useState({
     urlForm: {
       url: {
@@ -74,10 +73,13 @@ const RequestChoice = ({ userState }) => {
   const submitHandler = (e) => {
     e.preventDefault();
     const inputValue = state.urlForm.url.value;
-    fetch(URL_REQUEST, {
+    fetch(BACK_URL, {
       method: "POST",
       headers: { "Content-type": "application/json" },
       body: JSON.stringify({ url: inputValue, ...userState }),
+    }).catch(err => {
+      console.log(err)
+      showError({message: err.message, name: 'Ошибка подключение к серверу'});
     });
   };
 

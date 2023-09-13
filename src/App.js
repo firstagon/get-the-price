@@ -15,7 +15,7 @@ import ProfilePage from "./pages/Profile/ProfilePage";
 import UsersFeed from "./pages/UsersFeed/UsersFeed";
 import AboutPage from "./pages/About/AboutPage";
 
-import {LOGIN_URL, SIGNUP_URL} from './links';
+import { LOGIN_URL, SIGNUP_URL } from './links';
 
 const newHistory = createBrowserHistory();
 
@@ -242,6 +242,15 @@ function App() {
     });
   };
 
+  const showError = (errorString) => {
+    setState(prevState => {
+      return {
+        ...prevState, error: errorString,
+        errorShown: true,
+      }
+    })
+  }
+
   return (
     <Fragment>
       <Router history={newHistory}>
@@ -254,56 +263,59 @@ function App() {
         <Switch>
           <Route path="/" exact>
             <section className="mainSection">
-              <HomePage userState={userState} />
-              {state.errorShown && (
+              <HomePage userState={userState} showError={showError}/>
+              {/* {state.errorShown && (
               <ErrorPopup error={state.error} close={errorCloseHandler} />
-            )}
+            )} */}
             </section>
             <Footer />
           </Route>
           <Route path="/item/:itemId" exact>
             <section className="mainSection">
               <ItemPage userState={userState} />
-              {state.errorShown && (
+              {/* {state.errorShown && (
               <ErrorPopup error={state.error} close={errorCloseHandler} />
-            )}
+            )} */}
             </section>
             <Footer />
           </Route>
           <Route path="/login" exact>
             <LoginPage onLogin={loginHandler} history={newHistory} loading={state.authLoading} />
-            {state.errorShown && (
+            {/* {state.errorShown && (
               <ErrorPopup error={state.error} close={errorCloseHandler} />
-            )}
+            )} */}
           </Route>
           <Route path="/signup" exact>
-            {state.errorShown && (
+            {/* {state.errorShown && (
               <ErrorPopup error={state.error} close={errorCloseHandler} />
-            )}
+            )} */}
             <SignupPage onSignup={signupHandler} loading={state.authLoading} />
           </Route>
           <Route path="/profile" exact>
             <section className="mainSection">
               <ProfilePage state={state} />
-              {state.errorShown && (
+              {/* {state.errorShown && (
               <ErrorPopup error={state.error} close={errorCloseHandler} />
-            )}
+            )} */}
             </section>
           </Route>
           <Route path="/userfeed" exact>
             {/* <section className="mainSection"> */}
-              <UsersFeed userState={userState} />
-              {state.errorShown && (
+            <UsersFeed userState={userState} />
+            {/* {state.errorShown && (
               <ErrorPopup error={state.error} close={errorCloseHandler} />
-            )}
+            )} */}
             {/* </section> */}
             <Footer isDark={isDark} />
           </Route>
           <Route path='/about' exact>
-                <AboutPage />
-                <Footer isDark={isDark} />
+            <AboutPage />
+            <Footer isDark={isDark} />
           </Route>
         </Switch>
+        {state.errorShown && (
+          <ErrorPopup error={state.error} close={errorCloseHandler} />
+        )}
       </Router>
     </Fragment>
   );

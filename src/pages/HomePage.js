@@ -9,12 +9,12 @@ import MainLogo from "../ui/HomePage/MainLogo";
 
 const isAuth = false;
 
-const HomePage = ({ userState }) => {
+const HomePage = ({ userState, showError }) => {
   return (
     <div className={"mainBody"}>
       {/* <WelcomeBlock /> */}
       <MainLogo />
-      {!!userState.token && <RequestChoice userState={userState} />}
+      {!userState.token && <RequestChoice userState={userState} showError={showError} />}
       <CardBlock isToken={!!userState.token} />
       <MainInfo />
       {isAuth ? <ItemsChoice /> : ""}
