@@ -3,9 +3,7 @@ import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
 const currPrice = (arr) => {
 
-  for(let i=1; i<= arr.length; i++) {
-    // console.log(i);
-    
+  for (let i = 1; i <= arr.length; i++) {
     if (arr.slice(-i)[0].price !== false) {
       return arr.slice(-i)[0].price
     }
@@ -13,9 +11,11 @@ const currPrice = (arr) => {
 }
 
 const ItemInfo = ({ state }) => {
-  // console.log(state);
-
   const priceChanger = (prices) => {
+    if (prices.length <= 1) {
+      return prices
+    }
+
     const lastPrices = prices.slice(-2);
     const difference = lastPrices[0].price - lastPrices[1].price;
     return difference > 0;
@@ -30,11 +30,10 @@ const ItemInfo = ({ state }) => {
         <div className={'ContainerInfoImage'}>
           <img className={'itemImage'} src={state.imageUrl} alt="how item looks"></img>
           <div className={'itemPriceSection'}>
-            {/* <div className={'itemPrice' + " " + priceChange}> {state.itemPrice.slice(-1)[0].price} {changeInicator ? "DOWN" : "UP"}</div> */}
-            <div className={'itemPrice' + " " + priceChange}> 
+            <div className={'itemPrice ' + priceChange}>
               {currPrice(state.itemPrice)} P {changeInicator ? "DOWN" : "UP"}
             </div>
-            <Link className={'linkText'} to={{pathname: state.itemUrl}} target='_blank'> Страница товара  </Link>
+            <Link className={'linkText'} to={{ pathname: state.itemUrl }} target='_blank'> Страница товара  </Link>
           </div>
         </div>
 
