@@ -14,6 +14,7 @@ import ErrorPopup from "./ui/error/ErrorPopup";
 import ProfilePage from "./pages/Profile/ProfilePage";
 import UsersFeed from "./pages/UsersFeed/UsersFeed";
 import AboutPage from "./pages/About/AboutPage";
+import Notificator from "./ui/notifications/Notificator";
 
 import { LOGIN_URL, SIGNUP_URL } from './links';
 
@@ -35,6 +36,7 @@ function App() {
     error: null,
     errorShown: false,
     name: null,
+    status: null
   });
 
   const userState = { token: state.token, userId: state.userId, name: state.name };
@@ -251,6 +253,34 @@ function App() {
     })
   }
 
+  const showStatus = (str) => {
+    let obj;
+    switch (str) {
+      case 'loading':
+        obj = { message: "Идет поиск товара", title: "Sending request" };
+        break;
+      case 'complete':
+        obj = { message: "Товар успешно добавлен", title: "Complete" };
+        break;
+      default:
+        break;
+    }
+
+    setState(prevState => {
+      return {
+        ...prevState, status: obj
+      }
+    })
+  }
+
+  const clearStatus = () => {
+    setState(prevState => {
+      return {
+        ...prevState, status: null
+      }
+    })
+  }
+
   return (
     <Fragment>
       <Router history={newHistory}>
@@ -263,7 +293,7 @@ function App() {
         <Switch>
           <Route path="/" exact>
             <section className="mainSection">
-              <HomePage userState={userState} showError={showError}/>
+              <HomePage userState={userState} showStatus={showStatus} showError={showError} />
               {/* {state.errorShown && (
               <ErrorPopup error={state.error} close={errorCloseHandler} />
             )} */}
@@ -313,6 +343,8 @@ function App() {
             <Footer isDark={isDark} />
           </Route>
         </Switch>
+        {!!state.status && <Notificator status={state.status} clearStatus={clearStatus} />}
+        {/* <Notificator status={{message: "TESTING", title: "TESTTQWDASDASdasdasd"}} clearStatus={clearStatus} /> */}
         {state.errorShown && (
           <ErrorPopup error={state.error} close={errorCloseHandler} />
         )}

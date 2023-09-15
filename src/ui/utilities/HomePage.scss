@@ -541,6 +541,7 @@ label {
 }
 
 p,
+b,
 a,
 h1,
 h2,
@@ -581,7 +582,6 @@ input,
 
     line-height: 0.8em;
     padding-bottom: 0.2em;
-
   }
 
   .logoLogo:hover {
@@ -659,17 +659,18 @@ input,
   }
 
   p,
-a,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-span,
-button,
-input,
-.linkText {
-  font-size: 0.7em;
-}
+  b,
+  a,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  span,
+  button,
+  input,
+  .linkText {
+    font-size: 0.7em;
+  }
 }

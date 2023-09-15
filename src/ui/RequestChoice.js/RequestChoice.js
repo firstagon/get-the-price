@@ -4,7 +4,7 @@ import Input from "../InputForms/Input";
 import { urlOzon } from "../../util/validators";
 import { BACK_URL } from '../../links';
 
-const RequestChoice = ({ userState, showError }) => {
+const RequestChoice = ({ userState, showError, showStatus }) => {
   const [state, setState] = useState({
     urlForm: {
       url: {
@@ -50,8 +50,6 @@ const RequestChoice = ({ userState, showError }) => {
     const value = synteticE.target.value;
     const input = synteticE.target.id;
 
-    // console.log(state);
-
     if (!value) {
       return (synteticE.target.placeholder = `Enter ${input}`);
     }
@@ -73,11 +71,12 @@ const RequestChoice = ({ userState, showError }) => {
   const submitHandler = (e) => {
     e.preventDefault();
     const inputValue = state.urlForm.url.value;
+    showStatus('loading')
     fetch(BACK_URL, {
       method: "POST",
       headers: { "Content-type": "application/json" },
       body: JSON.stringify({ url: inputValue, ...userState }),
-    }).catch(err => {
+    }).then(res => showStatus('complete')).catch(err => {
       console.log(err)
       showError({message: err.message, name: 'Ошибка подключение к серверу'});
     });
@@ -87,18 +86,10 @@ const RequestChoice = ({ userState, showError }) => {
     <div className={"requestBlock"}>
       <div className={"requestInfo"}>
         <form className={"formReq"}>
-          {/* <input
-              ref={inputUrl}
-              onChange={urlValidation}
-              id="url"
-              type="text"
-              name="Enter url"
-              placeholder="Enter url to item"
-            /> */}
           <Input
             type="text"
             id="url"
-            placeholder="Enter url"
+            placeholder="Введите ссылку на товар"
             onFocus={(e) => (e.target.placeholder = "")}
             onBlur={inputBlurHandler}
             eye={false}
