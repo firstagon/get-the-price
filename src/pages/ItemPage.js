@@ -18,7 +18,7 @@ import NotFound from '../pages/NotFound';
 //   }
 // };
 
-const ItemPage = ({ userState, history }) => {
+const ItemPage = ({ userState, history, showStatus }) => {
   const params = useParams();
   const itemId = params.itemId;
 
@@ -36,7 +36,9 @@ const ItemPage = ({ userState, history }) => {
       body: JSON.stringify({ ...userState, itemId }),
     })
       .then((res) => {
+        showStatus.status('loading');
         if (res.status === 404) {
+          showStatus.status('error');
           setState(() => {
             return { status: 404 }
           })
@@ -46,12 +48,15 @@ const ItemPage = ({ userState, history }) => {
         return res.json();
       })
       .then((res) => {
+        showStatus.status('complete');
         // console.log(res)
         setState(() => {
           return { ...res, status: !!res ? 200 : "error, failed to fetch" };
         });
       })
       .catch((err) => {
+        showStatus.status('error');
+        showStatus.onError({message: err.message, name: 'Ошибка подключение к серверу'});
         setState(() => {
           return { status: 404 };
         })

@@ -1,6 +1,6 @@
 const Notificator = ({ status }) => {
     let bgstate = 'loading' ? '' : 'bg_active';
-    const statusState = status.title === 'Complete' ? 'complete' : '';
+    const statusState = status.title === 'Complete' ? 'complete' : 'error';
 
     return <div className={"notificator " + statusState}>
 

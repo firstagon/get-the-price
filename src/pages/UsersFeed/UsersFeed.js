@@ -5,12 +5,12 @@ import LoadSpinner from '../../ui/LoadSpinner/Spinner';
 import {FEED_URL} from '../../links';
 
 
-const UsersFeed = ({ userState }) => {
+const UsersFeed = ({ userState, showStatus }) => {
   const [_state, setState] = useState(false);
 
+   
   const getRequest = () => {
-    // console.log(state)
-    // console.log(state.token)
+
     fetch(FEED_URL, {
       method: "POST",
       headers: { "Content-type": "application/json" },
@@ -21,16 +21,18 @@ const UsersFeed = ({ userState }) => {
         return res.json();
       })
       .then((res) => {
+        showStatus.status('complete');
         setState(() => {
           return [...res.data] ;
         });
       })
-      .catch((err) => console.log(err));
+      .catch((err) => showStatus.status('error'));
   };
 
   useEffect(() => {
     // console.log('use effect')
     if (!!userState.token) {
+      showStatus.status('loading');
       getRequest();
     }
   }, [userState.token]);
