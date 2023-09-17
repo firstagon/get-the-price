@@ -84,6 +84,8 @@
   display: flex;
   flex-grow: 1;
 
+  padding-right: 6px; 
+
   color: $font-color;
 }
 
@@ -188,7 +190,7 @@
   background: none;
 
   font-size: inherit;
-  font-family: "Mukta";
+  font-family: $font-text;
   text-decoration: underline;
   color: $main-link;
 
@@ -283,4 +285,11 @@
 
   background-color: $theme-dark-bg;
   border: none;
+}
+
+@media (max-width: 300px) {
+.userName {
+  display: none;
+}
+
 }

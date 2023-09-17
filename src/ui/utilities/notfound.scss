@@ -1,0 +1,17 @@
+@import "variables";
+
+.notfound {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.notfoundBlock {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    margin-top: 10vh;
+}
+

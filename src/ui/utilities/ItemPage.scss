@@ -1,105 +1,101 @@
-
 @import "variables";
 
 .itemPage {
-    display: flex;
-    flex-direction: column;
-
+  display: flex;
+  flex-direction: column;
 }
 
 .mainInfo {
-    display: flex;
-    flex-direction: row;
+  display: flex;
+  flex-direction: row;
 
-    margin-bottom: 2vw;
-    margin: 0 2vw 2vh 2vw;
+  margin-bottom: 2vw;
+  margin: 0 2vw 2vh 2vw;
 }
 
 .mainContainer {
-    display: flex;
-    flex-direction: row;
+  display: flex;
+  flex-direction: row;
 
-    height: 100%;
-    width: 100%;
-
+  height: 100%;
+  width: 100%;
 }
 
 .itemContainer {
-    display: flex;
+  display: flex;
 
-    width: 100%;
-    border-radius: 25px;
+  width: 100%;
+  border-radius: 25px;
 
-
-    /* background-color: #f9f9f9; */
-    background-color: $base-bg;
+  /* background-color: #f9f9f9; */
+  background-color: $base-bg;
 }
 
 section:last-child {
-    margin-bottom: 2vh;
+  margin-bottom: 2vh;
 }
 
 .errorMessage {
-    color: $font-color;
+  color: $font-color;
 }
 
 .container {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
 
-    height: auto;
-    width: auto;
+  height: auto;
+  width: auto;
 }
 
 .ContainerInfoImage {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
 
-    max-width: 30vw;
-    min-width: 20vw;
+  max-width: 30vw;
+  min-width: 20vw;
 }
 
 .itemImage {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-    height: 15vw;
-    width: 15vw;
+  height: 15vw;
+  width: 15vw;
 
-    margin: 2vw 2vw 1vw 2vw;
+  margin: 2vw 2vw 1vw 2vw;
 
-    border-radius: 25px;
+  border-radius: 25px;
 
-    background-color: grey;
+  background-color: grey;
 }
 
 .itemPriceSection {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .itemPrice {
-    display: flex;
+  display: flex;
 
-    margin-right: 1vw;
+  margin-right: 1vw;
 }
 
 ._up {
-    font-weight: bold;
-    color: red;
+  font-weight: bold;
+  color: red;
 }
 
 ._down {
-    font-weight: bold;
-    color: green;
+  font-weight: bold;
+  color: green;
 }
 
 .itemChangeImage {
-    display: flex;
+  display: flex;
 }

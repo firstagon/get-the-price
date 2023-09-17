@@ -5,7 +5,8 @@ import ItemActions from "../ui/ItemActions";
 import ItemInfo from "../ui/ItemCardUI/ItemInfo";
 import InfoGraphic from "../ui/ItemCardUI/InfoGraphic";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
-import {ITEM_URL} from '../links';
+import { ITEM_URL } from '../links';
+import NotFound from '../pages/NotFound';
 
 // const reducer = (state, action) => {
 //   switch (action.type) {
@@ -17,7 +18,7 @@ import {ITEM_URL} from '../links';
 //   }
 // };
 
-const ItemPage = ({ userState }) => {
+const ItemPage = ({ userState, history }) => {
   const params = useParams();
   const itemId = params.itemId;
 
@@ -35,19 +36,26 @@ const ItemPage = ({ userState }) => {
       body: JSON.stringify({ ...userState, itemId }),
     })
       .then((res) => {
+        if (res.status === 404) {
+          setState(() => {
+            return { status: 404 }
+          })
+          return
+        }
         // console.log(res.status)
         return res.json();
       })
       .then((res) => {
         // console.log(res)
         setState(() => {
-          return { ...res, status: !!res ? "ok" : "error, failed to fetch" };
+          return { ...res, status: !!res ? 200 : "error, failed to fetch" };
         });
       })
-      .catch((err) =>
+      .catch((err) => {
         setState(() => {
-          return { status: "error" };
+          return { status: 404 };
         })
+      }
       );
   };
 
@@ -57,31 +65,32 @@ const ItemPage = ({ userState }) => {
       getItem(itemId);
     }
     // getItem(itemId);
-  }, [userState.token]);
+  }, [userState.token, itemId]);
 
   // console.log(state);
   // console.log(userState);
 
   return (
     <div className={'itemPage'}>
-      <div className={'mainInfo'}>
-        <div className={'mainContainer'}>
-          {state.status === "ok" ? (
+      {!state.data && <NotFound history={history} />}
+      {state.status === 200 &&
+        <div className={'mainInfo'}>
+          <div className={'mainContainer'}>
             <div className={'container'}>
               {/* <ItemCard state={state.data} />  */}
-              <ItemInfo state={state.data} /> 
+              <ItemInfo state={state.data} />
               {/* <ItemActions />  */}
               {/* <FavoriteSlider /> */}
             </div>
-          ) : <p className="errorMessage"> Error: connection failed </p>}
+          </div>
         </div>
-      </div>
-      {state.status === "ok" ? (
+      }
+      {state.status === 200 ? (
         <InfoGraphic array={state.data.itemPrice} />
       ) : (
         ""
       )}
-      
+
     </div>
   );
 };

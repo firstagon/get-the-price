@@ -1,4 +1,3 @@
-@use "./ui/utilities/Header.scss";
 @use "./ui/utilities/HomePage.scss";
 @use "./ui/utilities/Inputs.scss";
 @use "./ui/utilities/userFeed.scss";
@@ -6,6 +5,8 @@
 @use "./ui/utilities/errorPopUp.scss";
 @use "./ui/utilities/aboutpage.scss";
 @use "./ui/utilities/notificator.scss";
+@use "./ui/utilities/Header.scss";
+@use "./ui/utilities/notfound.scss";
 
 @import "./ui/utilities/variables";
 
