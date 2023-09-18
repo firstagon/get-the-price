@@ -86,7 +86,7 @@
   flex-grow: 1;
 
   height: 5em;
-  width: 5em;
+  width: 6em;
 
   color: rgb(20 158 202);
 }
@@ -278,6 +278,11 @@
     height: auto;
     width: 100%;
     justify-content: flex-end;
+  }
+
+  .techLogo {
+    height: 5em;
+    width: 5em;
   }
 
   .dockerWrapper {

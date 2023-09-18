@@ -22,7 +22,7 @@ const Footer = ({ isDark }) => {
             />{" "}
           </Link>
         </div>
-        <Link to='/about' className="footerBlock_right"> About page </Link>
+        <Link to='/about' exact className="footerBlock_right"> About page </Link>
       </div>
     </footer>
   );

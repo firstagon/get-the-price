@@ -42,14 +42,9 @@
 
   height: fit-content;
 
+  box-sizing: border-box;
+  padding: 4px;
   margin-left: 2vw;
-
-  border: 1px solid $grey-light;
-  border-radius: 4px;
-}
-
-.navContainer:hover {
-  border-color: $grey-main;
 }
 
 .userContainer {

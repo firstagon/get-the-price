@@ -21,7 +21,7 @@ const UsersFeed = ({ userState, showStatus }) => {
         return res.json();
       })
       .then((res) => {
-        showStatus.status('loaded');
+        // showStatus.status('loaded');
         setState(() => {
           return [...res.data] ;
         });
@@ -32,7 +32,7 @@ const UsersFeed = ({ userState, showStatus }) => {
   useEffect(() => {
     // console.log('use effect')
     if (!!userState.token) {
-      showStatus.status('loading');
+      // showStatus.status('loading');
       getRequest();
     }
 

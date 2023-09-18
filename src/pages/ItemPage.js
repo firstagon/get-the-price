@@ -8,27 +8,15 @@ import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import { ITEM_URL } from '../links';
 import NotFound from '../pages/NotFound';
 
-// const reducer = (state, action) => {
-//   switch (action.type) {
-//     case "fetchData":
-//       break;
-
-//     default:
-//       break;
-//   }
-// };
 
 const ItemPage = ({ userState, history, showStatus }) => {
   const params = useParams();
   const itemId = params.itemId;
 
-  // console.log({...userState})
-
   const [state, setState] = useState(false);
 
   const getItem = (itemCode) => {
-    // console.log('trying to fetch')
-    // console.log(ITEM_URL + itemCode);
+
     fetch(ITEM_URL + itemCode, {
       method: "POST",
       headers: { "Content-type": "application/json" },
@@ -36,7 +24,7 @@ const ItemPage = ({ userState, history, showStatus }) => {
       body: JSON.stringify({ ...userState, itemId }),
     })
       .then((res) => {
-        showStatus.status('loading');
+        // showStatus.status('loading');
         if (res.status === 404) {
           showStatus.status('error');
           setState(() => {
@@ -44,12 +32,10 @@ const ItemPage = ({ userState, history, showStatus }) => {
           })
           return
         }
-        // console.log(res.status)
         return res.json();
       })
       .then((res) => {
-        showStatus.status('loaded');
-        // console.log(res)
+        // showStatus.status('loaded');
         setState(() => {
           return { ...res, status: !!res ? 200 : "error, failed to fetch" };
         });
@@ -65,15 +51,10 @@ const ItemPage = ({ userState, history, showStatus }) => {
   };
 
   useEffect(() => {
-    // console.log('effect')
     if (userState.token) {
       getItem(itemId);
     }
-    // getItem(itemId);
   }, [userState.token, itemId]);
-
-  // console.log(state);
-  // console.log(userState);
 
   return (
     <div className={'itemPage'}>

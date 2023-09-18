@@ -28,13 +28,10 @@ const Header = ({ state, logout, themeToggle, isDark }) => {
     <header className="header">
       <div className="headerBlock">
         <nav className={"navContainer"}>
-          <NavLink to="/" className={"navLink iconHome"} />
+          {/* <NavLink to="/" className={"navLink iconHome"} />
           <NavLink to="/item/1" className={"navLink iconRandom"} />
           <NavLink to="/login" className={"navLink iconLogin"} />
-          <NavLink to="/signup" className={"navLink iconSignup"} />
-          <NavLink to="/userfeed" className={"navLinkb textLink"}>
-            userFeed
-          </NavLink>
+          <NavLink to="/signup" className={"navLink iconSignup"} /> */}
           <button className="themeToggle_Container" onClick={themeToggle}>
             <div className={"themetoggle_Block " + darkBlock}>
               <div className={"themeToggle_Point " + darkPoint}>
@@ -42,6 +39,12 @@ const Header = ({ state, logout, themeToggle, isDark }) => {
               </div>
             </div>
           </button>
+          <NavLink to="/" exact style={{marginRight: '1vw'}} className={"navLinkb textLink"}>
+            Домой
+          </NavLink>
+          <NavLink to="/userfeed" className={"navLinkb textLink"}>
+            Лента
+          </NavLink>
         </nav>
         <div className={"userContainer"}>
           <div className={"userData"}>
@@ -50,20 +53,20 @@ const Header = ({ state, logout, themeToggle, isDark }) => {
               {!state.isAuth && (
                 <Fragment>
                   <NavLink to="/signup" className={"linkText"}>
-                    Sign up
+                    Регистрация
                   </NavLink>
                   <NavLink to="/login" className={"linkText"}>
-                    Login
+                    Войти
                   </NavLink>
                 </Fragment>
               )}
               {state.isAuth && (
                 <Fragment>
                   <NavLink to="/profile" className={"linkText"}>
-                    Profile
+                    Профиль
                   </NavLink>
                   <button className={"linkText"} onClick={logout}>
-                    Log out
+                    Выйти
                   </button>
                 </Fragment>
               )}
