@@ -263,9 +263,12 @@ function App() {
       case 'complete':
         obj = { message: "Товар успешно добавлен", title: "Complete" };
         break;
-        case 'error':
-          obj = {message: "Ошибка подключения к серверу", title: "Error"}
-          break;
+      case 'loaded':
+        obj = { message: 'Загрузка завершена', title: 'Complete'};
+        break;
+      case 'error':
+        obj = { message: "Ошибка подключения к серверу", title: "Error" }
+        break;
       default:
         break;
     }
@@ -303,7 +306,7 @@ function App() {
           </Route>
           <Route path="/item/:itemId" exact>
             <section className="mainSection">
-              <ItemPage userState={userState} history={newHistory} showStatus={{status: showStatus, clearStatus: clearStatus, onError: showError}} />
+              <ItemPage userState={userState} history={newHistory} showStatus={{ status: showStatus, clearStatus: clearStatus, onError: showError }} />
             </section>
             <Footer />
           </Route>
@@ -319,7 +322,7 @@ function App() {
             </section>
           </Route>
           <Route path="/userfeed" exact>
-            <UsersFeed userState={userState} showStatus={{status: showStatus, clearStatus: clearStatus, onError: showError}} />
+            <UsersFeed userState={userState} showStatus={{ status: showStatus, clearStatus: clearStatus, onError: showError }} />
             <Footer isDark={isDark} />
           </Route>
           <Route path='/about' exact>
@@ -334,7 +337,7 @@ function App() {
           </Route>
         </Switch>
         {!!state.status && <Notificator status={state.status} clearStatus={clearStatus} />}
-        {/* <Notificator status={{message: "TESTING", title: "TESTTQWDASDASdasdasd"}} clearStatus={clearStatus} /> */}
+        {/* <Notificator status={{message: "TESTING", title: "Sending request"}} clearStatus={clearStatus} /> */}
         {state.errorShown && (
           <ErrorPopup error={state.error} close={errorCloseHandler} />
         )}

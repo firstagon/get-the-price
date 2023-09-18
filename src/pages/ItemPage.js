@@ -48,7 +48,7 @@ const ItemPage = ({ userState, history, showStatus }) => {
         return res.json();
       })
       .then((res) => {
-        showStatus.status('complete');
+        showStatus.status('loaded');
         // console.log(res)
         setState(() => {
           return { ...res, status: !!res ? 200 : "error, failed to fetch" };

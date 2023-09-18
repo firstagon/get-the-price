@@ -76,7 +76,7 @@ const RequestChoice = ({ userState, showError, showStatus }) => {
       method: "POST",
       headers: { "Content-type": "application/json" },
       body: JSON.stringify({ url: inputValue, ...userState }),
-    }).then(res => showStatus('complete')).catch(err => {
+    }).then(res => showStatus('loaded')).catch(err => {
       console.log(err)
       showError({message: err.message, name: 'Ошибка подключение к серверу'});
     });

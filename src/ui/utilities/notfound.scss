@@ -4,6 +4,7 @@
     display: flex;
     justify-content: center;
     align-items: flex-start;
+    align-self: center;
 }
 
 .notfoundBlock {
@@ -15,3 +16,13 @@
     margin-top: 10vh;
 }
 
+.notfoundLinks {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+
+.margin {
+    margin: 2vh 1vw 0 1vw;
+}

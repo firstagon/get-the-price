@@ -3,11 +3,11 @@ import ItemsList from "../../ui/itemsList/ItemsList";
 import NoItemsYet from "./NoItemsYet";
 import LoadSpinner from '../../ui/LoadSpinner/Spinner';
 import {FEED_URL} from '../../links';
+import NotFound from '../NotFound';
 
 
 const UsersFeed = ({ userState, showStatus }) => {
   const [_state, setState] = useState(false);
-
    
   const getRequest = () => {
 
@@ -21,7 +21,7 @@ const UsersFeed = ({ userState, showStatus }) => {
         return res.json();
       })
       .then((res) => {
-        showStatus.status('complete');
+        showStatus.status('loaded');
         setState(() => {
           return [...res.data] ;
         });
@@ -35,13 +35,15 @@ const UsersFeed = ({ userState, showStatus }) => {
       showStatus.status('loading');
       getRequest();
     }
+
   }, [userState.token]);
 
   return (
     <section className={'feedSection'}>
       <div className={'feedBlock'}>
         <ul className={'feedList'}>
-          {_state ? <ItemsList items={_state} /> : <LoadSpinner />}
+          {!userState.userId && <NotFound type='needUser' />}
+          {_state && <ItemsList items={_state} />}
           {/* <ItemsList items={_state} />  */}
           </ul>
       </div>
