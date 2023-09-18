@@ -3,9 +3,7 @@ import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
 import { Fragment } from "react";
 
 const Header = ({ state, logout, themeToggle, isDark }) => {
-  // console.log(state.name);
-  // console.log(isDark);
-  // state.isAuth = true;
+
   const userName = !!state.name ? state.name : "username";
   const userFirstLetter = userName.match(/\b(\w)/)[0];
   let darkBlock, darkPoint, darkType;
@@ -39,12 +37,13 @@ const Header = ({ state, logout, themeToggle, isDark }) => {
               </div>
             </div>
           </button>
-          <NavLink to="/" exact style={{marginRight: '1vw'}} className={"navLinkb textLink"}>
+          <NavLink to="/" exact style={{ marginRight: '1vw' }} className={"navLinkb textLink"}>
             Домой
           </NavLink>
-          <NavLink to="/userfeed" className={"navLinkb textLink"}>
-            Лента
-          </NavLink>
+          {!!state.token &&
+            <NavLink to="/userfeed" className={"navLinkb textLink"}>
+              Лента
+            </NavLink>}
         </nav>
         <div className={"userContainer"}>
           <div className={"userData"}>
