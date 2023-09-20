@@ -323,11 +323,11 @@ function App() {
           </Route>
           <Route path="/userfeed" exact>
             <UsersFeed userState={userState} showStatus={{ status: showStatus, clearStatus: clearStatus, onError: showError }} />
-            <Footer isDark={isDark} />
+            <Footer />
           </Route>
           <Route path='/about' exact>
             <AboutPage />
-            <Footer isDark={isDark} />
+            <Footer />
           </Route>
           <Route path='*' >
             <NotFound history={newHistory} />

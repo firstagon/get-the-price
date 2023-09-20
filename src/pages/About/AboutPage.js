@@ -11,7 +11,7 @@ import ServerIcon from "../../icons/techs/build/server";
 import DockerLogo from "../../icons/techs/build/dockerFull";
 
 const AboutPage = () => {
-  console.log(process.env);
+
   return (
     <section className="aboutSection">
       <div className="aboutBlock">
@@ -30,7 +30,6 @@ const AboutPage = () => {
               </div>
               <div className="techCard">
                 <ReactRouterIcon cssclass={"techLogo"} />
-                {/* <img className="techLogo" src="#" alt="techs logo" /> */}
                 <p className="techDesc"> React Router </p>
               </div>
               <div className="techCard">
@@ -40,10 +39,6 @@ const AboutPage = () => {
             </div>
             <p className="techText"> FronEnd </p>
           </Tilt>
-          {/* <div className="aboutCircle">
-            {" "}
-            <div className="aboutCircle_point"></div>{" "}
-          </div> */}
           <Tilt
             tiltReverse={true}
             tiltMaxAngleY={5}

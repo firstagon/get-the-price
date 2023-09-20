@@ -6,3 +6,4 @@ export const LOGIN_URL = `${link}/auth/login`;
 export const SIGNUP_URL = `${link}/auth/signup`;
 export const FEED_URL = `${link}/userfeed`;
 export const ITEM_URL = `${link}/item/`;
+export const ITEM_FAV = `${link}/fav`;

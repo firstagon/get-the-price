@@ -2,14 +2,15 @@ import { useEffect, useState } from "react";
 import ItemsList from "../../ui/itemsList/ItemsList";
 import NoItemsYet from "./NoItemsYet";
 import LoadSpinner from '../../ui/LoadSpinner/Spinner';
-import {FEED_URL} from '../../links';
+import { FEED_URL } from '../../links';
 import NotFound from '../NotFound';
 
 
 const UsersFeed = ({ userState, showStatus }) => {
   const [_state, setState] = useState(false);
-   
-  const getRequest = () => {
+
+  // console.log(_state)
+  const getRequest = async () => {
 
     fetch(FEED_URL, {
       method: "POST",
@@ -21,18 +22,28 @@ const UsersFeed = ({ userState, showStatus }) => {
         return res.json();
       })
       .then((res) => {
-        // showStatus.status('loaded');
-        setState(() => {
-          return [...res.data] ;
+        let data = res.data.map(el => {
+          if (!el.favorite) {
+            return el = {...el, favorite: false}
+          } else {
+            return el;
+          }
         });
+
+        const sorted = data.sort((a, b) => 
+           Number(b.favorite) - Number(a.favorite));
+
+           console.log('working hard')
+        setState(() => {
+          return sorted;
+        });
+
       })
       .catch((err) => showStatus.status('error'));
   };
 
   useEffect(() => {
-    // console.log('use effect')
     if (!!userState.token) {
-      // showStatus.status('loading');
       getRequest();
     }
 
@@ -43,9 +54,9 @@ const UsersFeed = ({ userState, showStatus }) => {
       <div className={'feedBlock'}>
         <ul className={'feedList'}>
           {!userState.userId && <NotFound type='needUser' />}
-          {_state && <ItemsList items={_state} />}
+          {_state && <ItemsList items={_state} getRequest={getRequest} />}
           {/* <ItemsList items={_state} />  */}
-          </ul>
+        </ul>
       </div>
     </section>
   );

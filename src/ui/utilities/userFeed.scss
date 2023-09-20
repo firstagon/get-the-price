@@ -96,13 +96,12 @@
   object-fit: contain;
 
   border-radius: 5px;
-
-  background-color: grey;
 }
 
 .itemBlock_info {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   flex-grow: 1;
 
   margin-left: 1vw;
@@ -129,6 +128,10 @@
 
 
   width: 100%;
+}
+
+.rowAlways {
+  flex-direction: row;
 }
 
 .itemInfo_left {
@@ -183,6 +186,17 @@
   /* border: 1px solid black; */
 }
 
+.favIcon {
+  height: 1.5em;
+  width: 1.5em;
+  fill: $theme-light-bg;
+
+}
+
+.favIcon:hover {
+  fill: $theme-light;
+}
+
 @media (max-width: 395px) {
   .itemBlock_info,
   .itemName,
@@ -207,7 +221,7 @@
     display: flex;
     justify-content: flex-end;
 
-    height: 0.1em;
+    // height: 0.1em;
   }
 
   .rating, .price {
@@ -228,5 +242,9 @@
 
   .feedList {
     width: 95%;
+  }
+
+  .rowAlways {
+    flex-direction: row;
   }
 }

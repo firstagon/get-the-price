@@ -3,7 +3,7 @@ import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import gtIconWhite from "../../icons/github-mark-white.svg";
 import gitHubLogo from "../../icons/GitHub_Logo_White.png";
 
-const Footer = ({ isDark }) => {
+const Footer = () => {
   return (
     <footer className={"footerSection"}>
       <div className="footerBlock">
@@ -22,7 +22,7 @@ const Footer = ({ isDark }) => {
             />{" "}
           </Link>
         </div>
-        <Link to='/about' exact className="footerBlock_right"> About page </Link>
+        <Link to='/about' className="footerBlock_right"> About page </Link>
       </div>
     </footer>
   );
