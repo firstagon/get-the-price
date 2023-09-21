@@ -181,7 +181,7 @@ function App() {
           name: 'Ошибка подключения',
           message: 'Проблемы с подключением к серверу.'
         }
-        const error = err.message == 'Failed to fetch' ? newErr : err;
+        const error = err.message === 'Failed to fetch' ? newErr : err;
 
         setState((prevState) => {
           return {
@@ -264,7 +264,7 @@ function App() {
         obj = { message: "Товар успешно добавлен", title: "Complete" };
         break;
       case 'loaded':
-        obj = { message: 'Загрузка завершена', title: 'Complete'};
+        obj = { message: 'Загрузка завершена', title: 'Complete' };
         break;
       case 'error':
         obj = { message: "Ошибка подключения к серверу", title: "Error" }

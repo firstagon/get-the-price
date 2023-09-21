@@ -24,8 +24,9 @@ const ItemList = ({ items, sortByFav }) => {
         return el.itemCode === itemCode;
       })
       modItem.favorite = !modItem.favorite;
-      const newArr = sortByFav(newItems);
-      resolve(setState(newArr));
+      // const newArr = sortByFav(newItems);
+      // resolve(setState(newArr));
+      resolve(setState(newItems));
     });
 
     promise.then(() => {

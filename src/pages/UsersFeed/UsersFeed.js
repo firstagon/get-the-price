@@ -1,12 +1,10 @@
-import { useEffect, useState } from "react";
+import {  useEffect, useState } from "react";
 import ItemsList from "../../ui/itemsList/ItemsList";
-import NoItemsYet from "./NoItemsYet";
-import LoadSpinner from '../../ui/LoadSpinner/Spinner';
 import { FEED_URL } from '../../links';
 import NotFound from '../NotFound';
 
-
 const UsersFeed = ({ userState, showStatus }) => {
+
   const [_state, setState] = useState(false);
 
   const sortByFav = (res) => {
