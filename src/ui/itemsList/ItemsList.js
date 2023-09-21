@@ -3,20 +3,7 @@ import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import UitFavorite from '../../icons/iconsItems/favStar';
 import { ITEM_FAV } from '../../links';
 
-const testItem = [
-  {
-    itemImage: "#",
-    itemName: "Test itemname",
-    lastPrice: 30125,
-    updated: new Date().toLocaleString(),
-    data: {
-      itemRating: 4.2,
-      imageUrl: "#",
-    },
-  },
-];
-
-const ItemList = ({ items, getRequest }) => {
+const ItemList = ({ items, sortByFav }) => {
   const [state, setState] = useState(items);
   // console.log(state)
   const history = useHistory();
@@ -31,21 +18,33 @@ const ItemList = ({ items, getRequest }) => {
   const setFav = (e, itemCode, fav) => {
     e.stopPropagation();
 
-    fetch(ITEM_FAV, {
-      method: "POST",
-      headers: { "Content-type": "application/json" },
-      body: JSON.stringify({
-        itemCode,
-        userId: localStorage.getItem('userId'),
-        token: localStorage.getItem('token'),
-        isFav: !fav,
-      }),
-    }).then(getRequest())
-      .then(console.log(state)).catch(err => console.log(err));
+    let promise = new Promise((resolve, reject) => {
+      const newItems = [...state];
+      const modItem = newItems.find((el) => {
+        return el.itemCode === itemCode;
+      })
+      modItem.favorite = !modItem.favorite;
+      const newArr = sortByFav(newItems);
+      resolve(setState(newArr));
+    });
+
+    promise.then(() => {
+      fetch(ITEM_FAV, {
+        method: "POST",
+        headers: { "Content-type": "application/json" },
+        body: JSON.stringify({
+          itemCode,
+          userId: localStorage.getItem('userId'),
+          token: localStorage.getItem('token'),
+          isFav: !fav,
+        }),
+      })
+    })
+
   }
 
   useEffect(() => {
-    setState(items);
+    setState(items)
   }, [items])
 
   return state.map((el) => {
