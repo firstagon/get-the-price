@@ -5,36 +5,30 @@ import React, { useEffect, useRef, memo } from "react";
 
 const chartRender = (ref, points) => {
 
-  var c = document.getElementById("priceGraph");
+  const c = document.getElementById("priceGraph");
 
-  // console.log(ref.current.getContext("2d").canvas.clientWidth);
   const height = ref.current.getContext("2d").canvas.clientHeight;
   const width = ref.current.getContext("2d").canvas.clientWidth;
 
   c.height = height;
   c.width = width;
 
-  // console.log(width/100 * 10);
   var ctx = c.getContext("2d");
 
   ctx.strokeStyle = "green";
 
   const renderPoints = () => {
+
     // Creating a middleware array
     const pointsArray = [];
 
-
     for (let i = 0; i < points.length; i++) {
-      // console.log(i);
-      // console.log(points[i])
       let j = i + 1;
-      // console.log(j);
       const currPoint = {
-        currentValue: points[i],
-        startPoint: points[i],
-        endPoint: points[j] ? points[j] : points[i],
+        currentValue: { point: points[i].price, date: points[i].updated.split(',')[0] },
+        startPoint: points[i].price,
+        endPoint: points[j] ? points[j].price : points[i].price,
       };
-      // console.log(currPoint);
       pointsArray.push(currPoint);
     }
 
@@ -42,99 +36,125 @@ const chartRender = (ref, points) => {
     //Creating a function to render middleware points
     const startX = width / pointsArray.length;
     const startY = height * 0.9;
+    const scaleRatio = 0.6;
 
-    const maxY = Math.max(...points);
+    const allPoints = points.map(el => el.price);
+
+    const maxY = Math.max(...allPoints);
+
+    const pointsToRender = [];
 
     for (let i = 0; i < pointsArray.length; i++) {
+      const point = pointsArray[i].currentValue.point;
+      const nextPoint = pointsArray[i + 1] ? pointsArray[i + 1].currentValue.point : point;
 
-      const startPoint = pointsArray[i].startPoint;
-      const endPoint = pointsArray[i].endPoint;
+      if (point === nextPoint || point === false) {
+        continue
+      }
+      pointsToRender.push(pointsArray[i]);
+    }
+    console.log(pointsToRender)
 
-      // console.log(startPoint, endPoint);
+    ctx.beginPath();
+    const scaleModificator = (value) => {
+      return value > 10000 ? height / maxY * scaleRatio : height / maxY * scaleRatio;
+    };
+
+    // when its 1 price
+
+    if (pointsToRender.length <= 2) {
+
+      const point = pointsArray[0].currentValue.point;
+
+      ctx.rect(
+        width / 5 + startX + 10,
+        startY - point * scaleModificator(point),
+        startX,
+        startY - (startY - point * scaleModificator(point)) - 2
+      )
+
+      ctx.fillStyle = ctx.strokeStyle;
+      ctx.fill();
+
+      // creating tip price template
+
+      ctx.font = "12px Mukta";
+      ctx.fillText(
+        pointsArray[0].currentValue.point,
+        width / 5 + startX + startX / 2
+        - (pointsArray[0].currentValue.point.toString().length),
+        startY - point * scaleModificator(point) + - 5
+      );
+
+      // creating a date at the bottom of chart
+
+      ctx.fillText(
+        pointsArray[0].currentValue.date,
+        width / 5 + startX + startX / 2.3,
+        height
+      );
+
+        return
+    }
+
+    for (let i = 0; i < pointsToRender.length; i++) {
+
+      const startPoint = pointsToRender[i - 1] ? pointsToRender[i - 1].currentValue.point : pointsToRender[i].currentValue.point;
+      const endPoint = pointsToRender[i].currentValue.point;
 
       ctx.beginPath();
-      ctx.setLineDash([]);
 
       if (startPoint < endPoint) {
         ctx.strokeStyle = "red";
       } else if (startPoint > endPoint) {
         ctx.strokeStyle = "green";
       } else {
-        ctx.strokeStyle = "black";
+        ctx.strokeStyle = "grey";
       }
 
-      const scaleModificator = (value) => {
-        return value > 10000 ? height / maxY * 0.8 : height / maxY * 0.8;
-      };
 
-      ctx.moveTo(
-        startX * i + 10,
-        startY - startPoint * scaleModificator(startPoint)
-      );
+      const point = pointsToRender[i].currentValue.point;
 
-      // Creationg a points with price
+      ctx.rect(
+        width / pointsToRender.length + startX + startX * i + 10 + i * 5,
+        startY - point * scaleModificator(point),
+        startX,
+        startY - (startY - point * scaleModificator(point)) - 2
+      )
 
-      const sideNumb = startPoint - endPoint < 0 ? +15 : -5;
-
-      ctx.arc(
-        startX * i + 10,
-        startY - startPoint * scaleModificator(startPoint),
-        3,
-        0,
-        6
-      );
       ctx.fillStyle = ctx.strokeStyle;
       ctx.fill();
-      ctx.font = "12px serif";
-        ctx.fillText(
-          pointsArray[i].currentValue,
-          startX * i + 15,
-          startY - startPoint * scaleModificator(startPoint) + sideNumb
-        );
-      
 
-      if (startPoint === endPoint) {
-        ctx.lineTo(
-          startX * (i + 1) + 10,
-          startY - endPoint * scaleModificator(endPoint)
-        );
-      } else if (startPoint && !endPoint) {
-        break;
-      }
-      else {
-        ctx.lineTo(
-          startX * (i + 1) + 10,
-          startY - endPoint * scaleModificator(endPoint)
-        );
-      }
-      ctx.stroke();
+      // creating tip price template
+
+      ctx.font = "12px Mukta";
+      ctx.fillText(
+        pointsToRender[i].currentValue.point,
+        width / pointsToRender.length + startX + startX * i + i * 5 + startX / 2
+        - (pointsToRender[i].currentValue.point.toString().length),
+        startY - point * scaleModificator(point) + - 5
+      );
+
+      // creating a date at the bottom of chart
+
+      ctx.fillText(
+        pointsToRender[i].currentValue.date,
+        width / pointsToRender.length + startX + startX * i + i * 5 + startX / 5,
+        height
+      );
+
     }
+
   };
 
-  // const renderBase = () => {
-  //   ctx.beginPath();
-  //   ctx.strokeStyle = "black";
-  //   ctx.setLineDash([5, 10]);
-  //   ctx.moveTo(width / 2, 0);
-  //   ctx.lineTo(width / 2, height);
-  //   ctx.stroke();
-  // };
-
-  // renderBase();
   renderPoints();
 };
 
 const InfoGraphic = ({ array }) => {
   const ref = useRef();
-
-  // console.log(array)
-
-  const points = array.map(el => el.price)
-  // console.log(points)
-
   useEffect(() => {
-    chartRender(ref, points);
-  }, [points]);
+    chartRender(ref, array);
+  }, [array]);
 
   return (
     <section className='container'>
