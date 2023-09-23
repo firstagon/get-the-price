@@ -34,7 +34,7 @@ const chartRender = (ref, points) => {
 
 
     //Creating a function to render middleware points
-    const startX = width / pointsArray.length;
+    const startX = 60;
     const startY = height * 0.9;
     const scaleRatio = 0.6;
 
@@ -46,14 +46,17 @@ const chartRender = (ref, points) => {
 
     for (let i = 0; i < pointsArray.length; i++) {
       const point = pointsArray[i].currentValue.point;
-      const nextPoint = pointsArray[i + 1] ? pointsArray[i + 1].currentValue.point : point;
+      const nextPoint = pointsArray[i + 1] ? pointsArray[i + 1].currentValue.point : false;
+
+      // console.log(point, nextPoint)
 
       if (point === nextPoint || point === false) {
         continue
       }
       pointsToRender.push(pointsArray[i]);
     }
-    console.log(pointsToRender)
+
+    // console.log(pointsToRender)
 
     ctx.beginPath();
     const scaleModificator = (value) => {
@@ -62,12 +65,12 @@ const chartRender = (ref, points) => {
 
     // when its 1 price
 
-    if (pointsToRender.length <= 2) {
+    if (pointsToRender.length < 2) {
 
       const point = pointsArray[0].currentValue.point;
 
       ctx.rect(
-        width / 5 + startX + 10,
+        width / 6 + startX * 4,
         startY - point * scaleModificator(point),
         startX,
         startY - (startY - point * scaleModificator(point)) - 2
@@ -81,8 +84,7 @@ const chartRender = (ref, points) => {
       ctx.font = "12px Mukta";
       ctx.fillText(
         pointsArray[0].currentValue.point,
-        width / 5 + startX + startX / 2
-        - (pointsArray[0].currentValue.point.toString().length),
+        width / 6 + startX * 4 + 15,
         startY - point * scaleModificator(point) + - 5
       );
 
@@ -90,7 +92,7 @@ const chartRender = (ref, points) => {
 
       ctx.fillText(
         pointsArray[0].currentValue.date,
-        width / 5 + startX + startX / 2.3,
+        width / 6 + startX * 4 + 5,
         height
       );
 
@@ -115,8 +117,10 @@ const chartRender = (ref, points) => {
 
       const point = pointsToRender[i].currentValue.point;
 
+      const ratioShortArray = pointsToRender.length < 3 ? (i + 1 * 125) : '';
+
       ctx.rect(
-        width / pointsToRender.length + startX + startX * i + 10 + i * 5,
+        width / pointsToRender.length + startX + startX * i + 10 + i * 5 - ratioShortArray,
         startY - point * scaleModificator(point),
         startX,
         startY - (startY - point * scaleModificator(point)) - 2
@@ -131,7 +135,7 @@ const chartRender = (ref, points) => {
       ctx.fillText(
         pointsToRender[i].currentValue.point,
         width / pointsToRender.length + startX + startX * i + i * 5 + startX / 2
-        - (pointsToRender[i].currentValue.point.toString().length),
+        - (pointsToRender[i].currentValue.point.toString().length) - ratioShortArray,
         startY - point * scaleModificator(point) + - 5
       );
 
@@ -139,7 +143,7 @@ const chartRender = (ref, points) => {
 
       ctx.fillText(
         pointsToRender[i].currentValue.date,
-        width / pointsToRender.length + startX + startX * i + i * 5 + startX / 5,
+        width / pointsToRender.length + startX + startX * i + i * 5 + startX / 5 - ratioShortArray,
         height
       );
 
