@@ -16,6 +16,7 @@ import UsersFeed from "./pages/UsersFeed/UsersFeed";
 import AboutPage from "./pages/About/AboutPage";
 import Notificator from "./ui/notifications/Notificator";
 import NotFound from "./pages/NotFound";
+// import getLocation from "./middleware/getLocation";
 
 import { LOGIN_URL, SIGNUP_URL } from './links';
 
@@ -37,10 +38,25 @@ function App() {
     error: null,
     errorShown: false,
     name: null,
-    status: null
+    status: null,
+    location: null
   });
 
-  const userState = { token: state.token, userId: state.userId, name: state.name };
+  function getLocation() {
+    fetch('https://geolocation-db.com/json/')
+      .then(response => response.json())
+      .then(data => {
+       return setState((prevState) => {
+          return {
+            ...prevState,
+            location: {...data}
+          }
+        })
+      }).then((res) => console.log(state.location))
+      .catch(error => console.log(error))
+  }
+
+  const userState = { token: state.token, userId: state.userId, name: state.name, location: state.location };
 
   const theme = localStorage.getItem("theme");
 
@@ -72,17 +88,12 @@ function App() {
     document.documentElement.style.setProperty("--base-bg", "#f9f9f9");
     document.documentElement.style.setProperty("--base-font-color", "#000");
     document.documentElement.style.setProperty("--base-font-vsColor", "#fff");
-    // document.documentElement.style.setProperty("--base-border", "#aaa");
   } else {
     document.documentElement.style.setProperty("--base-color", "black");
     document.documentElement.style.setProperty("--base-bg", "#1e1e1e");
     document.documentElement.style.setProperty("--base-font-color", "#fff");
     document.documentElement.style.setProperty("--base-font-vsColor", "#000");
-    // document.documentElement.style.setProperty("--base-border", "#aaa");
   }
-
-
-  // isDark ? themechanger(true) : themechanger(false);
 
   const mounted = () => {
     if (!token || !expiryDate) {
@@ -92,7 +103,6 @@ function App() {
       logoutHandler();
       return;
     }
-    // console.log('token!')
 
     const remainingMilliseconds =
       new Date(expiryDate).getTime() - new Date().getTime();
@@ -105,6 +115,7 @@ function App() {
   useEffect(() => {
     mounted();
     getTheme();
+    getLocation()
   }, []);
 
   const logoutHandler = () => {
