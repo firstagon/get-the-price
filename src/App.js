@@ -42,19 +42,19 @@ function App() {
     location: null
   });
 
-  function getLocation() {
-    fetch('https://geolocation-db.com/json/')
-      .then(response => response.json())
-      .then(data => {
-       return setState((prevState) => {
-          return {
-            ...prevState,
-            location: {...data}
-          }
-        })
-      }).then((res) => console.log(state.location))
-      .catch(error => console.log(error))
-  }
+  // function getLocation() {
+  //   fetch('https://geolocation-db.com/json/')
+  //     .then(response => response.json())
+  //     .then(data => {
+  //       return setState((prevState) => {
+  //         return {
+  //           ...prevState,
+  //           location: { ...data }
+  //         }
+  //       })
+  //     }).then((res) => console.log(state.location))
+  //     .catch(error => console.log(error))
+  // }
 
   const userState = { token: state.token, userId: state.userId, name: state.name, location: state.location };
 
@@ -115,7 +115,6 @@ function App() {
   useEffect(() => {
     mounted();
     getTheme();
-    getLocation()
   }, []);
 
   const logoutHandler = () => {
@@ -146,7 +145,10 @@ function App() {
     });
     fetch(LOGIN_URL, {
       method: "POST",
-      headers: { "Content-type": "application/json" },
+      headers: {
+        "Content-type": "application/json",
+        "Authorization": `${state.token}`
+      },
       body: JSON.stringify(authData),
     })
       .then((res) => {

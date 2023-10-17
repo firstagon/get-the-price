@@ -1,4 +1,4 @@
-import {  useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import ItemsList from "../../ui/itemsList/ItemsList";
 import { FEED_URL } from '../../links';
 import NotFound from '../NotFound';
@@ -9,7 +9,7 @@ const UsersFeed = ({ userState, showStatus }) => {
 
   const sortByFav = (res) => {
     let data;
-    if(!!res.data) {
+    if (!!res.data) {
       data = res.data.map(el => {
         if (!el.favorite) {
           return el = { ...el, favorite: false }
@@ -24,7 +24,7 @@ const UsersFeed = ({ userState, showStatus }) => {
         } else {
           return el;
         }
-      }); 
+      });
     }
     const sorted = data.sort((a, b) =>
       Number(b.favorite) - Number(a.favorite));
@@ -33,50 +33,52 @@ const UsersFeed = ({ userState, showStatus }) => {
   }
 
 
-// console.log(_state)
-const getRequest = async () => {
+  // console.log(_state)
+  const getRequest = async () => {
 
-  fetch(FEED_URL, {
-    method: "POST",
-    headers: { "Content-type": "application/json" },
-    Authorization: `Basic ${userState.token}`,
-    body: JSON.stringify({ ...userState }),
-  })
-    .then((res) => {
-      return res.json();
+    fetch(FEED_URL, {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+        'Authorization': `${userState.token}`
+      },
+      body: JSON.stringify({ ...userState }),
     })
-    .then((res) => {
-     const sorted = sortByFav(res);
+      .then((res) => {
+        return res.json();
+      })
+      .then((res) => {
+        const sorted = sortByFav(res);
 
-      setState(() => {
-        return sorted;
-      });
-    })
-    .catch((err) => showStatus.status('error'));
-};
+        setState(() => {
+          return sorted;
+        });
+      })
+      .catch((err) => showStatus.status('error'));
+  };
 
-useEffect(() => {
-  if (!!userState.token) {
-    getRequest();
-  }
+  useEffect(() => {
+    if (!!userState.token) {
+      getRequest();
+    }
 
-  if(!userState.token) {
-    setState('')
-  }
+    if (!userState.token) {
+      setState('')
+    }
 
-}, [userState.token]);
+  }, [userState.token]);
 
-return (
-  <section className={'feedSection'}>
-    <div className={'feedBlock'}>
-      <ul className={'feedList'}>
-        {!userState.userId && <NotFound type='needUser' />}
-        {_state && <ItemsList items={_state} sortByFav={sortByFav} />}
-        {/* <ItemsList items={_state} />  */}
-      </ul>
-    </div>
-  </section>
-);
+  return (
+    <section className={'feedSection'}>
+      <div className={'feedBlock'}>
+        <ul className={'feedList'}>
+          {!userState.userId && <NotFound type='needUser' />}
+          {_state && <ItemsList items={_state} sortByFav={sortByFav} />}
+          {/* <ItemsList items={_state} />  */}
+        </ul>
+      </div>
+    </section>
+  );
 };
 
 

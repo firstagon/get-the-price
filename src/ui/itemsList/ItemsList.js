@@ -3,9 +3,12 @@ import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import UitFavorite from '../../icons/iconsItems/favStar';
 import { ITEM_FAV } from '../../links';
 
+
+
 const ItemList = ({ items, sortByFav }) => {
+
   const [state, setState] = useState(items);
-  // console.log(state)
+  console.log(state)
   const history = useHistory();
 
   // console.log(state)
@@ -30,9 +33,13 @@ const ItemList = ({ items, sortByFav }) => {
     });
 
     promise.then(() => {
+      console.log(`"Authorization": ${localStorage.getItem('token')}`)
       fetch(ITEM_FAV, {
         method: "POST",
-        headers: { "Content-type": "application/json" },
+        headers: new Headers({
+          "Content-type": "application/json",
+          "Authorization": localStorage.getItem('token'),
+        }),
         body: JSON.stringify({
           itemCode,
           userId: localStorage.getItem('userId'),

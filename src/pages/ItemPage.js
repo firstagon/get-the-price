@@ -19,9 +19,11 @@ const ItemPage = ({ userState, history, showStatus }) => {
 
     fetch(ITEM_URL + itemCode, {
       method: "POST",
-      headers: { "Content-type": "application/json" },
-      Authorization: `Basic ${userState.token}`,
-      body: JSON.stringify({ ...userState, itemId }),
+      headers: {
+        "Content-type": "application/json",
+        Authorization: `${userState.token}`
+      },
+      body: JSON.stringify({itemId }),
     })
       .then((res) => {
         // showStatus.status('loading');
@@ -42,7 +44,7 @@ const ItemPage = ({ userState, history, showStatus }) => {
       })
       .catch((err) => {
         showStatus.status('error');
-        showStatus.onError({message: err.message, name: 'Ошибка подключение к серверу'});
+        showStatus.onError({ message: err.message, name: 'Ошибка подключение к серверу' });
         setState(() => {
           return { status: 404 };
         })
