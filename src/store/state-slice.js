@@ -18,11 +18,9 @@ const stateSlice = createSlice({
             return { ...state, ...action.payload };
         },
         logIn(state, action) {
-            console.log(action)
             return { ...state, ...action.payload };
         },
         init(state, action) {
-            console.log(action)
             return { ...state, ...action.payload };
         },
         error(state, action) {

@@ -33,42 +33,12 @@ function App() {
   const dispatch = useDispatch();
   const userState = useSelector((state) => state.userState);
 
-  console.log(userState)
+  // console.log(userState)
 
   const token = localStorage.getItem("token");
   const expiryDate = localStorage.getItem("expiryDate");
   const userId = localStorage.getItem("userId");
   const name = localStorage.getItem("name");
-
-  // const [state, setState] = useState({
-  //   showBackdrop: false,
-  //   showMobileNav: false,
-  //   isAuth: false,
-  //   token: null,
-  //   userId: null,
-  //   authLoading: false,
-  //   error: null,
-  //   errorShown: false,
-  //   name: null,
-  //   status: null,
-  //   location: null
-  // });
-
-  // function getLocation() {
-  //   fetch('https://geolocation-db.com/json/')
-  //     .then(response => response.json())
-  //     .then(data => {
-  //       return setState((prevState) => {
-  //         return {
-  //           ...prevState,
-  //           location: { ...data }
-  //         }
-  //       })
-  //     }).then((res) => console.log(state.location))
-  //     .catch(error => console.log(error))
-  // }
-
-  // const userState = { token: state.token, userId: state.userId, name: state.name, location: state.location };
 
   const theme = localStorage.getItem("theme");
 
@@ -77,7 +47,6 @@ function App() {
   const themeToggle = (e) => {
     e.preventDefault();
     setIsDark((prevState) => !prevState);
-    // themechanger(isDark);
     localStorage.setItem("theme", `${!isDark}`);
   };
 
@@ -85,9 +54,7 @@ function App() {
     if (theme === "false") {
       setIsDark(false);
     } else if (theme === "true") {
-      // console.log('its true')
       setIsDark(true);
-      // console.log(isDark);
     } else {
       setIsDark(false);
       localStorage.setItem("theme", 'false');
@@ -112,7 +79,6 @@ function App() {
       return;
     }
     if (new Date(expiryDate) <= new Date()) {
-      // logoutHandler();
       dispatch(logout);
       return;
     }
@@ -132,24 +98,10 @@ function App() {
 
   const logoutHandler = () => {
     dispatch(logout);
-    //   setState((prevState) => {
-    //     return {
-    //       ...prevState,
-    //       isAuth: false,
-    //       token: null,
-    //       name: null,
-    //       userId: null,
-    //     };
-    //   });
-    //   localStorage.removeItem("token");
-    //   localStorage.removeItem("expiryDate");
-    //   localStorage.removeItem("userId");
-    //   localStorage.removeItem("name");
   };
 
   function setAutoLogout(millisseconds) {
     setTimeout(() => {
-      // logoutHandler();
       dispatch(logout);
     }, millisseconds);
   }
@@ -160,62 +112,12 @@ function App() {
 
   const signupHandler = (authData) => {
     dispatch(signup(authData))
-    // console.log(authData);
-    // setState((prevState) => {
-    //   return { ...prevState, authLoading: true };
-    // });
-    // fetch(SIGNUP_URL, {
-    //   method: "PUT",
-    //   headers: { "Content-type": "application/json" },
-    //   body: JSON.stringify(authData),
-    // })
-    //   .then((res) => {
-    //     if (res.status === 422) {
-    //       throw new Error(
-    //         "Validation failed. Make shure the email adress isn't used yet"
-    //       );
-    //     }
-    //     if (res.status !== 200 && res.status !== 201) {
-    //       console.log("Error!");
-    //       throw new Error("Creating a user failed");
-    //     }
-    //     return res.json();
-    //   })
-    //   .then((resData) => {
-    //     // console.log(resData);
-    //     setState((prevState) => {
-    //       return { ...prevState, isAuth: false, authLoading: false };
-    //     });
-    //     loginHandler(authData);
-    //     newHistory.replace("/");
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //     setState((prevState) => {
-    //       return {
-    //         ...prevState,
-    //         isAuth: false,
-    //         authLoading: false,
-    //         error: err,
-    //         errorShown: true,
-    //       };
-    //     });
-    //   });
   };
 
   const errorCloseHandler = () => {
-    //   setState((prevState) => {
-    //     return { ...prevState, errorShown: false };
-    //   });
   };
 
   const showError = (errorString) => {
-    // setState(prevState => {
-    //   return {
-    //     ...prevState, error: errorString,
-    //     errorShown: true,
-    //   }
-    // })
     dispatch(setError(errorString));
   }
 

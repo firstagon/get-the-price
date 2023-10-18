@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useSelector } from 'react-redux';
 
 import FavoriteSlider from "../ui/FavoriteSlider";
 import ItemActions from "../ui/ItemActions";
@@ -9,7 +10,8 @@ import { ITEM_URL } from '../links';
 import NotFound from '../pages/NotFound';
 
 
-const ItemPage = ({ userState, history, showStatus }) => {
+const ItemPage = ({ history, showStatus }) => {
+  const userState = useSelector((state) => state.userState);
   const params = useParams();
   const itemId = params.itemId;
 
@@ -23,7 +25,7 @@ const ItemPage = ({ userState, history, showStatus }) => {
         "Content-type": "application/json",
         Authorization: `${userState.token}`
       },
-      body: JSON.stringify({itemId }),
+      body: JSON.stringify({ itemId }),
     })
       .then((res) => {
         // showStatus.status('loading');

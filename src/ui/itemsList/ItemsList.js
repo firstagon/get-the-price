@@ -8,13 +8,10 @@ import { ITEM_FAV } from '../../links';
 const ItemList = ({ items, sortByFav }) => {
 
   const [state, setState] = useState(items);
-  console.log(state)
+
   const history = useHistory();
 
-  // console.log(state)
-
   const itemHandler = (e, code) => {
-    // console.log(e.target)
     history.push(`item/${code}`);
   };
 
@@ -27,13 +24,10 @@ const ItemList = ({ items, sortByFav }) => {
         return el.itemCode === itemCode;
       })
       modItem.favorite = !modItem.favorite;
-      // const newArr = sortByFav(newItems);
-      // resolve(setState(newArr));
       resolve(setState(newItems));
     });
 
     promise.then(() => {
-      console.log(`"Authorization": ${localStorage.getItem('token')}`)
       fetch(ITEM_FAV, {
         method: "POST",
         headers: new Headers({

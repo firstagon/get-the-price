@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
+import { useSelector } from 'react-redux';
 import ItemsList from "../../ui/itemsList/ItemsList";
 import { FEED_URL } from '../../links';
 import NotFound from '../NotFound';
 
-const UsersFeed = ({ userState, showStatus }) => {
+const UsersFeed = ({ showStatus }) => {
+  const userState = useSelector((state) => state.userState);
 
   const [_state, setState] = useState(false);
 
