@@ -1,4 +1,5 @@
 // import classes from "./HomePage.module.css";
+import { useSelector} from 'react-redux';
 
 import ItemsChoice from "../ui/ItemChoiceUI/ItemsChoice";
 // import WelcomeBlock from "../ui/MainElements/WelcomeBlock";
@@ -9,7 +10,8 @@ import MainLogo from "../ui/HomePage/MainLogo";
 
 const isAuth = false;
 
-const HomePage = ({ userState, showError, showStatus }) => {
+const HomePage = ({ showError, showStatus }) => {
+  const userState = useSelector((state) => state.userState);
   return (
     <div className={"mainBody"}>
       {/* <WelcomeBlock /> */}

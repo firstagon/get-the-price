@@ -1,4 +1,4 @@
-import classes from "./ProfilePage.module.css";
+import { useSelector } from 'react-redux';
 
 import ChangePassword from "./ChangePassword";
 
@@ -15,18 +15,20 @@ const props = {
 };
 
 const ProfilePage = () => {
+  const userState = useSelector((state) => state.userstate)
+
   const passwordChangeHandler = (e) => {
     // fetch to url for chanching password
   };
 
   return (
-    <section className={classes.profileSection}>
-      <div className={classes.profileBlock}>
-        <h3 className={classes.profileBlock_text}>
+    <section className={'profileSection'}>
+      <div className={'profileBlock'}>
+        <h3 className={'profileBlock_text'}>
           Welcome {props.name ? props.name : "UserName"}
         </h3>
-        <div className={classes.changePassword_section}>
-          <p className={classes.profileBlock_text}> Смена пароля: </p>
+        <div className={'changePassword_section'}>
+          <p className={'profileBlock_text'}> Смена пароля: </p>
           <ChangePassword onPasswordChange={passwordChangeHandler} />
         </div>
       </div>

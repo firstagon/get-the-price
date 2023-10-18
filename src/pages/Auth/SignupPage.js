@@ -4,6 +4,7 @@ import Input from "../../ui/InputForms/Input";
 import { required, length, email } from "../../util/validators";
 
 const SignupPage = (props) => {
+
   const [state, setState] = useState({
     signupForm: {
       email: {
@@ -37,8 +38,8 @@ const SignupPage = (props) => {
     : !state.passwordsSame &&
       !state.formIsValid &&
       state.signupForm.email.valid && state.signupForm.passwordRepeat.value
-    ? 'redHighlight'
-    : '';
+      ? 'redHighlight'
+      : '';
 
   const inputChangeHandler = (synteticE) => {
     const value = synteticE.target.value;
@@ -127,56 +128,57 @@ const SignupPage = (props) => {
   return (
     <div className={'popupLogin'}>
       <div className="loginSection">
-      <div className={'loginBlock'}>
-        <form className={'signupForm'}>
-          <Input
-            type="text"
-            id="email"
-            placeholder="Enter E-mail"
-            onFocus={(e) => (e.target.placeholder = "")}
-            onBlur={inputBlurHandler}
-            eye={false}
-            onChange={inputChangeHandler}
-          />
-          <Input
-            type={state.signupForm.password.hided ? "password" : "text"}
-            id="password"
-            placeholder="Enter password"
-            onFocus={(e) => (e.target.placeholder = "")}
-            onBlur={inputBlurHandler}
-            eye={true}
-            hided={state.signupForm.password.hided}
-            onChange={inputChangeHandler}
-            eyeClick={eyeHandler}
-          />
-          <Input
-            type={state.signupForm.passwordRepeat.hided ? "password" : "text"}
-            id="passwordRepeat"
-            placeholder="Enter password repeat"
-            onFocus={(e) => (e.target.placeholder = "")}
-            onBlur={inputBlurHandler}
-            eye={true}
-            hided={state.signupForm.passwordRepeat.hided}
-            onChange={inputChangeHandler}
-            eyeClick={eyeHandler}
-          />
-          <button
-            className={'inputButton' + ' ' + higlightClass}
-            type="submit"
-            name="submit"
-            onClick={submitHandler}
-            disabled={!state.formIsValid}
-          >
-            {state.passwordsSame && state.formIsValid
-              ? "Отправить"
-              : !state.passwordsSame &&
-                !state.formIsValid &&
-                state.signupForm.email.valid
-              ? "Пароли должны совпадать"
-              : "Заполните форму"}
-          </button>
-        </form>
-      </div>
+        <div className={'loginBlock'}>
+          <form className={'signupForm'}>
+            <Input
+              type="text"
+              id="email"
+              placeholder="Enter E-mail"
+              onFocus={(e) => (e.target.placeholder = "")}
+              onBlur={inputBlurHandler}
+              eye={false}
+              onChange={inputChangeHandler}
+            />
+            <Input
+              type={state.signupForm.password.hided ? "password" : "text"}
+              id="password"
+              placeholder="Enter password"
+              onFocus={(e) => (e.target.placeholder = "")}
+              onBlur={inputBlurHandler}
+              eye={true}
+              hided={state.signupForm.password.hided}
+              onChange={inputChangeHandler}
+              eyeClick={eyeHandler}
+            />
+            <Input
+              type={state.signupForm.passwordRepeat.hided ? "password" : "text"}
+              id="passwordRepeat"
+              placeholder="Enter password repeat"
+              onFocus={(e) => (e.target.placeholder = "")}
+              onBlur={inputBlurHandler}
+              eye={true}
+              hided={state.signupForm.passwordRepeat.hided}
+              onChange={inputChangeHandler}
+              eyeClick={eyeHandler}
+            />
+            <button
+              // eslint-disable-next-line no-useless-concat
+              className={'inputButton' + ' ' + higlightClass}
+              type="submit"
+              name="submit"
+              onClick={submitHandler}
+              disabled={!state.formIsValid}
+            >
+              {state.passwordsSame && state.formIsValid
+                ? "Отправить"
+                : !state.passwordsSame &&
+                  !state.formIsValid &&
+                  state.signupForm.email.valid
+                  ? "Пароли должны совпадать"
+                  : "Заполните форму"}
+            </button>
+          </form>
+        </div>
       </div>
     </div>
   );

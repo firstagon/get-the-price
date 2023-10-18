@@ -2,7 +2,7 @@ import React, { Fragment, useState, useEffect } from "react";
 import { createBrowserHistory } from "history";
 import { Router, Switch, Route } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { logout, login, signup } from "./store/login-actions";
+import { logout, login, signup, init } from "./store/login-actions";
 import { setError } from './store/error-actions';
 
 import "./App.scss";
@@ -25,15 +25,20 @@ import NotFound from "./pages/NotFound";
 
 const newHistory = createBrowserHistory();
 
-const token = localStorage.getItem("token");
-const expiryDate = localStorage.getItem("expiryDate");
-const userId = localStorage.getItem("userId");
-const name = localStorage.getItem("name");
+
+
+
 
 function App() {
   const dispatch = useDispatch();
   const userState = useSelector((state) => state.userState);
 
+  console.log(userState)
+
+  const token = localStorage.getItem("token");
+  const expiryDate = localStorage.getItem("expiryDate");
+  const userId = localStorage.getItem("userId");
+  const name = localStorage.getItem("name");
 
   // const [state, setState] = useState({
   //   showBackdrop: false,
@@ -114,9 +119,9 @@ function App() {
 
     const remainingMilliseconds =
       new Date(expiryDate).getTime() - new Date().getTime();
-    // setState((prevState) => {
-    //   return { ...prevState, isAuth: true, token: token, userId: userId, name: name };
-    // });
+    dispatch(init({
+      isAuth: true, token: token, userId: userId, name: name
+    }))
     setAutoLogout(remainingMilliseconds);
   };
 
@@ -267,11 +272,11 @@ function App() {
             <LoginPage onLogin={loginHandler} history={newHistory} />
           </Route>
           <Route path="/signup" exact>
-            <SignupPage onSignup={signupHandler} loading={state.authLoading} />
+            <SignupPage onSignup={signupHandler} />
           </Route>
           <Route path="/profile" exact>
             <section className="mainSection">
-              <ProfilePage state={state} />
+              <ProfilePage />
             </section>
           </Route>
           <Route path="/userfeed" exact>

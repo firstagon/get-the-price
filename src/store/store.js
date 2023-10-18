@@ -2,10 +2,10 @@ import { configureStore } from "@reduxjs/toolkit";
 
 
 import userState from "./state-slice";
-import uiSlice from './ui-actions';
+// import uiSlice from './ui-actions';
 
 const store = configureStore({
-  reducer: { userState: userState, ui:  uiSlice.reducer},
+  reducer: { userState: userState},
 });
 
 export default store;
