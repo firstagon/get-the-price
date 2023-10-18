@@ -1,6 +1,9 @@
 import React, { Fragment, useState, useEffect } from "react";
 import { createBrowserHistory } from "history";
 import { Router, Switch, Route } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { logout, login, signup } from "./store/login-actions";
+import { setError } from './store/error-actions';
 
 import "./App.scss";
 import Header from "./ui/Header";
@@ -18,7 +21,7 @@ import Notificator from "./ui/notifications/Notificator";
 import NotFound from "./pages/NotFound";
 // import getLocation from "./middleware/getLocation";
 
-import { LOGIN_URL, SIGNUP_URL } from './links';
+// import { LOGIN_URL, SIGNUP_URL } from './links';
 
 const newHistory = createBrowserHistory();
 
@@ -28,19 +31,23 @@ const userId = localStorage.getItem("userId");
 const name = localStorage.getItem("name");
 
 function App() {
-  const [state, setState] = useState({
-    showBackdrop: false,
-    showMobileNav: false,
-    isAuth: false,
-    token: null,
-    userId: null,
-    authLoading: false,
-    error: null,
-    errorShown: false,
-    name: null,
-    status: null,
-    location: null
-  });
+  const dispatch = useDispatch();
+  const userState = useSelector((state) => state.userState);
+
+
+  // const [state, setState] = useState({
+  //   showBackdrop: false,
+  //   showMobileNav: false,
+  //   isAuth: false,
+  //   token: null,
+  //   userId: null,
+  //   authLoading: false,
+  //   error: null,
+  //   errorShown: false,
+  //   name: null,
+  //   status: null,
+  //   location: null
+  // });
 
   // function getLocation() {
   //   fetch('https://geolocation-db.com/json/')
@@ -56,7 +63,7 @@ function App() {
   //     .catch(error => console.log(error))
   // }
 
-  const userState = { token: state.token, userId: state.userId, name: state.name, location: state.location };
+  // const userState = { token: state.token, userId: state.userId, name: state.name, location: state.location };
 
   const theme = localStorage.getItem("theme");
 
@@ -100,15 +107,16 @@ function App() {
       return;
     }
     if (new Date(expiryDate) <= new Date()) {
-      logoutHandler();
+      // logoutHandler();
+      dispatch(logout);
       return;
     }
 
     const remainingMilliseconds =
       new Date(expiryDate).getTime() - new Date().getTime();
-    setState((prevState) => {
-      return { ...prevState, isAuth: true, token: token, userId: userId, name: name };
-    });
+    // setState((prevState) => {
+    //   return { ...prevState, isAuth: true, token: token, userId: userId, name: name };
+    // });
     setAutoLogout(remainingMilliseconds);
   };
 
@@ -118,154 +126,94 @@ function App() {
   }, []);
 
   const logoutHandler = () => {
-    setState((prevState) => {
-      return {
-        ...prevState,
-        isAuth: false,
-        token: null,
-        name: null,
-        userId: null,
-      };
-    });
-    localStorage.removeItem("token");
-    localStorage.removeItem("expiryDate");
-    localStorage.removeItem("userId");
-    localStorage.removeItem("name");
+    dispatch(logout);
+    //   setState((prevState) => {
+    //     return {
+    //       ...prevState,
+    //       isAuth: false,
+    //       token: null,
+    //       name: null,
+    //       userId: null,
+    //     };
+    //   });
+    //   localStorage.removeItem("token");
+    //   localStorage.removeItem("expiryDate");
+    //   localStorage.removeItem("userId");
+    //   localStorage.removeItem("name");
   };
 
   function setAutoLogout(millisseconds) {
     setTimeout(() => {
-      logoutHandler();
+      // logoutHandler();
+      dispatch(logout);
     }, millisseconds);
   }
 
   const loginHandler = (authData) => {
-    setState((prevState) => {
-      return { ...prevState, authLoading: true };
-    });
-    fetch(LOGIN_URL, {
-      method: "POST",
-      headers: {
-        "Content-type": "application/json",
-        "Authorization": `${state.token}`
-      },
-      body: JSON.stringify(authData),
-    })
-      .then((res) => {
-        if (res.status === 422) {
-          throw new Error("Validation failed.");
-        }
-        if (res.status !== 200 && res.status !== 201) {
-          if (res.status === 401) {
-            throw new Error("User not exist or incorrect password.");
-          }
-          console.log("Error!");
-          throw new Error("Could not authenticate you!");
-        }
-        return res.json();
-      })
-      .then((resData) => {
-        // console.log(resData);
-        newHistory.replace("/");
-        setState((prevState) => {
-          return {
-            ...prevState,
-            isAuth: true,
-            token: resData.token,
-            authLoading: false,
-            userId: resData.userId,
-            name: resData.name,
-          };
-        });
-        localStorage.setItem("token", resData.token);
-        localStorage.setItem("userId", resData.userId);
-        localStorage.setItem("name", resData.name);
-        const remainingMilliseconds = 60 * 60 * 1000;
-        const expiryDate = new Date(
-          new Date().getTime() + remainingMilliseconds
-        );
-        localStorage.setItem("expiryDate", expiryDate.toISOString());
-        setAutoLogout(remainingMilliseconds);
-        newHistory.replace("/");
-      })
-      .catch((err) => {
-        console.log(err);
-        const newErr = {
-          name: 'Ошибка подключения',
-          message: 'Проблемы с подключением к серверу.'
-        }
-        const error = err.message === 'Failed to fetch' ? newErr : err;
-
-        setState((prevState) => {
-          return {
-            ...prevState,
-            isAuth: false,
-            authLoading: false,
-            error: error,
-            errorShown: true,
-          };
-        });
-      });
+    dispatch(login(authData));
   };
 
   const signupHandler = (authData) => {
-    console.log(authData);
-    setState((prevState) => {
-      return { ...prevState, authLoading: true };
-    });
-    fetch(SIGNUP_URL, {
-      method: "PUT",
-      headers: { "Content-type": "application/json" },
-      body: JSON.stringify(authData),
-    })
-      .then((res) => {
-        if (res.status === 422) {
-          throw new Error(
-            "Validation failed. Make shure the email adress isn't used yet"
-          );
-        }
-        if (res.status !== 200 && res.status !== 201) {
-          console.log("Error!");
-          throw new Error("Creating a user failed");
-        }
-        return res.json();
-      })
-      .then((resData) => {
-        // console.log(resData);
-        setState((prevState) => {
-          return { ...prevState, isAuth: false, authLoading: false };
-        });
-        loginHandler(authData);
-        newHistory.replace("/");
-      })
-      .catch((err) => {
-        console.log(err);
-        setState((prevState) => {
-          return {
-            ...prevState,
-            isAuth: false,
-            authLoading: false,
-            error: err,
-            errorShown: true,
-          };
-        });
-      });
+    dispatch(signup(authData))
+    // console.log(authData);
+    // setState((prevState) => {
+    //   return { ...prevState, authLoading: true };
+    // });
+    // fetch(SIGNUP_URL, {
+    //   method: "PUT",
+    //   headers: { "Content-type": "application/json" },
+    //   body: JSON.stringify(authData),
+    // })
+    //   .then((res) => {
+    //     if (res.status === 422) {
+    //       throw new Error(
+    //         "Validation failed. Make shure the email adress isn't used yet"
+    //       );
+    //     }
+    //     if (res.status !== 200 && res.status !== 201) {
+    //       console.log("Error!");
+    //       throw new Error("Creating a user failed");
+    //     }
+    //     return res.json();
+    //   })
+    //   .then((resData) => {
+    //     // console.log(resData);
+    //     setState((prevState) => {
+    //       return { ...prevState, isAuth: false, authLoading: false };
+    //     });
+    //     loginHandler(authData);
+    //     newHistory.replace("/");
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //     setState((prevState) => {
+    //       return {
+    //         ...prevState,
+    //         isAuth: false,
+    //         authLoading: false,
+    //         error: err,
+    //         errorShown: true,
+    //       };
+    //     });
+    //   });
   };
 
   const errorCloseHandler = () => {
-    setState((prevState) => {
-      return { ...prevState, errorShown: false };
-    });
+    //   setState((prevState) => {
+    //     return { ...prevState, errorShown: false };
+    //   });
   };
 
   const showError = (errorString) => {
-    setState(prevState => {
-      return {
-        ...prevState, error: errorString,
-        errorShown: true,
-      }
-    })
+    // setState(prevState => {
+    //   return {
+    //     ...prevState, error: errorString,
+    //     errorShown: true,
+    //   }
+    // })
+    dispatch(setError(errorString));
   }
+
 
   const showStatus = (str) => {
     let obj;
@@ -286,26 +234,18 @@ function App() {
         break;
     }
 
-    setState(prevState => {
-      return {
-        ...prevState, status: obj
-      }
-    })
+    dispatch(setError({ status: obj }))
+
   }
 
   const clearStatus = () => {
-    setState(prevState => {
-      return {
-        ...prevState, status: null
-      }
-    })
+    dispatch(setError({ status: null }))
   }
 
   return (
     <Fragment>
       <Router history={newHistory}>
         <Header
-          state={state}
           logout={logoutHandler}
           themeToggle={themeToggle}
           isDark={isDark}
@@ -313,18 +253,18 @@ function App() {
         <Switch>
           <Route path="/" exact>
             <section className="mainSection">
-              <HomePage userState={userState} showStatus={showStatus} showError={showError} />
+              <HomePage showStatus={showStatus} showError={showError} />
             </section>
             <Footer />
           </Route>
           <Route path="/item/:itemId" exact>
             <section className="mainSection">
-              <ItemPage userState={userState} history={newHistory} showStatus={{ status: showStatus, clearStatus: clearStatus, onError: showError }} />
+              <ItemPage history={newHistory} showStatus={{ status: showStatus, clearStatus: clearStatus, onError: showError }} />
             </section>
             <Footer />
           </Route>
           <Route path="/login" exact>
-            <LoginPage onLogin={loginHandler} history={newHistory} loading={state.authLoading} />
+            <LoginPage onLogin={loginHandler} history={newHistory} />
           </Route>
           <Route path="/signup" exact>
             <SignupPage onSignup={signupHandler} loading={state.authLoading} />
@@ -335,7 +275,7 @@ function App() {
             </section>
           </Route>
           <Route path="/userfeed" exact>
-            <UsersFeed userState={userState} showStatus={{ status: showStatus, clearStatus: clearStatus, onError: showError }} />
+            <UsersFeed showStatus={{ status: showStatus, clearStatus: clearStatus, onError: showError }} />
             <Footer />
           </Route>
           <Route path='/about' exact>
@@ -349,14 +289,15 @@ function App() {
             <NotFound history={newHistory} />
           </Route>
         </Switch>
-        {!!state.status && <Notificator status={state.status} clearStatus={clearStatus} />}
+        {!!userState.status && <Notificator status={userState.status} clearStatus={clearStatus} />}
         {/* <Notificator status={{message: "TESTING", title: "Sending request"}} clearStatus={clearStatus} /> */}
-        {state.errorShown && (
-          <ErrorPopup error={state.error} close={errorCloseHandler} />
+        {userState.errorShown && (
+          <ErrorPopup error={userState.error} close={errorCloseHandler} />
         )}
       </Router>
     </Fragment>
   );
-}
+};
+
 
 export default App;

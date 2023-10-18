@@ -1,8 +1,10 @@
 import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
 // import classes from "./Header.module.css";
 import { Fragment } from "react";
+import { useSelector } from 'react-redux';
 
-const Header = ({ state, logout, themeToggle, isDark }) => {
+const Header = ({ logout, themeToggle, isDark }) => {
+  const state = useSelector((state) => state.userState);
 
   const userName = !!state.name ? state.name : "username";
   const userFirstLetter = userName.match(/\b(\w)/)[0];
