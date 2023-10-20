@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { showNotice } from "./../store/notice-actions";
 
 import FavoriteSlider from "../ui/FavoriteSlider";
 import ItemActions from "../ui/ItemActions";
@@ -10,7 +11,8 @@ import { ITEM_URL } from '../links';
 import NotFound from '../pages/NotFound';
 
 
-const ItemPage = ({ history, showStatus }) => {
+const ItemPage = ({ showStatus }) => {
+  const dispatch = useDispatch();
   const userState = useSelector((state) => state.userState);
   const params = useParams();
   const itemId = params.itemId;
@@ -30,7 +32,7 @@ const ItemPage = ({ history, showStatus }) => {
       .then((res) => {
         // showStatus.status('loading');
         if (res.status === 404) {
-          showStatus.status('error');
+          dispatch(showNotice('error'));
           setState(() => {
             return { status: 404 }
           })
@@ -45,8 +47,7 @@ const ItemPage = ({ history, showStatus }) => {
         });
       })
       .catch((err) => {
-        showStatus.status('error');
-        showStatus.onError({ message: err.message, name: 'Ошибка подключение к серверу' });
+        dispatch(showNotice('error'))
         setState(() => {
           return { status: 404 };
         })
@@ -62,7 +63,7 @@ const ItemPage = ({ history, showStatus }) => {
 
   return (
     <div className={'itemPage'}>
-      {!state.data && <NotFound history={history} />}
+      {!state.data && <NotFound />}
       {state.status === 200 &&
         <div className={'mainInfo'}>
           <div className={'mainContainer'}>

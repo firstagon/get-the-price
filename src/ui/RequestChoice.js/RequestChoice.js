@@ -1,10 +1,15 @@
 import { useState } from "react";
+import { useSelector, useDispatch } from 'react-redux';
+import { showNotice } from "../../store/notice-actions";
 // import classes from "./RequestChioce.module.css";
 import Input from "../InputForms/Input";
 import { urlOzon } from "../../util/validators";
 import { BACK_URL } from '../../links';
 
-const RequestChoice = ({ userState, showError, showStatus }) => {
+const RequestChoice = () => {
+  const dispatch = useDispatch();
+  const userState = useSelector(state => state.userState);
+  const noticeState = useSelector(state => state.noticeState);
   const [state, setState] = useState({
     urlForm: {
       url: {
@@ -71,15 +76,26 @@ const RequestChoice = ({ userState, showError, showStatus }) => {
   const submitHandler = (e) => {
     e.preventDefault();
     const inputValue = state.urlForm.url.value;
-    showStatus('loading')
+
+    console.log(noticeState);
+    dispatch(showNotice('loading'));
+
     fetch(BACK_URL, {
       method: "POST",
-      headers: { "Content-type": "application/json" },
+      headers: {
+        "Content-type": "application/json",
+        Authorization: `${userState.token}`
+
+      },
       body: JSON.stringify({ url: inputValue, ...userState }),
-    }).then(res => showStatus('loaded')).catch(err => {
-      console.log(err)
-      showStatus('error')
-      showError({message: err.message, name: 'Ошибка подключение к серверу'});
+    }).then(res => {
+      if (res.status === 500) {
+        dispatch(showNotice('errorLink'));
+        return
+      }
+      dispatch(showNotice('loaded'))
+    }).catch(err => {
+      dispatch(showNotice('error'));
     });
   };
 

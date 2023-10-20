@@ -1,4 +1,5 @@
 import { stateActions as state } from "./state-slice";
+import { errorActions as errState } from './error-slice';
 
 import { LOGIN_URL, SIGNUP_URL } from '../links';
 
@@ -15,8 +16,7 @@ export const logout = (dispatch) => {
     localStorage.removeItem("name");
 };
 
-export const login = (authData) => {
-
+export const login = (authData, history) => {
     return async (dispatch) => {
         fetch(LOGIN_URL, {
             method: "POST",
@@ -26,19 +26,48 @@ export const login = (authData) => {
             body: JSON.stringify(authData),
         })
             .then((res) => {
-                if (res.status === 422) {
-                    throw new Error("Validation failed.");
-                }
-                if (res.status !== 200 && res.status !== 201) {
-                    if (res.status === 401) {
-                        throw new Error("User not exist or incorrect password.");
+                if (res.status !== 200) {
+
+                    const error = {
+                        name: 'Ошибка подключения',
+                        message: 'Проблемы с подключением к серверу.',
                     }
-                    console.log("Error!");
-                    throw new Error("Could not authenticate you!");
+
+                    if (res.status === 422) {
+                        // throw new Error("Validation failed.");
+
+                        error.name = 'Validation failed';
+                        error.message = 'Validation failed';
+                    }
+                    if (res.status !== 200 && res.status !== 201) {
+                        if (res.status === 401) {
+                            // throw new Error("User not exist or incorrect password.");
+
+                            error.name = 'Validation failed';
+                            error.message = "User not exist or incorrect password.";
+                        }
+                        // throw new Error("Could not authenticate you!");
+
+                        error.name = 'Validation failed';
+                        error.message = "Could not authenticate you!";
+                    }
+
+                    dispatch(errState.error({
+                        error: error,
+                        errorShown: true,
+                    }));
                 }
-                return res.json();
+
+                // throw new Error('Server error')
+
+                if (res.status === 200) {
+                    return res.json();
+                }
             })
             .then((resData) => {
+                if (!resData) {
+                    return
+                }
                 dispatch(state.logIn({
                     isAuth: true,
                     token: resData.token,
@@ -54,6 +83,8 @@ export const login = (authData) => {
                     new Date().getTime() + remainingMilliseconds
                 );
                 localStorage.setItem("expiryDate", expiryDate.toISOString());
+
+                history.push('/');
             })
             .catch((err) => {
                 const newErr = {
@@ -62,9 +93,7 @@ export const login = (authData) => {
                 }
                 const error = err.message === 'Failed to fetch' ? newErr : err;
 
-                dispatch(state.error({
-                    isAuth: false,
-                    authLoading: false,
+                dispatch(errState.error({
                     error: error,
                     errorShown: true,
                 }));
@@ -72,7 +101,7 @@ export const login = (authData) => {
     }
 };
 
-export const signup = (authData) => {
+export const signup = (authData, history) => {
     return async (dispatch) => {
 
         fetch(SIGNUP_URL, {
@@ -81,23 +110,43 @@ export const signup = (authData) => {
             body: JSON.stringify(authData),
         })
             .then((res) => {
-                if (res.status === 422) {
-                    throw new Error(
-                        "Validation failed. Make shure the email adress isn't used yet"
-                    );
+                if (res.status !== 200) {
+
+                    const error = {
+                        name: 'Ошибка подключения',
+                        message: 'Проблемы с подключением к серверу.',
+                    }
+
+                    if (res.status === 422) {
+                        error.name = 'Validation failed.';
+                        error.message = "Make shure the email adress isn't used yet"
+                    } else if (res.status !== 200 && res.status !== 201) {
+                        error.name = 'Validation failed.';
+                        error.message = "Creating a user failed"
+                    }
+
+                    dispatch(errState.error({
+                        error: error,
+                        errorShown: true,
+                    }));
+
                 }
-                if (res.status !== 200 && res.status !== 201) {
-                    console.log("Error!");
-                    throw new Error("Creating a user failed");
+                if (res.status === 200) {
+                    return res.json();
                 }
-                return res.json();
             })
             .then((resData) => {
+                if (!resData) {
+                    return;
+                };
+
                 dispatch(state.logIn({
                     authData
                 }))
-                // newHistory.replace("/");
+
+                history.push("/");
             })
+            // .then(res => history.push('/'))
             .catch((err) => {
                 const newErr = {
                     name: 'Ошибка подключения',
@@ -105,9 +154,7 @@ export const signup = (authData) => {
                 }
                 const error = err.message === 'Failed to fetch' ? newErr : err;
 
-                dispatch(state.error({
-                    isAuth: false,
-                    authLoading: false,
+                dispatch(errState.error({
                     error: error,
                     errorShown: true,
                 }));

@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react";
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { showNotice } from "../../store/notice-actions";
 import ItemsList from "../../ui/itemsList/ItemsList";
 import { FEED_URL } from '../../links';
 import NotFound from '../NotFound';
 
-const UsersFeed = ({ showStatus }) => {
+
+const UsersFeed = () => {
+  const dispatch = useDispatch();
   const userState = useSelector((state) => state.userState);
 
   const [_state, setState] = useState(false);
@@ -56,7 +59,7 @@ const UsersFeed = ({ showStatus }) => {
           return sorted;
         });
       })
-      .catch((err) => showStatus.status('error'));
+      .catch((err) => dispatch(showNotice('error')));
   };
 
   useEffect(() => {

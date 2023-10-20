@@ -19,21 +19,16 @@ import UsersFeed from "./pages/UsersFeed/UsersFeed";
 import AboutPage from "./pages/About/AboutPage";
 import Notificator from "./ui/notifications/Notificator";
 import NotFound from "./pages/NotFound";
-// import getLocation from "./middleware/getLocation";
-
-// import { LOGIN_URL, SIGNUP_URL } from './links';
 
 const newHistory = createBrowserHistory();
-
-
-
-
 
 function App() {
   const dispatch = useDispatch();
   const userState = useSelector((state) => state.userState);
+  const errorState = useSelector(state => state.errorState);
+  const noticeState = useSelector(state => state.noticeState);
 
-  // console.log(userState)
+  console.log(noticeState)
 
   const token = localStorage.getItem("token");
   const expiryDate = localStorage.getItem("expiryDate");
@@ -107,43 +102,17 @@ function App() {
   }
 
   const loginHandler = (authData) => {
-    dispatch(login(authData));
+    dispatch(login(authData, newHistory))
   };
 
   const signupHandler = (authData) => {
-    dispatch(signup(authData))
-  };
-
-  const errorCloseHandler = () => {
+    dispatch(signup(authData, newHistory))
   };
 
   const showError = (errorString) => {
     dispatch(setError(errorString));
   }
 
-
-  const showStatus = (str) => {
-    let obj;
-    switch (str) {
-      case 'loading':
-        obj = { message: "Идет поиск товара", title: "Sending request" };
-        break;
-      case 'complete':
-        obj = { message: "Товар успешно добавлен", title: "Complete" };
-        break;
-      case 'loaded':
-        obj = { message: 'Загрузка завершена', title: 'Complete' };
-        break;
-      case 'error':
-        obj = { message: "Ошибка подключения к серверу", title: "Error" }
-        break;
-      default:
-        break;
-    }
-
-    dispatch(setError({ status: obj }))
-
-  }
 
   const clearStatus = () => {
     dispatch(setError({ status: null }))
@@ -160,13 +129,13 @@ function App() {
         <Switch>
           <Route path="/" exact>
             <section className="mainSection">
-              <HomePage showStatus={showStatus} showError={showError} />
+              <HomePage showError={showError} />
             </section>
             <Footer />
           </Route>
           <Route path="/item/:itemId" exact>
             <section className="mainSection">
-              <ItemPage history={newHistory} showStatus={{ status: showStatus, clearStatus: clearStatus, onError: showError }} />
+              <ItemPage history={newHistory} />
             </section>
             <Footer />
           </Route>
@@ -182,7 +151,7 @@ function App() {
             </section>
           </Route>
           <Route path="/userfeed" exact>
-            <UsersFeed showStatus={{ status: showStatus, clearStatus: clearStatus, onError: showError }} />
+            <UsersFeed />
             <Footer />
           </Route>
           <Route path='/about' exact>
@@ -196,11 +165,8 @@ function App() {
             <NotFound history={newHistory} />
           </Route>
         </Switch>
-        {!!userState.status && <Notificator status={userState.status} clearStatus={clearStatus} />}
-        {/* <Notificator status={{message: "TESTING", title: "Sending request"}} clearStatus={clearStatus} /> */}
-        {userState.errorShown && (
-          <ErrorPopup error={userState.error} close={errorCloseHandler} />
-        )}
+        {noticeState.isShown && <Notificator />}
+        {errorState.errorShown && <ErrorPopup />}
       </Router>
     </Fragment>
   );

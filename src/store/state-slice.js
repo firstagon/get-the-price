@@ -7,10 +7,7 @@ const stateSlice = createSlice({
         token: null,
         userId: null,
         authLoading: false,
-        error: null,
-        errorShown: false,
         name: null,
-        status: null,
         location: null
     },
     reducers: {
@@ -23,9 +20,7 @@ const stateSlice = createSlice({
         init(state, action) {
             return { ...state, ...action.payload };
         },
-        error(state, action) {
-            return { ...state, ...action.payload };
-        },
+
     },
 });
 

@@ -1,13 +1,27 @@
-const Notificator = ({ status }) => {
-    const statusState = status.title === "Sending request" ? '' : status.title === 'Complete' ? 
-    'complete' :  'error';
+import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 
-    return <div className={"notificator " + statusState}>
+const Notificator = () => {
+    const state = useSelector(state => state.noticeState);
+    let status = state.status;
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            return status = '';
+        }, 1000);
+        if (state.noticeStatus === 'complete' || state.noticeStatus === 'error') {
+            timer();
+        }
+
+        return () => clearTimeout(timer);
+    }, [status]);
+
+    return <div className={"notificator " + status}>
 
         <div className="notificatorBlock">
-            <h4 className="notificatorHeader"> {status.title} </h4>
+            <h4 className="notificatorHeader"> {state.title} </h4>
             <span className="notificationDelimeter "> | </span>
-            <p className={"notificatorText"}> {status.message} </p>
+            <p className={"notificatorText"}> {state.message} </p>
         </div>
 
     </div>

@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
-const NotFound = ({ history, type }) => {
+const NotFound = ({ type }) => {
     const tp = type ? type : '';
 
     switch (tp) {

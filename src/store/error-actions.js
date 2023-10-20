@@ -1,7 +1,9 @@
-import {stateActions as state} from "./state-slice";
+import { errorActions as state } from "./error-slice";
 
-export const setError = (obj, dispatch) => {
-    dispatch(state.error({
-        ...obj
-    }))
+export const setError = (obj) => {
+    return (dispatch) => {
+        dispatch(state.error({
+            ...obj
+        }))
+    }
 }
