@@ -13,7 +13,7 @@ const joinBlock = (
 
 const loggedBlock = (
   <div className="joinBlock">
-    <Link to="/profile" className="joinCard">
+    <Link to="/" className="joinCard">
       <p className="joinText">Профиль</p>
     </Link>
     <Link to="/userfeed" className="joinCard">

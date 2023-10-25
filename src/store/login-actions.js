@@ -103,14 +103,13 @@ export const login = (authData, history) => {
 
 export const signup = (authData, history) => {
     return async (dispatch) => {
-
         fetch(SIGNUP_URL, {
             method: "PUT",
             headers: { "Content-type": "application/json" },
             body: JSON.stringify(authData),
         })
             .then((res) => {
-                if (res.status !== 200) {
+                if (res.status !== 201) {
 
                     const error = {
                         name: 'Ошибка подключения',
@@ -131,7 +130,8 @@ export const signup = (authData, history) => {
                     }));
 
                 }
-                if (res.status === 200) {
+
+                if (res.status === 201) {
                     return res.json();
                 }
             })
@@ -140,13 +140,10 @@ export const signup = (authData, history) => {
                     return;
                 };
 
-                dispatch(state.logIn({
-                    authData
-                }))
-
-                history.push("/");
+                dispatch(login({
+                    ...authData
+                }, history));
             })
-            // .then(res => history.push('/'))
             .catch((err) => {
                 const newErr = {
                     name: 'Ошибка подключения',

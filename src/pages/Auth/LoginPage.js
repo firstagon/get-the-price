@@ -111,7 +111,7 @@ const LoginPage = (props) => {
     e.preventDefault();
     props.onLogin({
       email: "test@test.ru",
-      password: "testmeplease",
+      password: "123456",
     });
     props.history.push('/');
 

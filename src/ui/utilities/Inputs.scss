@@ -37,7 +37,8 @@ input[type="password"] {
   width: 50%;
 }
 
-input[type="submit"], .inputButton {
+input[type="submit"],
+.inputButton {
   width: 100%;
   background-color: $main-green;
   padding: 5px 5px;
@@ -51,7 +52,8 @@ input[type="submit"], .inputButton {
   color: $font-color;
 }
 
-input[type="submit"]:disabled, .inputButton:disabled {
+input[type="submit"]:disabled,
+.inputButton:disabled {
   background-color: rgba($base-color, 0.5);
   border: 1px solid $base-grey-light;
   cursor: default;
@@ -60,16 +62,18 @@ input[type="submit"]:disabled, .inputButton:disabled {
   opacity: 0.5;
 }
 
-input[type="submit"]:hover, .inputButton:hover {
+input[type="submit"]:hover,
+.inputButton:hover {
   border: 1px solid transparent;
   background-color: $main-blue;
   color: $font-color;
   transition: all 0.2s ease-out;
-  
+
   opacity: 1;
 }
 
-input[type="submit"]:disabled:hover, .inputButton:disabled:hover {
+input[type="submit"]:disabled:hover,
+.inputButton:disabled:hover {
   border: 1px solid $base-grey-light;
   background-color: rgba($base-color, 0.7);
 }
@@ -87,10 +91,6 @@ input[type="submit"]:disabled:hover, .inputButton:disabled:hover {
   height: 100%;
 
   background-color: $base-bg;
-}
-
-::-webkit-scrollbar {
-  display: none;
 }
 
 .loginSection {
@@ -122,18 +122,18 @@ input[type="submit"]:disabled:hover, .inputButton:disabled:hover {
 }
 
 .signupForm,
-.loginBlock {
-  padding: 15px;
+.loginBlock,
+.loginForm {
   display: flex;
   flex-direction: column;
   width: 100%;
 
-  padding:0;
+  padding: 0;
 }
 
 .eye {
   content: url(../../icons/iconsItems/eyeClosed.svg);
-  
+
   display: inline-block;
   position: absolute;
   width: 20px;
@@ -190,7 +190,6 @@ input[type="submit"]:disabled:hover, .inputButton:disabled:hover {
 .subButton:hover {
   background-color: $main-blue;
   border: 1px solid transparent;
-
 }
 
 .subButtText {
@@ -220,8 +219,7 @@ input[type="submit"]:disabled:hover, .inputButton:disabled:hover {
   user-select: none;
   cursor: help;
 
-  transition: border 350ms ease,
-  color 350ms ease;
+  transition: border 350ms ease, color 350ms ease;
 }
 
 .questionMark:hover {
@@ -257,13 +255,12 @@ input[type="submit"]:disabled:hover, .inputButton:disabled:hover {
 }
 
 .inputButton:hover {
-    /* background-color: #45a049; */
-    border: 1px solid transparent;
-    background-color: $main-blue;
-    // color: black;
-    transition: all 0.2s ease-out;
-    color: rgba($font-vsColor, 0.8);
-
+  /* background-color: #45a049; */
+  border: 1px solid transparent;
+  background-color: $main-blue;
+  // color: black;
+  transition: all 0.2s ease-out;
+  color: rgba($font-vsColor, 0.8);
 }
 
 .greenHighlight {
@@ -275,4 +272,10 @@ input[type="submit"]:disabled:hover, .inputButton:disabled:hover {
   border: 1px solid transparent;
   // background: 1px solid rgb(252, 94, 94);
   background: 1px solid $main-red;
+}
+
+@media (max-width: 720px) {
+  .loginSection {
+    width: 90vw;
+  }
 }

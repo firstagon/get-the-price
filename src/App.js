@@ -28,7 +28,7 @@ function App() {
   const errorState = useSelector(state => state.errorState);
   const noticeState = useSelector(state => state.noticeState);
 
-  console.log(noticeState)
+  // console.log(noticeState);
 
   const token = localStorage.getItem("token");
   const expiryDate = localStorage.getItem("expiryDate");
@@ -51,8 +51,8 @@ function App() {
     } else if (theme === "true") {
       setIsDark(true);
     } else {
-      setIsDark(false);
-      localStorage.setItem("theme", 'false');
+      setIsDark(true);
+      localStorage.setItem("theme", 'true');
     }
 
   };

@@ -85,7 +85,6 @@ const RequestChoice = () => {
       headers: {
         "Content-type": "application/json",
         Authorization: `${userState.token}`
-
       },
       body: JSON.stringify({ url: inputValue, ...userState }),
     }).then(res => {

@@ -39,11 +39,11 @@ const Header = ({ logout, themeToggle, isDark }) => {
               </div>
             </div>
           </button>
-          <NavLink to="/" exact style={{ marginRight: '1vw' }} className={"navLinkb textLink"}>
+          <NavLink to="/" exact className={"navLink linkText"}>
             Домой
           </NavLink>
           {!!state.token &&
-            <NavLink to="/userfeed" className={"navLinkb textLink"}>
+            <NavLink to="/userfeed" className={"navLink linkText"}>
               Лента
             </NavLink>}
         </nav>
@@ -63,9 +63,9 @@ const Header = ({ logout, themeToggle, isDark }) => {
               )}
               {state.isAuth && (
                 <Fragment>
-                  <NavLink to="/profile" className={"linkText"}>
+                  {/* <NavLink to="/profile" className={"linkText"}>
                     Профиль
-                  </NavLink>
+                  </NavLink> */}
                   <button className={"linkText"} onClick={logout}>
                     Выйти
                   </button>
@@ -73,9 +73,9 @@ const Header = ({ logout, themeToggle, isDark }) => {
               )}
             </div>
           </div>
-          <div className={"userImage"} alt="profile pic">
+          {!!state.name && <div className={"userImage"} alt="profile pic">
             {userFirstLetter.toUpperCase()}
-          </div>
+          </div>}
         </div>
       </div>
     </header>

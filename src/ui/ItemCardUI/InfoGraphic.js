@@ -34,7 +34,7 @@ const chartRender = (ref, points) => {
 
 
     //Creating a function to render middleware points
-    const startX = 60;
+    const startX = 50;
     const startY = height * 0.9;
     const scaleRatio = 0.6;
 
@@ -96,7 +96,7 @@ const chartRender = (ref, points) => {
         height
       );
 
-        return
+      return
     }
 
     for (let i = 0; i < pointsToRender.length; i++) {
@@ -117,7 +117,7 @@ const chartRender = (ref, points) => {
 
       const point = pointsToRender[i].currentValue.point;
 
-      const ratioShortArray = pointsToRender.length < 3 ? (i + 1 * 125) : '';
+      const ratioShortArray = pointsToRender.length < 3 ? (i + 1 * 125) : pointsToRender.length * 11;
 
       ctx.rect(
         width / pointsToRender.length + startX + startX * i + 10 + i * 5 - ratioShortArray,

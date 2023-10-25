@@ -1,4 +1,4 @@
-import crossIcon from "../../icons/cross-closeicon.svg";
+// import crossIcon from "../../icons/cross-closeicon.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { setError } from "../../store/error-actions";
 
@@ -15,7 +15,7 @@ const ErrorPopup = (props) => {
 
   const errState = useSelector(state => state.errorState);
 
-  console.log(errState);
+  // console.log(errState);
 
   return (
     <div className="errorSection">

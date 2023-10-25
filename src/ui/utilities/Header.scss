@@ -66,7 +66,7 @@
 
 .userData {
   display: flex;
-  flex-direction: column;
+  flex-direction: row-reverse;
   justify-content: center;
   align-items: flex-end;
 
@@ -128,25 +128,26 @@
 .navLink {
   display: flex;
 
-  margin-left: 2vw;
   white-space: nowrap;
 
   width: 20px;
-  height: 20px;
+  // height: 20px;
 
   color: $main-link;
+
+  text-decoration: none;
 }
 
 .navLink:hover {
   color: $main-link-hover;
 }
 
-.textLink {
-  margin: 0;
-  padding: 0;
-  width: fit-content;
-  color: $main-link;
-}
+// .textLink {
+//   margin: 0;
+//   padding: 0;
+//   width: fit-content;
+//   color: $main-link;
+// }
 
 .iconHome {
   background-image: url(../../icons/home-icon.svg);
@@ -182,22 +183,35 @@
 
   border: none;
 
+  font-weight: 500;
+
+  width: fit-content;
+
+  padding: 0 5px;
+  margin: 0 5px;
+
   background: none;
 
   font-size: inherit;
   font-family: $font-text;
   text-decoration: underline;
-  color: $main-link;
+  color: $font-color;
+  text-decoration: none;
+
+  // border-left: 1px solid $font-color;
+  // border-right: 1px solid $font-color;
 
   cursor: pointer;
 }
 
-.userLoginBlock .linkText:last-child {
-  margin-left: 0.5em;
-}
+// .userLoginBlock .linkText:last-child {
+//   margin-left: 0.5em;
+// }
 
-.active {
-  color: $main-link-accent;
+.active, .linkText:hover {
+  color: $main-link-accent !important;
+  font-weight: 600;
+  // border-color: $main-link-accent !important;
 }
 
 .themeToggle_Container {
@@ -288,3 +302,4 @@
 }
 
 }
+
