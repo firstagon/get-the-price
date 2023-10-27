@@ -1,14 +1,10 @@
-import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import UitFavorite from '../../icons/iconsItems/favStar';
-import { ITEM_FAV } from '../../links';
+import { useDispatch } from 'react-redux';
+import { setFavorite } from "../../store/items-actions";
 
-
-
-const ItemList = ({ items, sortByFav }) => {
-
-  const [state, setState] = useState(items);
-
+const ItemList = ({ items, token }) => {
+  const dispatch = useDispatch();
   const history = useHistory();
 
   const itemHandler = (e, code) => {
@@ -17,47 +13,20 @@ const ItemList = ({ items, sortByFav }) => {
 
   const setFav = (e, itemCode, fav) => {
     e.stopPropagation();
-
-    let promise = new Promise((resolve, reject) => {
-      const newItems = [...state];
-      const modItem = newItems.find((el) => {
-        return el.itemCode === itemCode;
-      })
-      modItem.favorite = !modItem.favorite;
-      resolve(setState(newItems));
-    });
-
-    promise.then(() => {
-      fetch(ITEM_FAV, {
-        method: "POST",
-        headers: new Headers({
-          "Content-type": "application/json",
-          "Authorization": localStorage.getItem('token'),
-        }),
-        body: JSON.stringify({
-          itemCode,
-          userId: localStorage.getItem('userId'),
-          token: localStorage.getItem('token'),
-          isFav: !fav,
-        }),
-      })
-    })
-
+    dispatch(setFavorite(itemCode, fav, token));
   }
 
-  useEffect(() => {
-    setState(items)
-  }, [items])
-
-  return state.map((el) => {
+  return items.map((el) => {
     if (!el.data) {
       return "";
     }
+
     const itemImage = el.data.imageUrl;
+
     return (
       <li
         className={"itemSection"}
-        key={state.indexOf(el)}>
+        key={items.indexOf(el)}>
         <div className={"itemBlock"} onClick={(e) => itemHandler(e, el.itemCode)}>
           <img className={"feedImage"} src={itemImage} alt="how good looks" />
           <div className={"itemBlock_info"}>
@@ -79,6 +48,5 @@ const ItemList = ({ items, sortByFav }) => {
     );
   });
 };
-
 
 export default ItemList;

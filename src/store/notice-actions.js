@@ -8,6 +8,9 @@ export const showNotice = (str) => {
             'loaded': { message: 'Загрузка завершена', title: 'Complete', status: 'complete' },
             'error': { message: "Ошибка подключения к серверу", title: "Error", status: 'error' },
             'errorLink': { message: "Проверьте ссылку на товар", title: "Error", status: 'error' },
+            'errorToFavorite': { message: "Ошибка добавления", title: "Error", status: 'error' },
+            'loadiingFeed': { message: "Загрузка ленты товаров", title: "Loading", status: '' },
+            'loadedFeed': { message: "С возвращением", title: "Loading", status: 'complete' },
             'unknown': { message: 'unknown', title: 'not handled' }
         }
 

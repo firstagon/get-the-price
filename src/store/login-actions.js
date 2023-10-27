@@ -1,5 +1,6 @@
 import { stateActions as state } from "./state-slice";
 import { errorActions as errState } from './error-slice';
+import { itemsActions } from "./items-slice";
 
 import { LOGIN_URL, SIGNUP_URL } from '../links';
 
@@ -14,6 +15,9 @@ export const logout = (dispatch) => {
     localStorage.removeItem("expiryDate");
     localStorage.removeItem("userId");
     localStorage.removeItem("name");
+
+    dispatch(itemsActions.clearAll());
+
 };
 
 export const login = (authData, history) => {

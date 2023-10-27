@@ -1,11 +1,12 @@
 import { useState } from "react";
 
-// import classes from "./LoginPage.module.css";
 import Input from "../../ui/InputForms/Input";
 import { required, length, email } from "../../util/validators";
+import { useDispatch } from 'react-redux';
+import { login } from "../../store/login-actions";
 
 const LoginPage = (props) => {
-
+  const dispatch = useDispatch();
   const [state, setState] = useState({
     loginForm: {
       email: {
@@ -78,6 +79,7 @@ const LoginPage = (props) => {
 
   const submitHandler = (e) => {
     e.preventDefault();
+
     if (!state.formIsValid) {
       if (!state.loginForm.email.touched) {
         setButtonText("Введите Емэйл");
@@ -85,10 +87,11 @@ const LoginPage = (props) => {
       }
       return;
     }
-    props.onLogin({
+    const authData = {
       email: state.loginForm.email.value,
       password: state.loginForm.password.value,
-    });
+    }
+    dispatch(login(authData, props.history));
   };
 
   const eyeHandler = (synteticE) => {
@@ -108,13 +111,16 @@ const LoginPage = (props) => {
   };
 
   const submitTestHandler = (e) => {
+
     e.preventDefault();
-    props.onLogin({
+    const authData = {
       email: "test@test.ru",
       password: "123456",
-    });
-    props.history.push('/');
+    };
 
+    dispatch(login(authData, props.history));
+
+    props.history.push('/');
   };
 
   const questionEnterHandler = (e) => {
@@ -136,6 +142,7 @@ const LoginPage = (props) => {
               type="text"
               id="email"
               placeholder="Enter E-mail"
+              autocomplete='email'
               onFocus={(e) => (e.target.placeholder = "")}
               onBlur={inputBlurHandler}
               eye={false}
@@ -145,6 +152,7 @@ const LoginPage = (props) => {
               type={state.loginForm.password.hided ? "password" : "text"}
               id="password"
               placeholder="Enter password"
+              autocomplete='current-password'
               onFocus={(e) => (e.target.placeholder = "")}
               onBlur={inputBlurHandler}
               eye={true}
@@ -152,14 +160,6 @@ const LoginPage = (props) => {
               onChange={inputChangeHandler}
               eyeClick={eyeHandler}
             />
-            {/* <input
-              type="submit"
-              name="submit"
-              placeholder="Submit"
-              onClick={submitHandler}
-              disabled={!state.formIsValid}
-            /> */}
-
             <button
               className="inputButton"
               onClick={submitHandler}

@@ -13,6 +13,7 @@ const Input = (props) => {
     eye,
     hided,
     eyeToggle,
+    autocomplete,
   } = props;
   return (
     <div className={'flexInput'}>
@@ -22,6 +23,7 @@ const Input = (props) => {
       <div className={'inputBlock'}>
         <input
           id={id}
+          autoComplete={autocomplete}
           type={eyeToggle ? "text" : type}
           placeholder={placeholder}
           className={'inputInput'}

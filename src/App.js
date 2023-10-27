@@ -2,7 +2,7 @@ import React, { Fragment, useState, useEffect } from "react";
 import { createBrowserHistory } from "history";
 import { Router, Switch, Route } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { logout, login, signup, init } from "./store/login-actions";
+import { logout, init } from "./store/login-actions";
 import { setError } from './store/error-actions';
 
 import "./App.scss";
@@ -24,11 +24,9 @@ const newHistory = createBrowserHistory();
 
 function App() {
   const dispatch = useDispatch();
-  const userState = useSelector((state) => state.userState);
+  // const userState = useSelector((state) => state.userState);
   const errorState = useSelector(state => state.errorState);
   const noticeState = useSelector(state => state.noticeState);
-
-  // console.log(noticeState);
 
   const token = localStorage.getItem("token");
   const expiryDate = localStorage.getItem("expiryDate");
@@ -101,21 +99,8 @@ function App() {
     }, millisseconds);
   }
 
-  const loginHandler = (authData) => {
-    dispatch(login(authData, newHistory))
-  };
-
-  const signupHandler = (authData) => {
-    dispatch(signup(authData, newHistory))
-  };
-
   const showError = (errorString) => {
     dispatch(setError(errorString));
-  }
-
-
-  const clearStatus = () => {
-    dispatch(setError({ status: null }))
   }
 
   return (
@@ -135,15 +120,15 @@ function App() {
           </Route>
           <Route path="/item/:itemId" exact>
             <section className="mainSection">
-              <ItemPage history={newHistory} />
+              <ItemPage />
             </section>
             <Footer />
           </Route>
           <Route path="/login" exact>
-            <LoginPage onLogin={loginHandler} history={newHistory} />
+            <LoginPage history={newHistory} />
           </Route>
           <Route path="/signup" exact>
-            <SignupPage onSignup={signupHandler} />
+            <SignupPage history={newHistory} />
           </Route>
           <Route path="/profile" exact>
             <section className="mainSection">

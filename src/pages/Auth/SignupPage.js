@@ -2,9 +2,11 @@ import { useState } from "react";
 
 import Input from "../../ui/InputForms/Input";
 import { required, length, email } from "../../util/validators";
+import { useDispatch } from 'react-redux';
+import { signup } from "../../store/login-actions";
 
 const SignupPage = (props) => {
-
+  const dispatch = useDispatch();
   const [state, setState] = useState({
     signupForm: {
       email: {
@@ -81,8 +83,6 @@ const SignupPage = (props) => {
     const value = synteticE.target.value;
     const input = synteticE.target.id;
 
-    // console.log(state);
-
     if (!value) {
       return (synteticE.target.placeholder = `Enter ${input}`);
     }
@@ -119,10 +119,12 @@ const SignupPage = (props) => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    props.onSignup({
+    const authData = {
       email: state.signupForm.email.value,
       password: state.signupForm.password.value,
-    });
+    };
+
+    dispatch(signup(authData, props.history))
   };
 
   return (
@@ -133,6 +135,7 @@ const SignupPage = (props) => {
             <Input
               type="text"
               id="email"
+              autocomplete='email'
               placeholder="Enter E-mail"
               onFocus={(e) => (e.target.placeholder = "")}
               onBlur={inputBlurHandler}
@@ -143,6 +146,7 @@ const SignupPage = (props) => {
               type={state.signupForm.password.hided ? "password" : "text"}
               id="password"
               placeholder="Enter password"
+              autocomplete='new-password'
               onFocus={(e) => (e.target.placeholder = "")}
               onBlur={inputBlurHandler}
               eye={true}
@@ -154,6 +158,7 @@ const SignupPage = (props) => {
               type={state.signupForm.passwordRepeat.hided ? "password" : "text"}
               id="passwordRepeat"
               placeholder="Enter password repeat"
+              autocomplete='new-password'
               onFocus={(e) => (e.target.placeholder = "")}
               onBlur={inputBlurHandler}
               eye={true}
