@@ -1,5 +1,5 @@
 [Demo Site](https://getthepricefront.web.app) (связь c REST API отсутствует).
-
+http://gettheprice.ru
 Простое приложение для отслеживания изменений цены на торговой площадке. 
 Фронт реализован с помощью React + React Router + SCSS.
 
