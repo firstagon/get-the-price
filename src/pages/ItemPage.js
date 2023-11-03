@@ -24,7 +24,7 @@ const ItemPage = () => {
 
   return (
     <div className={'itemPage'}>
-      {!item && <NotFound />}
+      {!item && !userState.token && <NotFound />}
       {!!item &&
         <div className={'mainInfo'}>
           <div className={'mainContainer'}>

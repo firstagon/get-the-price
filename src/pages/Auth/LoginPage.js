@@ -3,9 +3,11 @@ import { useState } from "react";
 import Input from "../../ui/InputForms/Input";
 import { required, length, email } from "../../util/validators";
 import { useDispatch } from 'react-redux';
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { login } from "../../store/login-actions";
 
 const LoginPage = (props) => {
+  const history = useHistory();
   const dispatch = useDispatch();
   const [state, setState] = useState({
     loginForm: {
@@ -91,7 +93,7 @@ const LoginPage = (props) => {
       email: state.loginForm.email.value,
       password: state.loginForm.password.value,
     }
-    dispatch(login(authData, props.history));
+    dispatch(login(authData, history));
   };
 
   const eyeHandler = (synteticE) => {
@@ -118,9 +120,7 @@ const LoginPage = (props) => {
       password: "123456",
     };
 
-    dispatch(login(authData, props.history));
-
-    props.history.push('/');
+    dispatch(login(authData, history));
   };
 
   const questionEnterHandler = (e) => {

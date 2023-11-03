@@ -93,8 +93,6 @@ export const setItem = (itemId, token) => {
                 return res.json();
             })
             .then((res) => {
-                // showStatus.status('loaded');
-                console.log(res)
                 dispatch(state.setItem({ ...res }));
             })
             .catch((err) => {

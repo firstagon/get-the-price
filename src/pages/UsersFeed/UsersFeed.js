@@ -13,10 +13,10 @@ const UsersFeed = () => {
 
   useEffect(() => {
     if (!userState.token) {
-      return
-    }
+      return;
+    };
 
-    dispatch(getItems(userState.token))
+    dispatch(getItems(userState.token));
   }, [userState.token, dispatch]);
 
   return (
