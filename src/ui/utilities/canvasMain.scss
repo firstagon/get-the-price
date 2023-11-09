@@ -1,0 +1,47 @@
+@import "variables";
+
+.threeWrapper {
+  display: flex;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+
+  // background-color: $base-color;
+  background-color: "red";
+
+  overflow: hidden;
+}
+
+.canvasTextContainer {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  top: 35vh;
+  width: 100%;
+  color: black;
+  text-align: center;
+  z-index: -1;
+}
+
+.canvasText {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  color: $font-color;
+
+  text-wrap: balance;
+}
+
+.canvasThree {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+
+  background-color: transparent;
+
+  z-index: 0;
+}

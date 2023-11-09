@@ -46,9 +46,9 @@ const endBlock = (
   </div>
 );
 
-const MainInfo = () => {
+const MainInfo = ({ tran }) => {
   return (
-    <section className={"infoSection"}>
+    <section className={"infoSection"} style={tran}>
       <div className={"infoBlock"}>
         <div className={"infoBlock_text"}>
           <h1 className={"headerMain"}> Как это работает? </h1>

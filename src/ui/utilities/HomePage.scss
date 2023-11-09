@@ -3,6 +3,7 @@
 .welcomeSection {
   display: flex;
   flex-direction: column;
+  z-index: 6;
 }
 
 .welcomeBlock {
@@ -77,6 +78,12 @@ label {
   flex-direction: row;
   justify-content: center;
   align-items: center;
+
+  width: 100%;
+
+  margin-top: 25vh;
+  // margin-bottom: 25vh;
+  z-index: 6;
 }
 
 .joinBlock {
@@ -193,6 +200,14 @@ label {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  width: 100%;
+
+  // background-color: black;
+  border-top-left-radius: 50px;
+  border-top-right-radius: 50px;
+
+  z-index: 10;
 }
 
 .infoBlock {
@@ -498,6 +513,7 @@ label {
   width: 100%;
 
   margin: 2vh 0;
+  z-index: 6;
 }
 
 .logoBlock {
