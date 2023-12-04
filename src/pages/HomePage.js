@@ -7,19 +7,17 @@ import RequestChoice from "../ui/RequestChoice.js/RequestChoice";
 import MainInfo from "../ui/HomePage/MainInfo";
 import CardBlock from "../ui/HomePage/CardBlock";
 import MainLogo from "../ui/HomePage/MainLogo";
-import MainThree from '../ui/three/mainWrapper/MainThree';
+
 
 const isAuth = false;
 // let ratio = 50;
 
-const HomePage = ({ showError, showStatus }) => {
+const HomePage = () => {
   const userState = useSelector((state) => state.userState);
 
   return (
 
     <div className={"mainBody"}>
-      {/* <WelcomeBlock /> */}
-      <MainThree />
       <MainLogo />
       {!!userState.token && <RequestChoice />}
       <CardBlock isToken={!!userState.token} />

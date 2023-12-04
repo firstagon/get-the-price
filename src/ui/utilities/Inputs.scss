@@ -49,6 +49,8 @@ input[type="submit"],
   cursor: pointer;
   transition: all 0.2s ease-in;
 
+  z-index: 10;
+
   color: $font-color;
 }
 

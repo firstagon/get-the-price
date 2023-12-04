@@ -45,3 +45,20 @@
 
   z-index: 0;
 }
+
+.threeWrapperProp {
+  display: flex;
+  position: absolute;
+  bottom: 0;
+  // top: 230vh;
+  left: 0;
+
+  overflow: hidden;
+  z-index: 10;
+}
+
+.canvasProp {
+  display: flex;
+  width: 20vh !important;
+  height: 20vh !important;
+}

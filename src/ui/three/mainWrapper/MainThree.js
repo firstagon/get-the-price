@@ -115,7 +115,7 @@ const MainThree = () => {
         };
 
         window.addEventListener('mousemove', mouseMove);
-        console.log(scene.children)
+        // console.log(scene.children)
 
         let myReq;
         const tick = () => {

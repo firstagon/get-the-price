@@ -23,7 +23,7 @@ const Footer = () => {
           </Link>
         </div>
         <div className="footerBlock_right">
-          <NavLink to='/about' style={{ color: 'white', borderColor: 'white'}} className="linkText"> About page </NavLink>
+          <NavLink to='/about' style={{ color: 'white', borderColor: 'white' }} className="linkText"> About page </NavLink>
         </div>
       </div>
     </footer>
