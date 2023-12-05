@@ -1,16 +1,29 @@
 import { useState } from "react";
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from "react-redux";
 import { showNotice } from "../../store/notice-actions";
-// import classes from "./RequestChioce.module.css";
 import Input from "../InputForms/Input";
 import { urlOzon } from "../../util/validators";
-import { BACK_URL } from '../../links';
+import { BACK_URL } from "../../links";
+import type { AppDispatch, RootState } from "../../store/store";
+import { TextChange } from "typescript";
+
+interface IState {
+  urlForm: {
+    [url: string]: {
+      value: string | null;
+      valid: boolean;
+      touched: boolean;
+      validators: Function[];
+    };
+  };
+  formIsValid: boolean;
+}
 
 const RequestChoice = () => {
-  const dispatch = useDispatch();
-  const userState = useSelector(state => state.userState);
-  const noticeState = useSelector(state => state.noticeState);
-  const [state, setState] = useState({
+  const dispatch: AppDispatch = useDispatch();
+  const userState = useSelector((state: RootState) => state.userState);
+  // const noticeState = useSelector((state: RootState) => state.noticeState);
+  const [state, setState] = useState<IState>({
     urlForm: {
       url: {
         value: "",
@@ -22,9 +35,9 @@ const RequestChoice = () => {
     formIsValid: false,
   });
 
-  const inputChangeHandler = (synteticE) => {
-    const value = synteticE.target.value;
-    const input = synteticE.target.id;
+  const inputChangeHandler = <T extends React.SyntheticEvent<HTMLInputElement>>(synteticE: T) => {
+    const value = (synteticE.currentTarget as HTMLInputElement).value;
+    const input = synteticE.currentTarget.id;
 
     setState((prevState) => {
       let isValid = true;
@@ -51,12 +64,12 @@ const RequestChoice = () => {
     });
   };
 
-  const inputBlurHandler = (synteticE) => {
-    const value = synteticE.target.value;
-    const input = synteticE.target.id;
+  const inputBlurHandler = <T extends React.SyntheticEvent<HTMLInputElement>>(synteticE: T) => {
+    const value = synteticE.currentTarget.value;
+    const input = synteticE.currentTarget.id;
 
     if (!value) {
-      return (synteticE.target.placeholder = `Enter ${input}`);
+      return (synteticE.currentTarget.placeholder = `Enter ${input}`);
     }
 
     setState((prevState) => {
@@ -73,29 +86,30 @@ const RequestChoice = () => {
     });
   };
 
-  const submitHandler = (e) => {
+  const submitHandler = (e: React.SyntheticEvent) => {
     e.preventDefault();
     const inputValue = state.urlForm.url.value;
 
-    console.log(noticeState);
-    dispatch(showNotice('loading'));
+    dispatch(showNotice("loading"));
 
     fetch(BACK_URL, {
       method: "POST",
       headers: {
         "Content-type": "application/json",
-        Authorization: `${userState.token}`
+        Authorization: `${userState.token}`,
       },
       body: JSON.stringify({ url: inputValue, ...userState }),
-    }).then(res => {
-      if (res.status === 500) {
-        dispatch(showNotice('errorLink'));
-        return
-      }
-      dispatch(showNotice('loaded'))
-    }).catch(err => {
-      dispatch(showNotice('error'));
-    });
+    })
+      .then((res) => {
+        if (res.status === 500) {
+          dispatch(showNotice("errorLink"));
+          return;
+        }
+        dispatch(showNotice("loaded"));
+      })
+      .catch((err) => {
+        dispatch(showNotice("error"));
+      });
   };
 
   return (
@@ -106,10 +120,10 @@ const RequestChoice = () => {
             type="text"
             id="url"
             placeholder="Введите ссылку на товар"
-            onFocus={(e) => (e.target.placeholder = "")}
-            onBlur={inputBlurHandler}
+            onFocus={(e) => ((e.target as HTMLInputElement).placeholder = "")}
+            onBlur={(e) => inputBlurHandler(e)}
             eye={false}
-            onChange={inputChangeHandler}
+            onChange={(e) => inputChangeHandler(e)}
           />
           <input
             onClick={submitHandler}

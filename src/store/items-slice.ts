@@ -1,4 +1,4 @@
-import { CreateSliceOptions, Slice, createSlice } from "@reduxjs/toolkit";
+import { Slice, createSlice } from "@reduxjs/toolkit";
 import { PayloadAction } from "@reduxjs/toolkit";
 
 export type TItem = {
@@ -9,10 +9,7 @@ export type TItem = {
   favorite: boolean | undefined;
   data: {
     date: string;
-    itemPrice: {
-      price: number;
-      updated: string;
-    };
+    itemPrice: Array<{ price: number; updated: string }>;
     priceCurrency: string;
     itemCode: number;
     itemName: string;
@@ -24,17 +21,17 @@ export type TItem = {
   };
 };
 
-type TItems = {
-  items: TItem[] | null;
+export type TItems = {
+  items?: TItem[] | null;
   item: TItem | null;
 };
 
-const initialState = {
+const initialState: TItems = {
   items: null,
   item: null,
-} as TItems;
+};
 
-const itemsSlice: Slice = createSlice({
+const itemsSlice: Slice<TItems> = createSlice({
   name: "user-state",
   initialState,
   reducers: {

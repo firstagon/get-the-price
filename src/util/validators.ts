@@ -1,6 +1,6 @@
-export const required = (value) => value.trim() !== "";
+export const required = (value: string) => value.trim() !== "";
 
-export const length = (value) => {
+export const length = (value: string) => {
   const config = { min: 5, max: 100 };
   let isValid = true;
   if (config.min) {
@@ -12,12 +12,12 @@ export const length = (value) => {
   }
 };
 
-export const email = (value) =>
+export const email = (value: string) =>
   /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/.test(
     value
   );
 
-export const urlOzon = (url) => {
+export const urlOzon = (url: string) => {
   const value = url.toString().trim();
   // value.split(".").some((elem) => elem === "ozon");
   return value.split(".").some((elem) => elem === "ozon");

@@ -145,10 +145,10 @@ function App() {
             <Footer />
           </Route>
           <Route path="*">
-            <NotFound type={false} />
+            <NotFound />
           </Route>
           <Route path="/notfound">
-            <NotFound type={false} />
+            <NotFound />
           </Route>
         </Switch>
         {noticeState.isShown && <Notificator />}

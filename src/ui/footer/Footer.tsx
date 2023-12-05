@@ -1,4 +1,4 @@
-import { Link, NavLink } from "react-router-dom/cjs/react-router-dom.min";
+import { Link, NavLink } from "react-router-dom";
 
 import gtIconWhite from "../../icons/github-mark-white.svg";
 import gitHubLogo from "../../icons/GitHub_Logo_White.png";

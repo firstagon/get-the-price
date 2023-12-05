@@ -1,3 +1,4 @@
+[Site](http://gettheprice.ru)
 [Demo Site](https://getthepricefront.web.app) (связь c REST API отсутствует).
 
 Простое приложение для отслеживания изменений цены на торговой площадке. 

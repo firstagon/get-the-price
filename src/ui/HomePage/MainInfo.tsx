@@ -6,8 +6,6 @@ import clock from '../../img/clock.png';
 import addingItems from '../../img/addeditems.png';
 import end from '../../img/end.png';
 
-
-
 const textArray = [
   {
     header: "Зачем нужна регистрация",
@@ -46,9 +44,9 @@ const endBlock = (
   </div>
 );
 
-const MainInfo = ({ tran }) => {
+const MainInfo = () => {
   return (
-    <section className={"infoSection"} style={tran}>
+    <section className={"infoSection"}>
       <div className={"infoBlock"}>
         <div className={"infoBlock_text"}>
           <h1 className={"headerMain"}> Как это работает? </h1>

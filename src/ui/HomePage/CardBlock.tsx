@@ -1,4 +1,7 @@
-import { Link } from "react-router-dom/cjs/react-router-dom.min";
+import React from "react";
+import { Link } from "react-router-dom/";
+
+type TProps = { isToken: boolean };
 
 const joinBlock = (
   <div className="joinBlock">
@@ -22,7 +25,7 @@ const loggedBlock = (
   </div>
 );
 
-const JoinBlock = ({ isToken }) => {
+const JoinBlock: React.FunctionComponent<TProps> = ({ isToken }) => {
   return <div className="joinSection">{!isToken ? joinBlock : loggedBlock}</div>;
 };
 

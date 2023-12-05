@@ -3,42 +3,47 @@ import React, { useEffect, useRef, memo } from "react";
 // const propFromParent = [1046, 1000, 2501, 3000, 1500, 100];
 // const propFromParent = [1046, 10, 2000, 3500, 15];
 
-const chartRender = (ref, points) => {
+export type TItemPrice = {
+  price: number;
+  updated: string;
+};
 
-  const c = document.getElementById("priceGraph");
+type TItemsPrice = {
+  array: TItemPrice[];
+};
 
-  const height = ref.current.getContext("2d").canvas.clientHeight;
-  const width = ref.current.getContext("2d").canvas.clientWidth;
-
+const chartRender = <T extends React.RefObject<HTMLCanvasElement>, U extends TItemPrice[]>(ref: T, points: U) => {
+  const c = document.getElementById("priceGraph") as HTMLCanvasElement;
+  const context =  ref.current!.getContext("2d");
+  const height = context!.canvas.clientHeight;
+  const width = context!.canvas.clientWidth;
   c.height = height;
   c.width = width;
 
-  var ctx = c.getContext("2d");
+  var ctx = c.getContext("2d") as CanvasRenderingContext2D;
 
   ctx.strokeStyle = "green";
 
   const renderPoints = () => {
-
     // Creating a middleware array
     const pointsArray = [];
 
     for (let i = 0; i < points.length; i++) {
       let j = i + 1;
       const currPoint = {
-        currentValue: { point: points[i].price, date: points[i].updated.split(',')[0] },
+        currentValue: { point: points[i].price, date: points[i].updated.split(",")[0] },
         startPoint: points[i].price,
         endPoint: points[j] ? points[j].price : points[i].price,
       };
       pointsArray.push(currPoint);
     }
 
-
     //Creating a function to render middleware points
     const startX = 50;
     const startY = height * 0.9;
     const scaleRatio = 0.6;
 
-    const allPoints = points.map(el => el.price);
+    const allPoints = points.map((el: TItemPrice) => el.price);
 
     const maxY = Math.max(...allPoints);
 
@@ -50,8 +55,8 @@ const chartRender = (ref, points) => {
 
       // console.log(point, nextPoint)
 
-      if (point === nextPoint || point === false) {
-        continue
+      if (point === nextPoint || !!point === false) {
+        continue;
       }
       pointsToRender.push(pointsArray[i]);
     }
@@ -59,14 +64,13 @@ const chartRender = (ref, points) => {
     // console.log(pointsToRender)
 
     ctx.beginPath();
-    const scaleModificator = (value) => {
-      return value > 10000 ? height / maxY * scaleRatio : height / maxY * scaleRatio;
+    const scaleModificator = (value: number) => {
+      return value > 10000 ? (height / maxY) * scaleRatio : (height / maxY) * scaleRatio;
     };
 
     // when its 1 price
 
     if (pointsToRender.length < 2) {
-
       const point = pointsArray[0].currentValue.point;
 
       ctx.rect(
@@ -74,7 +78,7 @@ const chartRender = (ref, points) => {
         startY - point * scaleModificator(point),
         startX,
         startY - (startY - point * scaleModificator(point)) - 2
-      )
+      );
 
       ctx.fillStyle = ctx.strokeStyle;
       ctx.fill();
@@ -83,25 +87,22 @@ const chartRender = (ref, points) => {
 
       ctx.font = "12px Mukta";
       ctx.fillText(
-        pointsArray[0].currentValue.point,
+        pointsArray[0].currentValue.point.toString(),
         width / 6 + startX * 4 + 15,
-        startY - point * scaleModificator(point) + - 5
+        startY - point * scaleModificator(point) + -5
       );
 
       // creating a date at the bottom of chart
 
-      ctx.fillText(
-        pointsArray[0].currentValue.date,
-        width / 6 + startX * 4 + 5,
-        height
-      );
+      ctx.fillText(pointsArray[0].currentValue.date, width / 6 + startX * 4 + 5, height);
 
-      return
+      return;
     }
 
     for (let i = 0; i < pointsToRender.length; i++) {
-
-      const startPoint = pointsToRender[i - 1] ? pointsToRender[i - 1].currentValue.point : pointsToRender[i].currentValue.point;
+      const startPoint = pointsToRender[i - 1]
+        ? pointsToRender[i - 1].currentValue.point
+        : pointsToRender[i].currentValue.point;
       const endPoint = pointsToRender[i].currentValue.point;
 
       ctx.beginPath();
@@ -114,17 +115,16 @@ const chartRender = (ref, points) => {
         ctx.strokeStyle = "grey";
       }
 
-
       const point = pointsToRender[i].currentValue.point;
 
-      const ratioShortArray = pointsToRender.length < 3 ? (i + 1 * 125) : pointsToRender.length * 11;
+      const ratioShortArray = pointsToRender.length < 3 ? i + 1 * 125 : pointsToRender.length * 11;
 
       ctx.rect(
         width / pointsToRender.length + startX + startX * i + 10 + i * 5 - ratioShortArray,
         startY - point * scaleModificator(point),
         startX,
         startY - (startY - point * scaleModificator(point)) - 2
-      )
+      );
 
       ctx.fillStyle = ctx.strokeStyle;
       ctx.fill();
@@ -133,10 +133,15 @@ const chartRender = (ref, points) => {
 
       ctx.font = "12px Mukta";
       ctx.fillText(
-        pointsToRender[i].currentValue.point,
-        width / pointsToRender.length + startX + startX * i + i * 5 + startX / 2
-        - (pointsToRender[i].currentValue.point.toString().length) - ratioShortArray,
-        startY - point * scaleModificator(point) + - 5
+        pointsToRender[i].currentValue.point.toString(),
+        width / pointsToRender.length +
+          startX +
+          startX * i +
+          i * 5 +
+          startX / 2 -
+          pointsToRender[i].currentValue.point.toString().length -
+          ratioShortArray,
+        startY - point * scaleModificator(point) + -5
       );
 
       // creating a date at the bottom of chart
@@ -146,23 +151,23 @@ const chartRender = (ref, points) => {
         width / pointsToRender.length + startX + startX * i + i * 5 + startX / 5 - ratioShortArray,
         height
       );
-
     }
-
   };
 
   renderPoints();
 };
 
-const InfoGraphic = ({ array }) => {
-  const ref = useRef();
+const InfoGraphic: React.FunctionComponent<TItemsPrice> = ({ array }) => {
+  const ref = useRef<HTMLCanvasElement>(null);
   useEffect(() => {
-    chartRender(ref, array);
+    if (ref.current != null) {
+      chartRender(ref, array);
+    }
   }, [array]);
 
   return (
-    <section className='container'>
-      <canvas className='canvas' id="priceGraph" ref={ref}></canvas>
+    <section className="container">
+      <canvas className="canvas" id="priceGraph" ref={ref}></canvas>
     </section>
   );
 };
