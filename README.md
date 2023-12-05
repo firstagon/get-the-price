@@ -1,5 +1,5 @@
-[Site](http://gettheprice.ru)
-[Demo Site](https://getthepricefront.web.app) (связь c REST API отсутствует).
+[Site](http://gettheprice.ru)  
+[Demo Site](https://getthepricefront.web.app) (связь c REST API отсутствует).  
 
 Простое приложение для отслеживания изменений цены на торговой площадке. 
 Фронт реализован с помощью React + React Router + SCSS.
