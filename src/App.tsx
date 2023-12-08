@@ -126,7 +126,7 @@ function App() {
             <Footer />
           </Route>
           <Route path="/login" exact>
-            <LoginPage history={newHistory} />
+            <LoginPage />
           </Route>
           <Route path="/signup" exact>
             <SignupPage history={newHistory} />

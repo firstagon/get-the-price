@@ -7,12 +7,12 @@ interface IInputProps {
   eyeClick?: any;
   label?: string;
   id?: string;
-  eye?: any;
+  eye?: boolean;
   hided?: boolean;
   autocomplete?: any;
-  onFocus?:  (e: React.SyntheticEvent<HTMLInputElement>) => void;
-  onBlur?:  (e: React.SyntheticEvent<HTMLInputElement>) => void;
-  onChange?: (e: React.SyntheticEvent<HTMLInputElement>) => void;
+  onFocus?:  (e: React.FocusEvent<HTMLInputElement>) => void;
+  onBlur?:  (e: React.FocusEvent<HTMLInputElement>) => void;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   eyeToggle?: (e: React.SyntheticEvent) => void;
 }
 
@@ -35,7 +35,7 @@ const Input: React.FunctionComponent<IInputProps> = (props) => {
           onBlur={onBlur}
           onChange={onChange}
         />
-        {eye && <i className={"eye" + " " + (hided ? "" : "eyeOpen")} onClick={eyeClick} />}
+        {eye && <i className={"eye " + (hided ? "" : "eyeOpen")} onClick={eyeClick} />}
       </div>
     </div>
   );

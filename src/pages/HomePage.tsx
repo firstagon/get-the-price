@@ -6,11 +6,7 @@ import RequestChoice from "../ui/RequestChoice.js/RequestChoice";
 import MainInfo from "../ui/HomePage/MainInfo";
 import CardBlock from "../ui/HomePage/CardBlock";
 import MainLogo from "../ui/HomePage/MainLogo";
-import { AppDispatch, RootState } from "../store/store";
-import { Root } from "react-dom/client";
-
-const isAuth = false;
-// let ratio = 50;
+import {  RootState } from "../store/store";
 
 const HomePage = () => {
   const userState = useSelector((state: RootState) => state.userState);

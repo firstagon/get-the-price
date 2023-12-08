@@ -9,11 +9,6 @@ export type TState = {
   location: null | string;
 };
 
-//   type TItems = {
-//     items: TItem[] | null;
-//     item: TItem | null;
-//   };
-
 const initialState: TState = {
   isAuth: false,
   token: null,

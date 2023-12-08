@@ -2,11 +2,12 @@ import { useState } from "react";
 
 import Input from "../../ui/InputForms/Input";
 import { required, length, email } from "../../util/validators";
-import { useDispatch } from 'react-redux';
+import { useDispatch } from "react-redux";
 import { signup } from "../../store/login-actions";
+import { AppDispatch } from "../../store/store";
 
-const SignupPage = (props) => {
-  const dispatch = useDispatch();
+const SignupPage: React.FunctionComponent<{ history: History }> = (props) => {
+  const dispatch: AppDispatch = useDispatch();
   const [state, setState] = useState({
     signupForm: {
       email: {
@@ -35,13 +36,15 @@ const SignupPage = (props) => {
     passwordsSame: false,
   });
 
-  const higlightClass = state.passwordsSame && state.formIsValid
-    ? 'greenHighlight'
-    : !state.passwordsSame &&
-      !state.formIsValid &&
-      state.signupForm.email.valid && state.signupForm.passwordRepeat.value
-      ? 'redHighlight'
-      : '';
+  const higlightClass =
+    state.passwordsSame && state.formIsValid
+      ? "greenHighlight"
+      : !state.passwordsSame &&
+        !state.formIsValid &&
+        state.signupForm.email.valid &&
+        state.signupForm.passwordRepeat.value
+      ? "redHighlight"
+      : "";
 
   const inputChangeHandler = (synteticE) => {
     const value = synteticE.target.value;
@@ -62,10 +65,7 @@ const SignupPage = (props) => {
       let formIsValid = true;
       let passwordsSame = false;
       for (const inputName in updatedForm) {
-        passwordsSame =
-          updatedForm.password.value === updatedForm.passwordRepeat.value
-            ? true
-            : false;
+        passwordsSame = updatedForm.password.value === updatedForm.passwordRepeat.value ? true : false;
         formIsValid =
           formIsValid &&
           !!updatedForm[inputName].valid &&
@@ -124,18 +124,18 @@ const SignupPage = (props) => {
       password: state.signupForm.password.value,
     };
 
-    dispatch(signup(authData, props.history))
+    dispatch(signup(authData, props.history));
   };
 
   return (
-    <div className={'popupLogin'}>
+    <div className={"popupLogin"}>
       <div className="loginSection">
-        <div className={'loginBlock'}>
-          <form className={'signupForm'}>
+        <div className={"loginBlock"}>
+          <form className={"signupForm"}>
             <Input
               type="text"
               id="email"
-              autocomplete='email'
+              autocomplete="email"
               placeholder="Enter E-mail"
               onFocus={(e) => (e.target.placeholder = "")}
               onBlur={inputBlurHandler}
@@ -146,7 +146,7 @@ const SignupPage = (props) => {
               type={state.signupForm.password.hided ? "password" : "text"}
               id="password"
               placeholder="Enter password"
-              autocomplete='new-password'
+              autocomplete="new-password"
               onFocus={(e) => (e.target.placeholder = "")}
               onBlur={inputBlurHandler}
               eye={true}
@@ -158,7 +158,7 @@ const SignupPage = (props) => {
               type={state.signupForm.passwordRepeat.hided ? "password" : "text"}
               id="passwordRepeat"
               placeholder="Enter password repeat"
-              autocomplete='new-password'
+              autocomplete="new-password"
               onFocus={(e) => (e.target.placeholder = "")}
               onBlur={inputBlurHandler}
               eye={true}
@@ -168,7 +168,7 @@ const SignupPage = (props) => {
             />
             <button
               // eslint-disable-next-line no-useless-concat
-              className={'inputButton' + ' ' + higlightClass}
+              className={"inputButton" + " " + higlightClass}
               type="submit"
               name="submit"
               onClick={submitHandler}
@@ -176,11 +176,9 @@ const SignupPage = (props) => {
             >
               {state.passwordsSame && state.formIsValid
                 ? "Отправить"
-                : !state.passwordsSame &&
-                  !state.formIsValid &&
-                  state.signupForm.email.valid
-                  ? "Пароли должны совпадать"
-                  : "Заполните форму"}
+                : !state.passwordsSame && !state.formIsValid && state.signupForm.email.valid
+                ? "Пароли должны совпадать"
+                : "Заполните форму"}
             </button>
           </form>
         </div>

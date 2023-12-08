@@ -8,8 +8,8 @@ export const length = (value: string) => {
   }
   if (config.max ? config.max : false) {
     isValid = isValid && value.trim().length <= config.max;
-    return isValid;
   }
+  return isValid;
 };
 
 export const email = (value: string) =>

@@ -2,14 +2,35 @@ import { useState } from "react";
 
 import Input from "../../ui/InputForms/Input";
 import { required, length, email } from "../../util/validators";
-import { useDispatch } from 'react-redux';
+import { useDispatch } from "react-redux";
+// @ts-ignore
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { login } from "../../store/login-actions";
+import { AppDispatch } from "../../store/store";
 
-const LoginPage = (props) => {
+interface ILogin {
+  loginForm: {
+    email: {
+      value: string;
+      valid: boolean;
+      touched: boolean;
+      validators: ((value: string) => boolean)[];
+    };
+    password: {
+      value: string;
+      valid: boolean;
+      touched: boolean;
+      hided: boolean;
+      validators: ((value: string) => boolean)[];
+    };
+  };
+  formIsValid: boolean;
+}
+
+const LoginPage = () => {
   const history = useHistory();
-  const dispatch = useDispatch();
-  const [state, setState] = useState({
+  const dispatch: AppDispatch = useDispatch();
+  const [state, setState] = useState<ILogin>({
     loginForm: {
       email: {
         value: "",
@@ -30,12 +51,12 @@ const LoginPage = (props) => {
   const [isHelp, setIsHelp] = useState(false);
   const [buttonText, setButtonText] = useState("Войти");
 
-  const inputChangeHandler = (synteticE) => {
+  const inputChangeHandler = (synteticE: React.ChangeEvent<HTMLInputElement>) => {
     const value = synteticE.target.value;
-    const input = synteticE.target.id;
+    const input = synteticE.target.id as keyof ILogin['loginForm'];
     setState((prevState) => {
       let isValid = true;
-      for (const validator of prevState.loginForm[input].validators) {
+      for (const validator of prevState.loginForm[input as keyof ILogin['loginForm']].validators) {
         isValid = isValid && validator(value);
       }
       const updatedForm = {
@@ -47,8 +68,8 @@ const LoginPage = (props) => {
         },
       };
       let formIsValid = true;
-      for (const inputName in updatedForm) {
-        formIsValid = formIsValid && !!updatedForm[inputName].valid;
+      for (const inputName  in updatedForm) {
+        formIsValid = formIsValid && !!updatedForm[inputName as keyof ILogin['loginForm']].valid;
       }
       return {
         loginForm: updatedForm,
@@ -57,9 +78,9 @@ const LoginPage = (props) => {
     });
   };
 
-  const inputBlurHandler = (synteticE) => {
+  const inputBlurHandler = (synteticE: React.FocusEvent<HTMLInputElement>) => {
     const value = synteticE.target.value;
-    const input = synteticE.target.id;
+    const input = synteticE.target.id as keyof ILogin['loginForm'];
 
     if (!value) {
       return (synteticE.target.placeholder = `Enter ${input}`);
@@ -79,7 +100,7 @@ const LoginPage = (props) => {
     });
   };
 
-  const submitHandler = (e) => {
+  const submitHandler = (e: React.MouseEvent) => {
     e.preventDefault();
 
     if (!state.formIsValid) {
@@ -90,14 +111,15 @@ const LoginPage = (props) => {
       return;
     }
     const authData = {
-      email: state.loginForm.email.value,
+      email: state.loginForm.email.value.toLowerCase(),
       password: state.loginForm.password.value,
-    }
+    };
     dispatch(login(authData, history));
   };
 
-  const eyeHandler = (synteticE) => {
-    const input = synteticE.target.previousSibling.id;
+  const eyeHandler = (synteticE: React.MouseEvent<HTMLElement>) => {
+    const target = synteticE.target as any;
+    const input = target!.previousSibling.id as keyof ILogin['loginForm'];
     setState((prevState) => {
       return {
         ...prevState,
@@ -112,8 +134,7 @@ const LoginPage = (props) => {
     });
   };
 
-  const submitTestHandler = (e) => {
-
+  const submitTestHandler = (e: React.MouseEvent) => {
     e.preventDefault();
     const authData = {
       email: "test@test.ru",
@@ -123,12 +144,12 @@ const LoginPage = (props) => {
     dispatch(login(authData, history));
   };
 
-  const questionEnterHandler = (e) => {
+  const questionEnterHandler = (e: React.MouseEvent) => {
     e.preventDefault();
     setIsHelp(true);
   };
 
-  const questionLeaveHandler = (e) => {
+  const questionLeaveHandler = (e: React.MouseEvent) => {
     e.preventDefault();
     setIsHelp(false);
   };
@@ -142,7 +163,7 @@ const LoginPage = (props) => {
               type="text"
               id="email"
               placeholder="Enter E-mail"
-              autocomplete='email'
+              autocomplete="email"
               onFocus={(e) => (e.target.placeholder = "")}
               onBlur={inputBlurHandler}
               eye={false}
@@ -152,7 +173,7 @@ const LoginPage = (props) => {
               type={state.loginForm.password.hided ? "password" : "text"}
               id="password"
               placeholder="Enter password"
-              autocomplete='current-password'
+              autocomplete="current-password"
               onFocus={(e) => (e.target.placeholder = "")}
               onBlur={inputBlurHandler}
               eye={true}
@@ -160,11 +181,7 @@ const LoginPage = (props) => {
               onChange={inputChangeHandler}
               eyeClick={eyeHandler}
             />
-            <button
-              className="inputButton"
-              onClick={submitHandler}
-              disabled={!state.formIsValid}
-            >
+            <button className="inputButton" onClick={submitHandler} disabled={!state.formIsValid}>
               {" "}
               {buttonText}{" "}
             </button>
@@ -174,11 +191,7 @@ const LoginPage = (props) => {
             <button className={"subButton"} onClick={submitTestHandler}>
               <p className={"subButtText"}> Быстрый вход </p>
             </button>
-            <div
-              className={"questionMark"}
-              onMouseEnter={questionEnterHandler}
-              onMouseLeave={questionLeaveHandler}
-            >
+            <div className={"questionMark"} onMouseEnter={questionEnterHandler} onMouseLeave={questionLeaveHandler}>
               ?
             </div>
             {isHelp && (
