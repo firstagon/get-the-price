@@ -30,7 +30,7 @@ interface ILogin {
 const LoginPage = () => {
   const history = useHistory();
   const dispatch: AppDispatch = useDispatch();
-  const [state, setState] = useState<ILogin>({
+  const [state, setState] = useState({
     loginForm: {
       email: {
         value: "",

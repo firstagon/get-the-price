@@ -5,6 +5,36 @@ import { required, length, email } from "../../util/validators";
 import { useDispatch } from "react-redux";
 import { signup } from "../../store/login-actions";
 import { AppDispatch } from "../../store/store";
+// @ts-ignore
+import { History } from "history";
+
+interface ISignup {
+  signupForm: {
+    email: {
+      value: string;
+      valid: boolean;
+      touched: boolean;
+      hided?: boolean;
+      validators: ((value: string) => boolean)[];
+    };
+    password: {
+      value: string;
+      valid: boolean;
+      touched: boolean;
+      hided: boolean;
+      validators: ((value: string) => boolean)[];
+    };
+    passwordRepeat: {
+      value: string;
+      valid: boolean;
+      touched: boolean;
+      hided: boolean;
+      validators: ((value: string) => boolean)[];
+    };
+  };
+  formIsValid: boolean;
+  passwordsSame: boolean;
+}
 
 const SignupPage: React.FunctionComponent<{ history: History }> = (props) => {
   const dispatch: AppDispatch = useDispatch();
@@ -14,6 +44,7 @@ const SignupPage: React.FunctionComponent<{ history: History }> = (props) => {
         value: "",
         valid: false,
         touched: false,
+        hided: false,
         validators: [required, email],
       },
       password: {
@@ -46,9 +77,9 @@ const SignupPage: React.FunctionComponent<{ history: History }> = (props) => {
       ? "redHighlight"
       : "";
 
-  const inputChangeHandler = (synteticE) => {
+  const inputChangeHandler = (synteticE: React.ChangeEvent<HTMLInputElement>) => {
     const value = synteticE.target.value;
-    const input = synteticE.target.id;
+    const input = synteticE.target.id as keyof ISignup["signupForm"];
     setState((prevState) => {
       let isValid = true;
       for (const validator of prevState.signupForm[input].validators) {
@@ -68,7 +99,7 @@ const SignupPage: React.FunctionComponent<{ history: History }> = (props) => {
         passwordsSame = updatedForm.password.value === updatedForm.passwordRepeat.value ? true : false;
         formIsValid =
           formIsValid &&
-          !!updatedForm[inputName].valid &&
+          !!updatedForm[inputName as keyof ISignup["signupForm"]].valid &&
           updatedForm.password.value === updatedForm.passwordRepeat.value;
       }
       return {
@@ -79,9 +110,9 @@ const SignupPage: React.FunctionComponent<{ history: History }> = (props) => {
     });
   };
 
-  const inputBlurHandler = (synteticE) => {
+  const inputBlurHandler = (synteticE: React.FocusEvent<HTMLInputElement>) => {
     const value = synteticE.target.value;
-    const input = synteticE.target.id;
+    const input = synteticE.target.id as keyof ISignup["signupForm"];
 
     if (!value) {
       return (synteticE.target.placeholder = `Enter ${input}`);
@@ -101,8 +132,9 @@ const SignupPage: React.FunctionComponent<{ history: History }> = (props) => {
     });
   };
 
-  const eyeHandler = (synteticE) => {
-    const input = synteticE.target.previousSibling.id;
+  const eyeHandler = (synteticE: React.MouseEvent<HTMLElement>) => {
+    const target = synteticE.target as any;
+    const input = target.previousSibling.id as keyof ISignup["signupForm"];
     setState((prevState) => {
       return {
         ...prevState,
@@ -117,7 +149,7 @@ const SignupPage: React.FunctionComponent<{ history: History }> = (props) => {
     });
   };
 
-  const submitHandler = (e) => {
+  const submitHandler = (e: React.MouseEvent) => {
     e.preventDefault();
     const authData = {
       email: state.signupForm.email.value,

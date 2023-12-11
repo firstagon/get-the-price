@@ -4,7 +4,7 @@ import { createBrowserHistory, History } from "history";
 import { Router, Switch, Route } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logout, init } from "./store/login-actions";
-import { setError } from "./store/error-actions";
+// import { setError } from "./store/error-actions";
 import { RootState, AppDispatch } from "./store/store";
 
 import "./App.scss";
