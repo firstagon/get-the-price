@@ -1,15 +1,18 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { Provider } from 'react-redux';
-import { store } from './app/store';
+import store from "./store/store";
 import App from './App';
 
-test('renders learn react link', () => {
-  const { getByText } = render(
+test('renders main page', () => {
+  render(
     <Provider store={store}>
       <App />
     </Provider>
   );
+  expect(screen.getByText(/get the price/i)).toBeInTheDocument();
 
-  // expect(getByText(/learn/i)).toBeInTheDocument();
+
+  // expect(screen.getByText(/get the price/i)).toBeInTheDocument();
+
 });

@@ -9,7 +9,7 @@ interface IInputProps {
   id?: string;
   eye?: boolean;
   hided?: boolean;
-  autocomplete?: any;
+  autocomplete?: string;
   onFocus?:  (e: React.FocusEvent<HTMLInputElement>) => void;
   onBlur?:  (e: React.FocusEvent<HTMLInputElement>) => void;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;

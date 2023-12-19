@@ -6,7 +6,6 @@
     "@reduxjs/toolkit": "^1.9.7",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^14.4.3",
     "@types/jest": "^29.5.9",
     "@types/node": "^20.9.3",
     "@types/react": "^18.2.38",
@@ -26,8 +25,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "jest": "jest",
     "eject": "react-scripts eject",
-    "st": "cd get-the-price npm start",
     "watch": "react-scripts-ts start"
   },
   "eslintConfig": {
@@ -47,5 +46,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@testing-library/user-event": "^14.5.1",
+    "msw": "^2.0.11"
   }
 }
