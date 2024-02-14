@@ -21,6 +21,7 @@ import UsersFeed from "./pages/UsersFeed/UsersFeed";
 import AboutPage from "./pages/About/AboutPage";
 import Notificator from "./ui/notifications/Notificator";
 import NotFound from "./pages/NotFound";
+import BackLight from "./ui/three-fiber/main-screen/backLight";
 
 const newHistory: History = createBrowserHistory();
 
@@ -153,6 +154,7 @@ function App() {
         </Switch>
         {noticeState.isShown && <Notificator />}
         {errorState.errorShown && <ErrorPopup />}
+        <BackLight />
       </Router>
     </Fragment>
   );
