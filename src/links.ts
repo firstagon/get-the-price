@@ -1,5 +1,5 @@
-const isDev = process.env.REACT_APP_ISDEV ? true : false;
-// const isDev =true;
+// const isDev = process.env.REACT_APP_ISDEV ? true : false;
+const isDev =true;
 const link = isDev ? "http://localhost:3030" : "http://31.129.108.202:40001";
 // const link ='http://31.129.108.202:40002';
 

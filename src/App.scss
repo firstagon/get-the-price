@@ -19,6 +19,7 @@ body {
   justify-content: center;
 
   width: 100%;
+  min-height: 100vh;
 
   margin: 0;
   padding: 0;
@@ -54,7 +55,8 @@ body {
 
   width: 100%;
   max-width: 1200px;
-  min-height: 82vh;
+  // min-height: 82vh;
+  height: 100%;
 }
 
 .footerSection {
@@ -71,6 +73,7 @@ body {
   background-color: black;
 
   bottom: 0;
+  z-index: 2;
 }
 
 .footerBlock {

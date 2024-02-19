@@ -4,24 +4,23 @@ import { EffectComposer, DepthOfField, Noise, Vignette, Autofocus, } from '@reac
 import { Canvas, useFrame } from '@react-three/fiber';
 import { Physics, RigidBody, BallCollider, ConeCollider } from '@react-three/rapier';
 import { useRef, useMemo, useEffect, useState } from 'react';
+import { useLocation } from "react-router-dom";
+
 const colors = ['#4060ff', '#20ffa0', '#ff4060', '#ffcc00', '#4060ff', '#20ffa0', '#ff4060', '#ffcc00'];
 
 
 function BackLight({ isLoggenIn }) {
+    const location = useLocation();
     const [line, setLine] = useState(false);
 
     useEffect(() => {
-        if (!!isLoggenIn) setLine(true)
-    }, [isLoggenIn])
-
-    const upd = () => {
-        // setLine((prev) => !prev);
-        console.log(line)
-    }
+        if (!!isLoggenIn && location.pathname === '/') setLine(true);
+        else setLine(() => false);
+    }, [isLoggenIn, location.pathname])
 
     return (
         <div className="canvas-container">
-            <Canvas onClick={upd} >
+            <Canvas>
                 <Physics colliders={false} gravity={[0, 0, 0]}>
                     <Pointer />
                     {colors.map((el, index) => <RigidTetrahedron line={line} color={el} key={index} index={index} />)}
@@ -46,10 +45,10 @@ function RigidTetrahedron(props) {
     const pos = useMemo(() => props.position || [r(10), c(5, 8), r(4)], []);
     useFrame((state, delta) => {
         if (!!props.line) {
-            const target = new THREE.Vector3(-7 + props.index * 2, 2, -2);
+            const target = new THREE.Vector3(-7 + props.index * 2, 0.5, -2);
             const dir = new THREE.Vector3();
-            if (api.current.translation().x === target.x) return
-            api.current?.applyImpulse(vec.copy(dir.subVectors(target, api.current.translation())).multiplyScalar(1));
+            if (api.current?.translation().x === target.x) return
+            api.current?.applyImpulse(vec.copy(dir.subVectors(target, api.current?.translation())).multiplyScalar(1));
             return
         }
         delta = Math.min(0.1, delta);
@@ -61,7 +60,7 @@ function RigidTetrahedron(props) {
             <Wireframe simplify={false} fillOpacity={0.5} stroke={"black"} thickness={0.03} colorBackfaces={false} />
         </Tetrahedron>
         {!props.line && <BallCollider args={[2]} />}
-        {props.line && <ConeCollider args={[1, 1, 1]} />}
+        {props.line && <ConeCollider args={[1.1, 1.1, 1.1]} />}
 
     </RigidBody>
 };

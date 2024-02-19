@@ -6,8 +6,6 @@
 
   width: 100%;
   max-width: 1000px;
-
-  margin-top: 2vh;
 }
 
 .feedBlock {
@@ -19,8 +17,10 @@
   border: none;
 
   min-height: 80vh;
+  
+  z-index: 5;
 
-  margin: 0 2vw 0 2vw;
+  backdrop-filter: blur(100px);
 }
 
 .feedList {
@@ -30,7 +30,7 @@
 
   width: 100%;
 
-  margin: 5px 0 5px 0;
+  margin: 5px 2vw 5px 2vw;
   padding: 0;
 }
 
@@ -44,7 +44,9 @@
   height: fit-content;
   max-height: 15vh;
 
-  border: 1px solid $base-border;
+  border: 1px solid transparent;
+  border-top: 1px solid $base-border;
+  border-bottom: 1px solid $base-border;
   border-radius: 5px;
 
   margin: 10px 0 0 0;
@@ -79,6 +81,8 @@
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
+
+  background-color: $base-bg;
 
   padding: 1vh 1vw;
 
@@ -125,7 +129,6 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: flex-end;
-
 
   width: 100%;
 }
@@ -187,7 +190,6 @@
   height: 1.5em;
   width: 1.5em;
   fill: $theme-light-bg;
-
 }
 
 .favIcon:hover {
@@ -221,7 +223,8 @@
     // height: 0.1em;
   }
 
-  .rating, .price {
+  .rating,
+  .price {
     display: flex;
     margin-right: 2vw;
     align-items: center;

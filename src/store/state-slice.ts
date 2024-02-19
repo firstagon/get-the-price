@@ -23,7 +23,7 @@ const stateSlice = createSlice({
   initialState,
   reducers: {
     logOut(state, action) {
-      return { ...state, ...action.payload };
+      return { initialState, ...action.payload };
     },
     logIn(state, action) {
       return { ...state, ...action.payload };

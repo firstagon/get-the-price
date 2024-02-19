@@ -3,6 +3,9 @@
 .itemPage {
   display: flex;
   flex-direction: column;
+  height: 100%;
+  backdrop-filter: blur(100px);
+  z-index: 5;
 }
 
 .mainInfo {
@@ -10,7 +13,7 @@
   flex-direction: row;
 
   margin-bottom: 2vw;
-  margin: 0 2vw 2vh 2vw;
+  margin: 2vh 2vw 2vh 2vw;
 }
 
 .mainContainer {
