@@ -20,9 +20,7 @@ function BackLight({ isLoggenIn }) {
     }
 
     return (
-        <div id="canvas-container" style={{
-            width: '100%', height: '94vh', position: "absolute", top: "6vh",
-        }}>
+        <div className="canvas-container">
             <Canvas onClick={upd} >
                 <Physics colliders={false} gravity={[0, 0, 0]}>
                     <Pointer />

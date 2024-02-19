@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useEffect } from "react";
+import React, { Fragment, useState, useEffect, lazy } from "react";
 // @ts-ignore
 import { createBrowserHistory, History } from "history";
 import { Router, Switch, Route } from "react-router-dom";
