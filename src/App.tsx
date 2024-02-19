@@ -27,7 +27,7 @@ const newHistory: History = createBrowserHistory();
 
 function App() {
   const dispatch: AppDispatch = useDispatch();
-  // const userState = useSelector((state: RootState) => state.userState);
+  const userState = useSelector((state: RootState) => state.userState);
   const errorState = useSelector((state: RootState) => state.errorState);
   const noticeState = useSelector((state: RootState) => state.noticeState);
 
@@ -154,7 +154,7 @@ function App() {
         </Switch>
         {noticeState.isShown && <Notificator />}
         {errorState.errorShown && <ErrorPopup />}
-        <BackLight />
+        <BackLight isLoggenIn={userState.isAuth} />
       </Router>
     </Fragment>
   );

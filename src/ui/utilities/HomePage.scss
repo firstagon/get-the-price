@@ -573,6 +573,14 @@ input {
   font-family: $font-text;
 }
 
+.mainHeader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 92vh;
+  z-index: 5;
+}
+
 @media (max-width: 720px) {
   .header {
     height: 8vh;
@@ -627,7 +635,6 @@ input {
     width: 30vw;
     height: 30vw;
   }
-
 }
 
 @media (max-width: 300px) {

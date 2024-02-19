@@ -5,10 +5,10 @@ type TProps = { isToken: boolean };
 
 const joinBlock = (
   <div className="joinBlock">
-    <Link to="/signup" className="joinCard">
+    <Link to={{ pathname: "/signup", state: { byButton: true } }} className="joinCard">
       <p className="joinText"> Регистрация </p>
     </Link>
-    <Link to="/login" className="joinCard">
+    <Link to={{ pathname: "/login", state: { byButton: true } }} className="joinCard">
       <p className="joinText"> Вход </p>
     </Link>
   </div>

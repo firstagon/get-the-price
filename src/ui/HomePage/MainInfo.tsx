@@ -48,21 +48,6 @@ const MainInfo = () => {
   return (
     <section className={"infoSection"}>
       <div className={"infoBlock"}>
-        <div className={"infoBlock_text"}>
-          <h1 className={"headerMain"}> Как это работает? </h1>
-          <p className="infoText centeredText">
-            {" "}
-            Огромное количество товаров продается на марткеплейсах. Не меньшее
-            количество проводимых скидок, акций и "цен дня" проходит мимо людей,
-            не проводящих ежедневный мониторинг интересующих их вещей. Усилиями
-            маркетологов цена товара может существенно отличаться в ту или иную
-            сторону в зависимости от дня недели, месяца и времени года.
-          </p>
-          <p className="infoText centeredText">
-            Благодаря простейшему трекеру цены можно получить уведомление о
-            изменении цены и совершить покупку по подходящей для вас цене.
-          </p>
-        </div>
         {textArray.map((el) => (
           <MainInfoBlock key={textArray.indexOf(el)} info={el} />
         ))}
