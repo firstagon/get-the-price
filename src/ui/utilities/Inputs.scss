@@ -80,7 +80,7 @@ input[type="submit"]:disabled:hover,
   background-color: rgba($base-color, 0.7);
 }
 .popupLogin {
-  position: fixed;
+  // position: fixed;
   top: 0;
   /* z-index: 1; */
   display: flex;
@@ -102,7 +102,7 @@ input[type="submit"]:disabled:hover,
   top: 30%;
 
   width: 40vw;
-
+  max-width: 500px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -234,18 +234,32 @@ input[type="submit"]:disabled:hover,
 }
 
 .helpBlock {
-  display: flex;
   position: absolute;
+  display: grid;
+  grid-template-rows: 0fr;
+  width: 100%;
+  // overflow: hidden;
 
   top: 110%;
   right: 0;
 
-  padding: 5px;
+  // background: $base-color;
+  // background-color: $base-bg;
+  color: $font-color;
+
+  transition: grid-template-rows 0.5s;
+}
+
+.helpBlock_text {
+  overflow: hidden;
   border-radius: 5px;
 
-  // background: $base-color;
-  background-color: $base-bg;
-  color: $font-color;
+  backdrop-filter: blur(100px);
+}
+
+.helpvisible {
+  display: grid;
+  grid-template-rows: 1fr;
 }
 
 .inputButton {

@@ -6,6 +6,15 @@ import clock from '../../img/clock.png';
 import addingItems from '../../img/addeditems.png';
 import end from '../../img/end.png';
 
+import { forwardRef, ReactNode } from "react";
+
+
+
+interface Props {
+  children?: ReactNode;
+}
+type Ref = HTMLElement;
+
 const textArray = [
   {
     header: "Зачем нужна регистрация",
@@ -44,9 +53,11 @@ const endBlock = (
   </div>
 );
 
-const MainInfo = () => {
+
+
+const MainInfo = forwardRef<Ref, Props>((props, ref) => {
   return (
-    <section className={"infoSection"}>
+    <section ref={ref} className={"infoSection"}>
       <div className={"infoBlock"}>
         {textArray.map((el) => (
           <MainInfoBlock key={textArray.indexOf(el)} info={el} />
@@ -55,6 +66,6 @@ const MainInfo = () => {
       </div>
     </section>
   );
-};
+});
 
 export default MainInfo;

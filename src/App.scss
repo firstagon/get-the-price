@@ -17,6 +17,7 @@ body {
   // position: relative;
   display: flex;
   justify-content: center;
+  align-items: center;
 
   width: 100%;
   min-height: 100vh;
@@ -26,13 +27,18 @@ body {
   background-color: $base-bg;
   font: 100% $font-stack;
 
+  overflow-x: hidden;
+
   z-index: -20;
 }
 
 .mainBody {
+  position: relative;
   display: flex;
   flex-direction: column;
-
+  justify-content: center;
+  align-items: center;
+  max-width: $max-width-inner;
   // background: linear-gradient($main-bgcolor, $base-color);
 }
 
@@ -52,11 +58,16 @@ body {
 .mainSection {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
 
   width: 100%;
-  max-width: 1200px;
+  max-width: $max-width;
+
+  margin-top: $margin-header;
   // min-height: 82vh;
-  height: 100%;
+  // height: 100%;
 }
 
 .footerSection {
@@ -82,7 +93,7 @@ body {
 
   flex-grow: 1;
 
-  max-width: 1000px;
+  max-width: $max-width;
 }
 
 .footerBlock_left,

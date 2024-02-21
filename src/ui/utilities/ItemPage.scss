@@ -3,40 +3,37 @@
 .itemPage {
   display: flex;
   flex-direction: column;
-  height: 100%;
   backdrop-filter: blur(100px);
   z-index: 5;
+
+  min-height: 84vh;
+  margin-top: 6vh;
 }
 
 .mainInfo {
+  position: relative;
   display: flex;
   flex-direction: row;
 
-  margin-bottom: 2vw;
-  margin: 2vh 2vw 2vh 2vw;
+  width: 100vw;
+  margin: 2vh 0 2vh 0;
 }
 
 .mainContainer {
   display: flex;
   flex-direction: row;
-
-  height: 100%;
-  width: 100%;
 }
 
 .itemContainer {
   display: flex;
-
-  width: 100%;
   border-radius: 25px;
-
-  /* background-color: #f9f9f9; */
   background-color: $base-bg;
+  width: 96vw;
 }
 
-section:last-child {
-  margin-bottom: 2vh;
-}
+// section:last-child {
+//   margin-bottom: 2vh;
+// }
 
 .errorMessage {
   color: $font-color;
@@ -46,9 +43,6 @@ section:last-child {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-
-  height: auto;
-  width: auto;
 }
 
 .ContainerInfoImage {
@@ -59,6 +53,12 @@ section:last-child {
 
   max-width: 30vw;
   min-width: 20vw;
+}
+
+.ContainerInfoText {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
 }
 
 .itemImage {

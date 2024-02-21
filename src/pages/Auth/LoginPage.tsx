@@ -53,10 +53,10 @@ const LoginPage = () => {
 
   const inputChangeHandler = (synteticE: React.ChangeEvent<HTMLInputElement>) => {
     const value = synteticE.target.value;
-    const input = synteticE.target.id as keyof ILogin['loginForm'];
+    const input = synteticE.target.id as keyof ILogin["loginForm"];
     setState((prevState) => {
       let isValid = true;
-      for (const validator of prevState.loginForm[input as keyof ILogin['loginForm']].validators) {
+      for (const validator of prevState.loginForm[input as keyof ILogin["loginForm"]].validators) {
         isValid = isValid && validator(value);
       }
       const updatedForm = {
@@ -68,8 +68,8 @@ const LoginPage = () => {
         },
       };
       let formIsValid = true;
-      for (const inputName  in updatedForm) {
-        formIsValid = formIsValid && !!updatedForm[inputName as keyof ILogin['loginForm']].valid;
+      for (const inputName in updatedForm) {
+        formIsValid = formIsValid && !!updatedForm[inputName as keyof ILogin["loginForm"]].valid;
       }
       return {
         loginForm: updatedForm,
@@ -80,7 +80,7 @@ const LoginPage = () => {
 
   const inputBlurHandler = (synteticE: React.FocusEvent<HTMLInputElement>) => {
     const value = synteticE.target.value;
-    const input = synteticE.target.id as keyof ILogin['loginForm'];
+    const input = synteticE.target.id as keyof ILogin["loginForm"];
 
     if (!value) {
       return (synteticE.target.placeholder = `Enter ${input}`);
@@ -119,7 +119,7 @@ const LoginPage = () => {
 
   const eyeHandler = (synteticE: React.MouseEvent<HTMLElement>) => {
     const target = synteticE.target as any;
-    const input = target!.previousSibling.id as keyof ILogin['loginForm'];
+    const input = target!.previousSibling.id as keyof ILogin["loginForm"];
     setState((prevState) => {
       return {
         ...prevState,
@@ -194,12 +194,12 @@ const LoginPage = () => {
             <div className={"questionMark"} onMouseEnter={questionEnterHandler} onMouseLeave={questionLeaveHandler}>
               ?
             </div>
-            {isHelp && (
-              <div className={"helpBlock"}>
+            <div className={"helpBlock" + (isHelp ? " helpvisible" : "")}>
+              <p className="helpBlock_text">
                 Автовход под тестовой почтой. <br />
                 Возможно, кто-то уже пользовался.{" "}
-              </div>
-            )}
+              </p>
+            </div>
           </div>
         </div>
       </div>
